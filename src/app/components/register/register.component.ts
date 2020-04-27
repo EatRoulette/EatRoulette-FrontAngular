@@ -14,12 +14,12 @@ export class RegisterComponent {
   message: string;
   userService: UserService;
 
-  constructor(formBuilder: FormBuilder, userService: UserService) { 
+  constructor(formBuilder: FormBuilder, userService: UserService) {
     this.UserForm = formBuilder.group({
-      Login: ['', [Validators.required]],
-      Password: ['', [Validators.required]],
-      Email: ['', [Validators.required]],
-      Type: ['test'],
+      login: ['', [Validators.required]],
+      password: ['', [Validators.required]],
+      email: ['', [Validators.required]],
+      type: ['test'],
     });
    this.userService = userService;
   }
@@ -36,4 +36,4 @@ export class RegisterComponent {
         this.UserForm.reset();
       });
   }
-}    
+}

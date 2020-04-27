@@ -13,13 +13,13 @@ export class UserService {
   header: any;
   constructor(private http: HttpClient) {
 
-    this.Url = 'http://localhost:3000/';
+    this.Url = 'http://localhost:3000';
 
     const headerSettings: { [name: string]: string | string[]; } = {};
     this.header = new HttpHeaders(headerSettings);
   }
   Subscribe(register: Register) {
-    const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
+    const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin':'*' }) };
     return this.http.post<Register[]>(this.Url + '/auth/subscribe/', register, httpOptions)
   }
-}  
+}

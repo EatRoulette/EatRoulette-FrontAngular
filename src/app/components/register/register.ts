@@ -1,5 +1,6 @@
-export class Register { 
-    Password:string;  
-    Email:string;  
-    Login:string;  
+export class Register {
+    password:string;
+    email:string;
+    login:string;
+    type: string;
 }
