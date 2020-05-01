@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { UserService } from 'src/app/services/user/user.service';
 import { Register } from './register';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-register',
@@ -9,12 +10,11 @@ import { Register } from './register';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent {
-  data = false;
   UserForm: FormGroup;
   message: string;
   userService: UserService;
 
-  constructor(formBuilder: FormBuilder, userService: UserService) {
+  constructor(formBuilder: FormBuilder, userService: UserService, private router: Router) {
     this.UserForm = formBuilder.group({
       login: ['', [Validators.required]],
       password: ['', [Validators.required]],
@@ -23,19 +23,21 @@ export class RegisterComponent {
     });
    this.userService = userService;
   }
+
   onFormSubmit() {
     const user = this.UserForm.value;
     this.CreateUser(user);
   }
+
   CreateUser(register: Register) {
     this.userService.Subscribe(register).subscribe(
-      () => {
-        this.data = true;
+      (value: Register[]) => {
         this.message = null;
         this.UserForm.reset();
+        this.router.navigate(['/login'])
       },
-      (error: string) => {
-        this.data = false;
+      (error: any) => {
+        console.error(error);
         this.message = 'Une erreur est survenue';
       });
   }
