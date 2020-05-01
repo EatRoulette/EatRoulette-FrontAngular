@@ -4,7 +4,7 @@
         <div class="card mx-4">
           <div class="card-body p-4">
             <form [formGroup]="UserForm" (ngSubmit)="onFormSubmit()">
-              <h1 style="text-align:center">Register</h1>
+              <h1 class="centered-text">Register</h1>
 
               <div class="input-group mb-3">
                 <input type="text" class="form-control" placeholder="Login"  formControlName="login">
@@ -21,4 +21,5 @@
         </div>
       </div>
     </div>
-  </div>
+    <div class="error centered-text">{{message}}</div>
+</div>

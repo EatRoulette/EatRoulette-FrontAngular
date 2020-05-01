@@ -28,12 +28,15 @@ export class RegisterComponent {
     this.CreateUser(user);
   }
   CreateUser(register: Register) {
-    console.log("test");
     this.userService.Subscribe(register).subscribe(
       () => {
         this.data = true;
-        this.message = 'Data saved Successfully';
+        this.message = null;
         this.UserForm.reset();
+      },
+      (error: string) => {
+        this.data = false;
+        this.message = 'Une erreur est survenue';
       });
   }
 }
