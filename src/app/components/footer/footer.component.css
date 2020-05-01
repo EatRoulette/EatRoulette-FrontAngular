@@ -1,0 +1,12 @@
+.footer{
+  flex-direction: row;
+  display: flex;
+  justify-content: center;
+  align-items:center;
+  margin-top:25px;
+}
+
+.right-footer{
+  position: absolute;
+  right: 20px;
+}

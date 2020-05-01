@@ -1,17 +1,33 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { RegisterComponent } from './components/register/register.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {NgModule} from '@angular/core';
+import {Routes, RouterModule} from '@angular/router';
+import {RegisterComponent} from './components/register/register.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {LoginComponent} from "./components/login/login.component";
+import {DashboardComponent} from "./components/dashboard/dashboard.component";
 
 
 const routes: Routes = [
+  {
+    path: '',
+    component: DashboardComponent,
+    data: {
+      title: 'Dashboard Page'
+    }
+  },
   {
     path: 'register',
     component: RegisterComponent,
     data: {
       title: 'Register Page'
     }
-  },];
+  },
+  {
+    path: 'login',
+    component: LoginComponent,
+    data: {
+      title: 'Login Page'
+    }
+  }];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes), FormsModule,
@@ -19,4 +35,5 @@ const routes: Routes = [
   exports: [RouterModule, FormsModule,
     ReactiveFormsModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}
