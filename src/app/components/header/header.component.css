@@ -1,0 +1,16 @@
+.header{
+  justify-content: center;
+  align-items:center;
+}
+.logo-container{
+  justify-content: center;
+  align-items:center;
+}
+.logo{
+  width: 300px;
+}
+.right-header{
+  position: absolute;
+  right: 20px;
+}
+
