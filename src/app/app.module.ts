@@ -10,7 +10,6 @@ import { FooterComponent } from './components/footer/footer.component';
 import { LoginComponent } from './components/login/login.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { RestaurantCarouselComponent } from './components/restaurant-carousel/restaurant-carousel.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +19,6 @@ import { RestaurantCarouselComponent } from './components/restaurant-carousel/re
     FooterComponent,
     LoginComponent,
     DashboardComponent,
-    RestaurantCarouselComponent
   ],
   imports: [
     BrowserModule,
