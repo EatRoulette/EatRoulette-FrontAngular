@@ -4,18 +4,65 @@
         <div class="card mx-4">
           <div class="card-body p-4">
             <form [formGroup]="UserForm" (ngSubmit)="onFormSubmit()">
-              <h1 class="centered-text">Register</h1>
-
-              <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="Login"  formControlName="login">
+              <h1 class="centered-text">S'enregistrer</h1>
+              <div class="mb-3">
+                <div class="input-group">
+                  <input type="text" class="form-control" placeholder="Nom" formControlName="firstName" required>
+                  <input type="text" class="form-control" placeholder="Prénom" formControlName="lastName" required>
+                </div>
+                <div *ngIf="submitted && (fields.firstName.errors || fields.lastName.errors)" class="field-error">
+                  <div *ngIf="fields.firstName.errors.required">Veuillez renseigner votre nom complet</div>
+                </div>
               </div>
-              <div class="input-group mb-3">
-                <input type="password" class="form-control" placeholder="Password"  formControlName="password">
+              <div class="mb-3">
+                <div class="input-group">
+                  <input type="email" class="form-control" placeholder="Email" formControlName="email" required>
+                </div>
+                <div *ngIf="submitted && fields.email.errors" class="field-error">
+                  Veuillez renseigner un email valide
+                </div>
               </div>
-              <div class="input-group mb-4">
-                <input type="text" class="form-control" placeholder="Email"  formControlName="email">
+              <div class="mb-3">
+                <div class="input-group">
+                  <input type="password" class="form-control" placeholder="Mot de Passe" formControlName="password" required>
+                </div>
+                <div *ngIf="submitted && fields.password.errors" class="field-error">
+                  <div *ngIf="fields.password.errors.required">Veuillez renseigner un mot de passe</div>
+                </div>
               </div>
-              <button type="submit" class="btn btn-block btn-success">Add User</button>
+              <div class="mb-3">
+                <div class="input-group">
+                  <input type="address" class="form-control" placeholder="Adresse" formControlName="address" required>
+                </div>
+                <div *ngIf="submitted && fields.address.errors" class="field-error">
+                  Veuillez renseigner une adresse
+                </div>
+              </div>
+              <div class="mb-3">
+                <div class="input-group">
+                  <input type="text" class="form-control" placeholder="Ville" formControlName="town" required>
+                </div>
+                <div *ngIf="submitted && fields.town.errors" class="field-error">
+                  Veuillez indiquer votre ville
+                </div>
+              </div>
+              <div class="mb-3">
+                <div class="input-group">
+                  <input type="text" class="form-control" placeholder="Code Postal" formControlName="postalCode" required>
+                </div>
+                <div *ngIf="submitted && fields.postalCode.errors" class="field-error">
+                  Veuillez indiquer un Code Postal valide
+                </div>
+              </div>
+              <div class="mb-3">
+                <div class="input-group">
+                  <input type="tel" class="form-control" placeholder="Téléphone" formControlName="phone" required>
+                </div>
+                <div *ngIf="submitted && fields.phone.errors" class="field-error">
+                  Veuillez renseigner un numéro de téléphone valide
+                </div>
+              </div>
+              <button type="submit" class="btn btn-block btn-success">Ajouter un utilisateur</button>
             </form>
           </div>
         </div>

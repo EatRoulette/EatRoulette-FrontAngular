@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
         // TODO save token received
         this.message = null;
         this.UserForm.reset();
-        this.router.navigate(['/dashboard'])
+        this.router.navigate(['/'])
       },
       (error: any) => {
         console.error(error);

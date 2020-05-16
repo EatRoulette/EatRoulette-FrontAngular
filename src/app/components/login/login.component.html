@@ -4,15 +4,15 @@
       <div class="card mx-4">
         <div class="card-body p-4">
           <form [formGroup]="UserForm" (ngSubmit)="onFormSubmit()">
-            <h1 class="centered-text">Login</h1>
+            <h1 class="centered-text">Se Connecter</h1>
 
             <div class="input-group mb-3">
               <input type="text" class="form-control" placeholder="Email"  formControlName="email">
             </div>
             <div class="input-group mb-3">
-              <input type="password" class="form-control" placeholder="Password"  formControlName="password">
+              <input type="password" class="form-control" placeholder="Mot de Passe"  formControlName="password">
             </div>
-            <button type="submit" class="btn btn-block btn-success">Login</button>
+            <button type="submit" class="btn btn-block btn-success">Se Connecter</button>
           </form>
         </div>
       </div>
