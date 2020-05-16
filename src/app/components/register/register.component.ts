@@ -56,8 +56,7 @@ export class RegisterComponent {
       },
       (error: any) => {
         console.error(error);
-        // TODO manage errors from api
-        this.message = 'Une erreur est survenue';
+        this.message = error.error.message;
       });
   }
 }
