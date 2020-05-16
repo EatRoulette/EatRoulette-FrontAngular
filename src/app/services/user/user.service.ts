@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
 import { Register } from 'src/app/components/register/register';
+import { Login } from 'src/app/components/login/login';
 
 @Injectable({
   providedIn: 'root'
@@ -21,5 +22,9 @@ export class UserService {
   Subscribe(register: Register) {
     const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin':'*' }) };
     return this.http.post<Register[]>(this.Url + '/auth/subscribe/', register, httpOptions)
+  }
+  Login(login: Login) {
+    const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin':'*' }) };
+    return this.http.post<Register[]>(this.Url + '/auth/login/', login, httpOptions)
   }
 }

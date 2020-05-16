@@ -30,3 +30,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   line-height: 300px;
   text-align: center;
 }
+.error{
+  color: red;
+  margin-top: 10px;
+}

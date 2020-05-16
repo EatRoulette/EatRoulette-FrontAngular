@@ -17,9 +17,9 @@ export class RegisterComponent {
   constructor(formBuilder: FormBuilder, userService: UserService, private router: Router) {
     this.UserForm = formBuilder.group({
       login: ['', [Validators.required]],
-      password: ['', [Validators.required]],
+      password: ['', [Validators.required]], // TODO regex email
       email: ['', [Validators.required]],
-      type: ['test'],
+      type: ['test'], // todo manage right inputs
     });
    this.userService = userService;
   }
