@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {UserService} from "../../services/user/user.service";
 import {Login} from "./login";
 import {Router} from "@angular/router";
+import {EventService} from "../../services/event/event.service";
 
 @Component({
   selector: 'app-login',
@@ -14,9 +15,11 @@ export class LoginComponent implements OnInit {
   message: string;
   submitted: boolean = false;
   userService: UserService;
+  eventService: EventService;
 
-  constructor(private formBuilder: FormBuilder, userService: UserService, private router: Router) {
+  constructor(private formBuilder: FormBuilder, userService: UserService, eventService: EventService, private router: Router) {
     this.userService = userService;
+    this.eventService = eventService;
   }
 
   ngOnInit(): void {
@@ -38,15 +41,15 @@ export class LoginComponent implements OnInit {
 
   Login(login: Login) {
     this.userService.Login(login).subscribe(
-      (value: Login[]) => {
-        // TODO save token received
+      (response: any) => {
         this.message = null;
-        this.UserForm.reset();
-        this.router.navigate(['/'])
+        localStorage.setItem('access_token', response.token)
+        this.eventService.tokenChange.emit(response.token)
+        this.router.navigate(['/']) // todo le header ne s'actualise pas
       },
       (error: any) => {
         console.error(error);
-        this.message = 'Une erreur est survenue';
+        this.message = error.error.message;
       });
   }
 

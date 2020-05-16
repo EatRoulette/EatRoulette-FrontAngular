@@ -11,7 +11,8 @@
   </div>
 
   <div *ngIf="isConnected" class="right-header">
-    <div (click)="navigate('/restaurants')">Restaurants</div>
+    <button class="btn btn-default" (click)="navigate('/restaurants')">Restaurants</button>
+    <button class="btn btn-primary" (click)="logout()"> Déconnexion </button>
   </div>
   <div *ngIf="!isConnected" class="right-header">
     <button class="btn btn-primary" (click)="navigate('/login')"> Connexion </button>
