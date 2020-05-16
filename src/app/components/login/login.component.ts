@@ -12,20 +12,28 @@ import {Router} from "@angular/router";
 export class LoginComponent implements OnInit {
   UserForm: FormGroup;
   message: string;
+  submitted: boolean = false;
   userService: UserService;
 
-  constructor(formBuilder: FormBuilder, userService: UserService, private router: Router) {
-    this.UserForm = formBuilder.group({
-      email: ['', [Validators.required]], // TODO regex email
-      password: ['', [Validators.required]],
-    });
+  constructor(private formBuilder: FormBuilder, userService: UserService, private router: Router) {
     this.userService = userService;
   }
 
+  ngOnInit(): void {
+    this.UserForm = this.formBuilder.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required]],
+    });
+  }
+  // convenience getter for easy access to form fields
+  get fields() { return this.UserForm.controls; }
 
   onFormSubmit() {
-    const user = this.UserForm.value;
-    this.Login(user);
+    this.submitted = true;
+    if(this.UserForm.valid){
+      const user = this.UserForm.value;
+      this.Login(user);
+    }
   }
 
   Login(login: Login) {
@@ -40,9 +48,6 @@ export class LoginComponent implements OnInit {
         console.error(error);
         this.message = 'Une erreur est survenue';
       });
-  }
-
-  ngOnInit(): void {
   }
 
 }
