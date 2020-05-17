@@ -5,31 +5,41 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {LoginComponent} from "./components/login/login.component";
 import {NotFoundComponent} from "./components/not-found/not-found.component";
 import {DashboardComponent} from "./components/dashboard/dashboard.component";
+import {SituationComponent} from "./components/situation/situation.component";
 
 const routes: Routes = [
   {
     path: '',
     component: DashboardComponent,
     data: {
-      title: 'Dashboard Page'
+      title: 'Home'
     }
   },
   {
     path: 'register',
     component: RegisterComponent,
     data: {
-      title: 'Register Page'
+      title: 'Page Inscription'
     }
   },
   {
     path: 'login',
     component: LoginComponent,
     data: {
-      title: 'Login Page'
+      title: 'Page Connexion'
+    }
+  },
+  {
+    path: 'situation',
+    component: SituationComponent,
+    data: {
+      title: 'Page Situation'
     }
   },
   {path: '404', component: NotFoundComponent},
   {path: '**', redirectTo: '/404'}];
+
+// todo conditionner l'arrivée sur certaines pages en fonction du statut de connexion
 
 @NgModule({
   imports: [RouterModule.forRoot(routes), FormsModule,
