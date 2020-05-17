@@ -12,6 +12,7 @@ export class SituationComponent implements OnInit {
   allergens: Allergen[] = []; //starting with empty array
   situation: Situation;
   allergenService: AllergenService;
+  isLoading: boolean = false;
 
   constructor(allergenService: AllergenService) {
     this.allergenService = allergenService;
@@ -19,12 +20,15 @@ export class SituationComponent implements OnInit {
 
   ngOnInit(): void {
     // todo add pizza loader
+    this.isLoading = true;
     this.allergenService.getAllergens()
       .subscribe((response: any) => {
+          this.isLoading = false;
           this.allergens = response;
           // todo load situation data and match it to set selected
       },
       (error: any) => {
+        this.isLoading = false;
         console.error(error);
         // todo display error?
       })

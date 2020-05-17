@@ -3,6 +3,16 @@
   margin-right: auto;
   margin-left: auto;
 }
+.main-title{
+  width: min-content;
+  margin-right: auto;
+  margin-left: auto;
+}
+.loader{
+  position: absolute;
+  left: 62%;
+  top: 17%;
+}
 h1 {
   margin-bottom: 50px;
 }
