@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
-import { Register } from 'src/app/components/register/register';
-import { Login } from 'src/app/components/login/login';
+import { Register } from 'src/app/data/register';
+import { Login } from 'src/app/data/login';
 
 @Injectable({
   providedIn: 'root'

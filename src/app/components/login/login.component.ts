@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {UserService} from "../../services/user/user.service";
-import {Login} from "./login";
+import {Login} from "../../data/login";
 import {Router} from "@angular/router";
 import {EventService} from "../../services/event/event.service";
 
