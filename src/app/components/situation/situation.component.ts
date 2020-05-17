@@ -37,6 +37,7 @@ export class SituationComponent implements OnInit {
                 this.characteristics = characteristicsResponse;
                 this.situationService.getSituation().subscribe(
                   (situationResponse: Situation) => {
+                    console.log(JSON.stringify(situationResponse))
                     this.situation = situationResponse;
                     this.isLoading = false;
                     this.updateData();
@@ -69,18 +70,16 @@ export class SituationComponent implements OnInit {
   }
 
   onCheckboxChange(idAllergen: string){
-    console.log(idAllergen)
     this.allergens.forEach(allergen => {
-      if(idAllergen && allergen.id && allergen.id === idAllergen){
+      if(allergen.id === idAllergen){
         allergen.selected = !allergen.selected;
       }
     })
   }
 
   onRadioChange(idCharacteristic: string, newValue: boolean){
-    console.log(idCharacteristic + " " + newValue)
     this.characteristics.forEach(characteristic => {
-      if(characteristic.id && idCharacteristic && characteristic.id === idCharacteristic){
+      if(characteristic.id === idCharacteristic){
         characteristic.selected = newValue;
       }
     })
