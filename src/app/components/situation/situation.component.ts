@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Allergen} from "../../data/allergen";
-import {User} from "../../data/user";
+import {Situation} from "../../data/sitaution";
 import {AllergenService} from "../../services/allergen/allergen.service";
 
 @Component({
@@ -10,7 +10,7 @@ import {AllergenService} from "../../services/allergen/allergen.service";
 })
 export class SituationComponent implements OnInit {
   allergens: Allergen[] = []; //starting with empty array
-  user: User;
+  situation: Situation;
   allergenService: AllergenService;
 
   constructor(allergenService: AllergenService) {
@@ -22,7 +22,7 @@ export class SituationComponent implements OnInit {
     this.allergenService.getAllergens()
       .subscribe((response: any) => {
           this.allergens = response;
-          // todo load user data and match it to set selected
+          // todo load situation data and match it to set selected
       },
       (error: any) => {
         console.error(error);
