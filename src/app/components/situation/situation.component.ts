@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Allergen} from "../../data/allergen";
-import {Situation} from "../../data/sitaution";
+import {Situation} from "../../data/situation";
 import {AllergenService} from "../../services/allergen/allergen.service";
 
 @Component({
