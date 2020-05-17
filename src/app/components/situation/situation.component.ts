@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Allergen} from "../../data/allergen";
 import {User} from "../../data/user";
+import {AllergenService} from "../../services/allergen/allergen.service";
 
 @Component({
   selector: 'app-situation',
@@ -10,22 +11,25 @@ import {User} from "../../data/user";
 export class SituationComponent implements OnInit {
   allergens: Allergen[] = []; //starting with empty array
   user: User;
+  allergenService: AllergenService;
 
-  constructor() { }
+  constructor(allergenService: AllergenService) {
+    this.allergenService = allergenService;
+  }
 
   ngOnInit(): void {
-    // todo getAllergens
-    // todo getUser
-    // todo faire matcher
-    // TODO mock data
-    this.allergens = [
-      {name:"gluten", id:"1", selected:false},
-      {name:"crustacés", id:"2", selected:true},
-      {name:"oeuf", id:"3", selected:false},
-      {name:"arachides", id:"4", selected:false},
-      {name:"poissons", id:"5", selected:false},
-      {name:"lait", id:"6", selected:false}
-    ]
+    // todo add pizza loader
+    this.allergenService.getAllergens()
+      .subscribe((response: any) => {
+          this.allergens = response;
+          // todo load user data and match it to set selected
+      },
+      (error: any) => {
+        console.error(error);
+        // todo display error?
+      })
   }
+
+  // todo manage radio click
 
 }

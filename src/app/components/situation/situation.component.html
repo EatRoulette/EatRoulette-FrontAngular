@@ -5,8 +5,8 @@
     <div class="row subcontent">
       <div class="title">Allergènes</div>
       <div class="grid">
-        <div *ngFor="let allergen of allergens">
-          <input type="checkbox" [checked]="allergen.selected"> {{allergen.name}}
+        <div class="row select" *ngFor="let allergen of allergens">
+          <input type="checkbox" [checked]="allergen.selected">&nbsp;&nbsp;{{allergen.name}}
         </div>
       </div>
     </div>
