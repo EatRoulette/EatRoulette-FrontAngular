@@ -68,7 +68,24 @@ export class SituationComponent implements OnInit {
     });
   }
 
-  // todo manage select click !!
-  // todo manage radio click !!
+  onCheckboxChange(idAllergen: string){
+    console.log(idAllergen)
+    this.allergens.forEach(allergen => {
+      if(idAllergen && allergen.id && allergen.id === idAllergen){
+        allergen.selected = !allergen.selected;
+      }
+    })
+  }
+
+  onRadioChange(idCharacteristic: string, newValue: boolean){
+    console.log(idCharacteristic + " " + newValue)
+    this.characteristics.forEach(characteristic => {
+      if(characteristic.id && idCharacteristic && characteristic.id === idCharacteristic){
+        characteristic.selected = newValue;
+      }
+    })
+  }
+
+  // todo send update
 
 }
