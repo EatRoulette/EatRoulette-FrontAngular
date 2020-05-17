@@ -62,6 +62,15 @@
                   Veuillez renseigner un numéro de téléphone valide
                 </div>
               </div>
+              <div class="mb-3">
+                <div class="input-group">
+                  <input type="checkbox" class="form-control" formControlName="cgu" id="cgu" required>
+                  <label for="cgu" class="label">J'accepte les conditions générales d'utilisation</label>
+                </div>
+                <div *ngIf="submitted && fields.cgu.errors" class="field-error">
+                  Veuillez raccepter les conditions générales d'utilisation
+                </div>
+              </div>
               <button type="submit" class="btn btn-block btn-success">Ajouter un utilisateur</button>
             </form>
           </div>

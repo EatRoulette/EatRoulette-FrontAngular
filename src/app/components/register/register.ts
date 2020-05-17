@@ -9,4 +9,5 @@ export class Register {
     phone: string;
     login:string;
     type: string;
+    cgu: boolean;
 }

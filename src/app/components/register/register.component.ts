@@ -28,6 +28,7 @@ export class RegisterComponent {
       email: [null, [Validators.required, Validators.email]],
       address: [null, [Validators.required]],
       town: [null, [Validators.required]],
+      cgu: [null, [Validators.required]],
       postalCode: [null, [Validators.required, Validators.pattern(new RegExp('^([0-9]{5})$'))]],
       phone: [null, [Validators.required, Validators.pattern(new RegExp('^([0-9]{10})$'))]],
       type: ['user'],
