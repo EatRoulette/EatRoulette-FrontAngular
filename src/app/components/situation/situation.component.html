@@ -22,6 +22,7 @@
         <div class="row radio"><input type="radio" (change)="onRadioChange(characteristic.id, true)" [checked]="characteristic.selected"> Oui</div>
         <div class="row radio"><input type="radio" (change)="onRadioChange(characteristic.id, false)" [checked]="!characteristic.selected"> Non</div>
       </div>
-      </div>
+    </div>
+    <button type="submit" class="btn btn-block btn-success" (click)="sendData()" >Appliquer</button>
   </form>
 </div>

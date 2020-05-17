@@ -56,8 +56,6 @@ export class SituationComponent implements OnInit {
           this.isLoading = false;
           console.error(error);
         })
-
-    // todo display error?
   }
 
   updateData(){
@@ -85,6 +83,22 @@ export class SituationComponent implements OnInit {
     })
   }
 
-  // todo send update
+  sendData(){
+    this.isLoading = true;
+    const finalSituation = {
+      characteristics: this.characteristics,
+      allergens: this.allergens
+    }
+    this.situationService.updateSituation(finalSituation).subscribe(
+      () => {
+        this.isLoading = false;
+      },
+      (error: any) => {
+        this.isLoading = false;
+        console.error(error);
+      })
+  }
+
+  // todo display error?
 
 }
