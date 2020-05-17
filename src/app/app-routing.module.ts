@@ -6,13 +6,14 @@ import {LoginComponent} from "./components/login/login.component";
 import {NotFoundComponent} from "./components/not-found/not-found.component";
 import {DashboardComponent} from "./components/dashboard/dashboard.component";
 import {SituationComponent} from "./components/situation/situation.component";
+import {AuthGuard} from "./auth/auth.guard";
 
 const routes: Routes = [
   {
     path: '',
     component: DashboardComponent,
     data: {
-      title: 'Home'
+      title: 'Page Home'
     }
   },
   {
@@ -34,12 +35,14 @@ const routes: Routes = [
     component: SituationComponent,
     data: {
       title: 'Page Situation'
-    }
+    },
+    // this means that if a not connected user tries to access this url, he will be redirected to the login page (see app/auth/auth.gard.ts)
+    canActivate: [
+      AuthGuard
+    ]
   },
   {path: '404', component: NotFoundComponent},
   {path: '**', redirectTo: '/404'}];
-
-// todo conditionner l'arrivée sur certaines pages en fonction du statut de connexion
 
 @NgModule({
   imports: [RouterModule.forRoot(routes), FormsModule,
