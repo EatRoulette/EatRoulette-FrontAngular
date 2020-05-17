@@ -1,5 +1,7 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
+import {UserService} from "../../services/user/user.service";
+import {EventService} from "../../services/event/event.service";
 
 @Component({
   selector: 'app-header',
@@ -7,12 +9,34 @@ import {Router} from "@angular/router";
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+  @Input()
+  token: string;
 
-  isConnected: boolean = false; // todo will have to change if connected
+  isConnected: boolean = false;
+  userService: UserService;
+  eventService: EventService;
+  subscription: any;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, userService: UserService, eventService: EventService) {
+    this.userService = userService;
+    this.eventService = eventService;
+  }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    this.subscription = this.eventService.tokenChange.subscribe(token => this.isConnected = !!token)
+    this.isConnected = this.userService.isLoggedIn;
+  }
+
+  logout(){
+    this.userService.doLogout()
+    localStorage.removeItem('access_token');
+    this.eventService.tokenChange.emit(undefined);
+    this.navigate('login')
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
 
   navigate(link: string){
     this.router.navigate([link])
