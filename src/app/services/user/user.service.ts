@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
 import { Register } from 'src/app/data/register';
 import { Login } from 'src/app/data/login';
+import {User} from "../../data/user";
 
 @Injectable({
   providedIn: 'root'
@@ -38,5 +39,9 @@ export class UserService {
   doLogout() {
     const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin':'*' }) };
     this.http.delete(this.Url + '/auth/logout/' + this.getToken(), httpOptions)
+  }
+  getUser() {
+    const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin':'*' }) };
+    return this.http.get<User>(this.Url + '/user/' + this.getToken(), httpOptions)
   }
 }

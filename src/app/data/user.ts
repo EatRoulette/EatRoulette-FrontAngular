@@ -1,3 +1,5 @@
+import {Allergen} from "./allergen";
+
 export class User {
   firstName: string;
   lastName: string;
@@ -7,4 +9,7 @@ export class User {
   postalCode: string;
   phone: string;
   cgu:boolean;
+  allergens: string[];
+  characteristics: string[];
+  hasCompletedSituation: boolean;
 }

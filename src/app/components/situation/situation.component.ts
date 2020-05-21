@@ -5,6 +5,7 @@ import {AllergenService} from "../../services/allergen/allergen.service";
 import {Characteristic} from "../../data/characteristic";
 import {CharacteristicService} from "../../services/characteristic/characteristic.service";
 import {SituationService} from "../../services/situation/situation.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-situation',
@@ -20,7 +21,7 @@ export class SituationComponent implements OnInit {
   situationService: SituationService;
   isLoading: boolean = false;
 
-  constructor(allergenService: AllergenService, characteristicService: CharacteristicService, situationService: SituationService) {
+  constructor(private router: Router, allergenService: AllergenService, characteristicService: CharacteristicService, situationService: SituationService) {
     this.allergenService = allergenService;
     this.characteristicService = characteristicService;
     this.situationService = situationService;
@@ -91,6 +92,7 @@ export class SituationComponent implements OnInit {
     this.situationService.updateSituation(finalSituation).subscribe(
       () => {
         this.isLoading = false;
+        this.router.navigate([''])
       },
       (error: any) => {
         this.isLoading = false;
