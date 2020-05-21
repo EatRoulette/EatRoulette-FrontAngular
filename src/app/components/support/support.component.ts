@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {SupportService} from "../../services/support/support.service";
 
 @Component({
   selector: 'app-support',
@@ -8,15 +9,19 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 })
 export class SupportComponent implements OnInit {
   SupportForm: FormGroup;
+  message: string;
   submitted: boolean = false;
+  supportService: SupportService;
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder, supportService: SupportService) {
+    this.supportService = supportService;
+  }
 
   ngOnInit(): void {
     this.SupportForm = this.formBuilder.group({
-      object: [undefined, [Validators.required]],
-      type: [undefined, [Validators.required]],
-      description: [undefined, [Validators.required]],
+      object: ['', [Validators.required]],
+      type: ['', [Validators.required]],
+      description: ['', [Validators.required]],
     });
   }
 
@@ -27,7 +32,16 @@ export class SupportComponent implements OnInit {
     this.submitted = true;
     if(this.SupportForm.valid){
       const supportRequest = this.SupportForm.value;
-      // todo call
+      this.supportService.sendSupportRequest(supportRequest).subscribe(
+        (response: any) => {
+          this.message = "La demande de support a bien été envoyée";
+          this.SupportForm.reset()
+        },
+        (error: any) => {
+          console.error(error);
+          console.log(error.error.message);
+          this.message = error.error.message ? error.error.message : "Une erreur est survenue";
+        });
     }
   }
 

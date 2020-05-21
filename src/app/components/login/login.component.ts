@@ -50,7 +50,7 @@ export class LoginComponent implements OnInit {
       },
       (error: any) => {
         console.error(error);
-        this.message = error.error.message;
+        this.message = error.error.message ? error.error.message : "Une erreur est survenue";
       });
   }
 

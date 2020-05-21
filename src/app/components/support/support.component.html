@@ -14,7 +14,7 @@
         </div>
         <div class="input-row">
           <select name="type" id="type" class="form-control" formControlName="type">
-            <option disabled selected>Choisissez un type de demande</option>
+            <option value="" disabled selected>Choisissez un type de demande</option>
             <option value="request">Demande</option>
             <option value="bug">Bug</option>
           </select>
@@ -32,6 +32,6 @@
       <button type="submit" class="btn btn-block btn-success">Envoyer ma demande</button>
     </form>
   </div>
-
+  <div class="error centered-text">{{message}}</div>
 </div>
 
