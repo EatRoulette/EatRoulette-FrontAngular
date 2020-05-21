@@ -7,7 +7,7 @@
             <h1 class="centered-text">Se Connecter</h1>
             <div class="mb-3">
               <div class="input-group">
-                <input type="text" class="form-control" placeholder="Email"  formControlName="email">
+                <input type="text" class="form-control" placeholder="Email" formControlName="email">
               </div>
               <div *ngIf="submitted && fields.email.errors" class="field-error">
                 Veuillez indiquer un email valide
@@ -15,7 +15,7 @@
             </div>
             <div class="mb-3">
               <div class="input-group">
-                <input type="password" class="form-control" placeholder="Mot de Passe"  formControlName="password">
+                <input type="password" class="form-control" placeholder="Mot de Passe" formControlName="password">
               </div>
               <div *ngIf="submitted && fields.password.errors" class="field-error">
                 Veuillez indiquer un mot de passe

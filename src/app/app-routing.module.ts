@@ -7,6 +7,7 @@ import {NotFoundComponent} from "./components/not-found/not-found.component";
 import {DashboardComponent} from "./components/dashboard/dashboard.component";
 import {SituationComponent} from "./components/situation/situation.component";
 import {AuthGuard} from "./auth/auth.guard";
+import {SupportComponent} from "./components/support/support.component";
 
 const routes: Routes = [
   {
@@ -40,6 +41,13 @@ const routes: Routes = [
     canActivate: [
       AuthGuard
     ]
+  },
+  {
+    path: 'support',
+    component: SupportComponent,
+    data: {
+      title: 'Page Demande de support'
+    }
   },
   {path: '404', component: NotFoundComponent},
   {path: '**', redirectTo: '/404'}];

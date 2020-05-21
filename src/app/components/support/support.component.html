@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="content">
+    <div class="main-title">
+      <h1 class="centered-text">Demande de support</h1>
+    </div>
+    <form [formGroup]="SupportForm" (ngSubmit)="onFormSubmit()">
+      <div class="separator"></div>
+      <div class="inputs">
+        <div class="input-row">
+          <input type="text" class="form-control" formControlName="object" id="object" placeholder="Objet"/>
+        </div>
+        <div class="input-row">
+          <select name="type" id="type" class="form-control" formControlName="type">
+            <option value="" disabled selected>Choisissez un type de demande</option>
+            <option value="request">Demande</option>
+            <option value="bug">Bug</option>
+          </select>
+        </div>
+        <div class="input-row">
+          <textarea id="description" class="form-control" rows="4" cols="50" formControlName="description" placeholder="Description"></textarea>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-block btn-success">Envoyer ma demande</button>
+    </form>
+  </div>
+
+</div>
+
