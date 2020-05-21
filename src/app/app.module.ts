@@ -14,6 +14,7 @@ import { NotFoundComponent} from './components/not-found/not-found.component';
 import { StorageServiceModule } from "ngx-webstorage-service";
 import { SituationComponent } from './components/situation/situation.component';
 import { PizzaLoaderComponent } from './components/pizza-loader/pizza-loader.component';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { PizzaLoaderComponent } from './components/pizza-loader/pizza-loader.com
     DashboardComponent,
     NotFoundComponent,
     SituationComponent,
-    PizzaLoaderComponent
+    PizzaLoaderComponent,
+    SidebarComponent
   ],
   imports: [
     BrowserModule,
