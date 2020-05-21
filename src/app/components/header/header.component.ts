@@ -27,12 +27,6 @@ export class HeaderComponent implements OnInit {
     this.isConnected = this.userService.isLoggedIn;
   }
 
-  logout(){
-    this.userService.doLogout()
-    this.eventService.tokenChange.emit(undefined);
-    this.navigate('login')
-  }
-
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }
