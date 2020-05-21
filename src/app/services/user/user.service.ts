@@ -49,7 +49,7 @@ export class UserService {
   storeUser(user: User){
     localStorage.setItem('user', JSON.stringify(user))
   }
-  getStoredUser(){
-    JSON.parse(localStorage.getItem('user'));
+  getStoredUser(): User{
+    return JSON.parse(localStorage.getItem('user'));
   }
 }

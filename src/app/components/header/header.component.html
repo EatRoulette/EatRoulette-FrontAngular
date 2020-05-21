@@ -1,7 +1,8 @@
 <nav class="navbar header">
 
-  <div *ngIf="isConnected">
-    <!-- TODO profile picture + name -->
+  <div *ngIf="isConnected" class="user">
+    <img src="assets/img/pizza-user.png" />
+    {{userName}}
   </div>
   <!-- logo -->
   <div class="navbar-brand logo-container">
