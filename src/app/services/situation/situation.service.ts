@@ -25,6 +25,6 @@ export class SituationService {
   }
   updateSituation(data) {
     const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin':'*' }) };
-    return this.http.post(this.Url + '/situation/' + this.userService.getToken(), data, httpOptions)
+    return this.http.post<undefined>(this.Url + '/situation/' + this.userService.getToken(), data, httpOptions)
   }
 }

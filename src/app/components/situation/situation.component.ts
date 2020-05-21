@@ -37,7 +37,6 @@ export class SituationComponent implements OnInit {
                 this.characteristics = characteristicsResponse;
                 this.situationService.getSituation().subscribe(
                   (situationResponse: Situation) => {
-                    console.log(JSON.stringify(situationResponse))
                     this.situation = situationResponse;
                     this.isLoading = false;
                     this.updateData();
