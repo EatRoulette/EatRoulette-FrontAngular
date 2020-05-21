@@ -28,7 +28,7 @@ export class DashboardComponent implements OnInit {
         if(user && !user.hasCompletedSituation){
           this.router.navigate(['situation']).then(() => this.isLoading = false)
         }else{
-          this.isLoading = false;
+          //this.isLoading = false;
         }
       },
       (error: any) => {
