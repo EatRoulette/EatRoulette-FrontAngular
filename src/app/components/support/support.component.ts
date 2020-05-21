@@ -8,19 +8,27 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 })
 export class SupportComponent implements OnInit {
   SupportForm: FormGroup;
+  submitted: boolean = false;
 
   constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
     this.SupportForm = this.formBuilder.group({
-      object: ['', [Validators.required]],
-      type: ['', [Validators.required]],
-      description: ['', [Validators.required]],
+      object: [undefined, [Validators.required]],
+      type: [undefined, [Validators.required]],
+      description: [undefined, [Validators.required]],
     });
   }
 
+  // convenience getter for easy access to form fields
+  get fields() { return this.SupportForm.controls; }
+
   onFormSubmit(){
-    // TODO
+    this.submitted = true;
+    if(this.SupportForm.valid){
+      const supportRequest = this.SupportForm.value;
+      // todo call
+    }
   }
 
 }
