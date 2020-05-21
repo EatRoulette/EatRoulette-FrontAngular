@@ -29,7 +29,6 @@ export class HeaderComponent implements OnInit {
 
   logout(){
     this.userService.doLogout()
-    localStorage.removeItem('access_token');
     this.eventService.tokenChange.emit(undefined);
     this.navigate('login')
   }

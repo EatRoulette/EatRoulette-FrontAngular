@@ -39,9 +39,17 @@ export class UserService {
   doLogout() {
     const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin':'*' }) };
     this.http.delete(this.Url + '/auth/logout/' + this.getToken(), httpOptions)
+    localStorage.removeItem('access_token');
+    localStorage.removeItem('user');
   }
   getUser() {
     const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin':'*' }) };
     return this.http.get<User>(this.Url + '/user/' + this.getToken(), httpOptions)
+  }
+  storeUser(user: User){
+    localStorage.setItem('user', JSON.stringify(user))
+  }
+  getStoredUser(){
+    JSON.parse(localStorage.getItem('user'));
   }
 }
