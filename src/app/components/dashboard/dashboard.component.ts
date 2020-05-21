@@ -17,19 +17,13 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // todo get User Info  (with full page loader)
-    // if hasCompletedSituation => go to dashboard
-    // else redirect to situation page
     this.loadUserData()
-
   }
 
   loadUserData(){
     this.isLoading = true;
     this.userService.getUser().subscribe(
       (user: User) => {
-        // if hasCompletedSituation => go to dashboard
-        // else redirect to situation page
         if(user && !user.hasCompletedSituation){
           this.router.navigate(['situation']).then(() => this.isLoading = false)
         }else{
