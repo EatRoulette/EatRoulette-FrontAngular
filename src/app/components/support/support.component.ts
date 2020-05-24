@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {SupportService} from "../../services/support/support.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-support',
@@ -10,12 +11,13 @@ import {SupportService} from "../../services/support/support.service";
 export class SupportComponent implements OnInit {
   SupportForm: FormGroup;
   message: string;
+  successMessage: string;
   submitted: boolean = false;
   supportService: SupportService;
 
   // TODO types of support from API
 
-  constructor(private formBuilder: FormBuilder, supportService: SupportService) {
+  constructor(private router: Router, private formBuilder: FormBuilder, supportService: SupportService) {
     this.supportService = supportService;
   }
 
@@ -36,15 +38,16 @@ export class SupportComponent implements OnInit {
       const supportRequest = this.SupportForm.value;
       this.supportService.sendSupportRequest(supportRequest).subscribe(
         (response: any) => {
-          this.message = "La demande de support a bien été envoyée";
-          this.SupportForm.reset()
+          this.successMessage = "La demande de support a bien été envoyée";
         },
         (error: any) => {
           console.error(error);
-          console.log(error.error.message);
           this.message = error.error.message ? error.error.message : "Une erreur est survenue";
         });
     }
   }
 
+  navigate(link){
+    this.router.navigate([link])
+  }
 }

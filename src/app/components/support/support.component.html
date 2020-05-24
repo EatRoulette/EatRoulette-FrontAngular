@@ -29,9 +29,11 @@
           </div>
         </div>
       </div>
-      <button type="submit" class="btn btn-block btn-success">Envoyer ma demande</button>
+      <button *ngIf="submitted && successMessage" class="btn btn-block btn-primary" (click)="navigate('/')">Retour</button>
+      <button *ngIf="!submitted && !successMessage" type="submit" class="btn btn-block btn-success">Envoyer ma demande</button>
     </form>
+    <div *ngIf="submitted && message" class="error centered-text">{{message}}</div>
+    <div *ngIf="submitted && successMessage" class="success centered-text">{{successMessage}}</div>
   </div>
-  <div class="error centered-text">{{message}}</div>
 </div>
 

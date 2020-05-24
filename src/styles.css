@@ -39,6 +39,10 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   color: red;
   margin-top: 10px;
 }
+.success{
+  color: green;
+  margin-top: 10px;
+}
 .field-error{
   font-size: smaller;
   color: red;

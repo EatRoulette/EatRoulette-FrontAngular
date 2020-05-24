@@ -44,9 +44,9 @@ export class LoginComponent implements OnInit {
     this.userService.Login(login).subscribe(
       (response: any) => {
         this.message = null;
-        localStorage.setItem('access_token', response.token)
-        this.eventService.tokenChange.emit(response.token)
-        this.router.navigate(['/']) // todo le header ne s'actualise pas
+        localStorage.setItem('access_token', response.token);
+        this.eventService.tokenChange.emit(response.token);
+        this.router.navigate(['/']);
       },
       (error: any) => {
         console.error(error);
