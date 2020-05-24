@@ -16,6 +16,8 @@ import { SituationComponent } from './components/situation/situation.component';
 import { PizzaLoaderComponent } from './components/pizza-loader/pizza-loader.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { SupportComponent } from './components/support/support.component';
+import { TicketsComponent } from './components/tickets/tickets.component';
+import { TicketDetailsComponent } from './components/ticket-details/ticket-details.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,9 @@ import { SupportComponent } from './components/support/support.component';
     SituationComponent,
     PizzaLoaderComponent,
     SidebarComponent,
-    SupportComponent
+    SupportComponent,
+    TicketsComponent,
+    TicketDetailsComponent
   ],
   imports: [
     BrowserModule,
