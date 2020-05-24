@@ -1,1 +1,25 @@
-<p>tickets works!</p>
+<div class="container">
+  <div class="content">
+    <div class="main-title">
+      <h1 class="centered-text">Mes tickets</h1>
+      <div *ngIf="tickets.length === 0" class="separator"></div>
+    </div>
+    <div *ngIf="isLoading" class="loader">
+      <app-pizza-loader></app-pizza-loader>
+    </div>
+    <div *ngFor="let ticket of tickets" class="item">
+      <div class="separator"></div>
+      <div class="width-100">
+        <div class="item-row justify-space-between width-100">
+          <div>{{ticket.title}}</div>
+          <button class="btn btn-block btn-primary small" (click)="goToDetails(ticket.id)">Details</button>
+        </div>
+        <div class="item-row justify-space-between width-100">
+          <div>{{ticket.type}}</div>
+          <div>{{ticket.status}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
