@@ -29,5 +29,9 @@ export class SupportService {
     const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin':'*' }) };
     return this.http.get<Ticket[]>(this.Url + '/ticket/support/' + this.userService.getToken(), httpOptions)
   }
+  getTicket(idTicket: string) {
+    const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin':'*' }) };
+    return this.http.get<Ticket>(this.Url + '/ticket/support/' + this.userService.getToken() + "/" + idTicket, httpOptions)
+  }
 
 }

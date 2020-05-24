@@ -1,5 +1,4 @@
 export class Comment {
-  author: string;
+  isAuthor: boolean;
   message: string;
-  created_at: Date;
 }

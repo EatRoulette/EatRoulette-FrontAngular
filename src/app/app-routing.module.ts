@@ -59,7 +59,7 @@ const routes: Routes = [
     }
   },
   {
-    path: 'tickets/:id',
+    path: 'tickets/:idTicket',
     component: TicketDetailsComponent,
     data: {
       title: 'Page Detail d\'une Demande de support'

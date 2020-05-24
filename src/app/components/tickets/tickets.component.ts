@@ -34,4 +34,5 @@ export class TicketsComponent implements OnInit {
     this.router.navigate(['tickets/' + idTicket])
   }
 
+  // todo display error ?
 }
