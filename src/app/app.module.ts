@@ -12,6 +12,8 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NotFoundComponent} from './components/not-found/not-found.component';
 import { StorageServiceModule } from "ngx-webstorage-service";
+import { SituationComponent } from './components/situation/situation.component';
+import { PizzaLoaderComponent } from './components/pizza-loader/pizza-loader.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import { StorageServiceModule } from "ngx-webstorage-service";
     FooterComponent,
     LoginComponent,
     DashboardComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    SituationComponent,
+    PizzaLoaderComponent
   ],
   imports: [
     BrowserModule,

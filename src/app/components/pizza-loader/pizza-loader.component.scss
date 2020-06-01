@@ -1,0 +1,92 @@
+.wrapper {
+
+  .slice {
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-top: 35px solid #fefcc6;
+    top: 0%;
+    left: 50%;
+    transform: translateX(-50%);
+    visibility: hidden;
+
+    z-index: 10;
+    &:before {
+      content: "";
+      position: absolute;
+      left: -15px;
+      top: -45px;
+
+      width: 30px;
+      height: 15px;
+      background: #fefcc6;
+      border-radius: 100%;
+      border-top: 5px solid #e57a19;
+      z-index: -1;
+    }
+
+    .tomato {
+      background: #a30000;
+      position: absolute;
+
+      border-radius: 100%;
+
+      &:nth-child(1) {
+        width: 10px;
+        height: 10px;
+        top: -37px;
+        left: 1px;
+      }
+
+      &:nth-child(2) {
+        width: 7px;
+        height: 7px;
+        top: -25px;
+        left: -7px;
+      }
+    }
+
+    .olive {
+      background: #a30000;
+      position: absolute;
+
+      border-radius: 100%;
+
+      &:nth-child(3) {
+        width: 4px;
+        height: 4px;
+        top: -14px;
+        left: -1px;
+      }
+    }
+  }
+}
+
+.center {
+  transform: translate(-50%, -50%);
+  margin-right: auto;
+  margin-left: auto;
+}
+@for $i from 1 through 6 {
+  .slice:nth-child(#{$i}) {
+    animation-name: slide-in-#{$i};
+    animation-duration: 1.2s;
+    animation-iteration-count: infinite;
+    animation-delay: $i * 0.2s;
+    animation-direction: alternate;
+    animation-timing-function: linear;
+  }
+
+  @keyframes slide-in-#{$i} {
+    from {
+      transform: translateX(-50%) rotate($i * 60deg) translateY(-30px);
+      visibility: visible;
+    }
+    to {
+      transform: translateX(-50%) rotate($i * 60deg) translateY(-15px);
+      visibility: visible;
+    }
+  }
+}
