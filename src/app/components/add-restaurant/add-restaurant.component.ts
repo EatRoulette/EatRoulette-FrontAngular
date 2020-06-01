@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Allergen} from "../../data/allergen";
 import {Characteristic} from "../../data/characteristic";
 import {AllergenService} from "../../services/allergen/allergen.service";
 import {CharacteristicService} from "../../services/characteristic/characteristic.service";
-import {Situation} from "../../data/situation";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-add-restaurant',
@@ -17,21 +17,24 @@ export class AddRestaurantComponent implements OnInit {
   characteristics: Characteristic[] = [];
   allergenService: AllergenService;
   characteristicService: CharacteristicService;
-  isLoading: boolean = false; // todo manage
+  isLoading: boolean = false;
 
-  constructor(private formBuilder: FormBuilder, allergenService: AllergenService, characteristicService: CharacteristicService) {
+  constructor(private route: ActivatedRoute, private formBuilder: FormBuilder, allergenService: AllergenService, characteristicService: CharacteristicService) {
     this.allergenService = allergenService;
     this.characteristicService = characteristicService;
   }
 
   ngOnInit(): void {
+    const name = this.route.snapshot.paramMap.get('name');
+    const city = this.route.snapshot.paramMap.get('city');
+    const postalCode = this.route.snapshot.paramMap.get('postalCode');
     this.AddForm = this.formBuilder.group({
-      name: ['', [Validators.required]],
-      city: ['', [Validators.required]],
+      name: [name, [Validators.required]],
+      city: [city, [Validators.required]],
       address: ['', [Validators.required]],
-      postalCode: ['', [Validators.required]],
-      allergens: ['', []],
-      characteristics: ['', []],
+      postalCode: [postalCode, [Validators.required]],
+      allergens: [[], []],
+      characteristics: [[], []],
     });
     this.loadAllergensAndCharacteristics();
   }

@@ -51,7 +51,6 @@ export class SearchComponent implements OnInit {
 
   gotToAdd(){
     this.router.navigate(['restaurant/add', this.SearchForm.value])
-    // pourra alors être récupéré avec this.route.snapshot.paramMap.get('parameterName');
   }
 
   isPresent(value){
