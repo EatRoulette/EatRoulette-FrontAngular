@@ -24,6 +24,7 @@ export class DashboardComponent implements OnInit {
     this.isLoading = true;
     this.userService.getUser().subscribe(
       (user: User) => {
+        this.userService.storeUser(user)
         if(user && !user.hasCompletedSituation){
           this.router.navigate(['situation']).then(() => this.isLoading = false)
         }else{

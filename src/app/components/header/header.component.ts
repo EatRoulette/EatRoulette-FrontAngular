@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {UserService} from "../../services/user/user.service";
 import {EventService} from "../../services/event/event.service";
+import {User} from "../../data/user";
 
 @Component({
   selector: 'app-header',
@@ -16,6 +17,7 @@ export class HeaderComponent implements OnInit {
   userService: UserService;
   eventService: EventService;
   subscription: any;
+  userName: string;
 
   constructor(private router: Router, userService: UserService, eventService: EventService) {
     this.userService = userService;
@@ -25,13 +27,12 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     this.subscription = this.eventService.tokenChange.subscribe(token => this.isConnected = !!token)
     this.isConnected = this.userService.isLoggedIn;
-  }
-
-  logout(){
-    this.userService.doLogout()
-    localStorage.removeItem('access_token');
-    this.eventService.tokenChange.emit(undefined);
-    this.navigate('login')
+    const user: User = this.userService.getStoredUser()
+    console.log(user)
+    if(user){
+      console.log(user)
+      this.userName = user.firstName;
+    }
   }
 
   ngOnDestroy() {
