@@ -5,6 +5,7 @@ import { Register } from 'src/app/data/register';
 import {Support} from "../../data/support";
 import {UserService} from "../user/user.service";
 import {Ticket} from "../../data/ticket";
+import {SupportComment} from "../../data/SupportComment";
 
 @Injectable({
   providedIn: 'root'
@@ -32,6 +33,10 @@ export class SupportService {
   getTicket(idTicket: string) {
     const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin':'*' }) };
     return this.http.get<Ticket>(this.Url + '/ticket/support/' + this.userService.getToken() + "/" + idTicket, httpOptions)
+  }
+  sendSupportComment(request: SupportComment) { // {idTicket: string, comment: string}
+    const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin':'*' }) };
+    return this.http.post<Ticket>(this.Url + '/ticket/support/comment/' + this.userService.getToken(), request, httpOptions)
   }
 
 }
