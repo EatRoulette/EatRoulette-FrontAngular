@@ -30,3 +30,8 @@
 .small-button {
   width: 100px;
 }
+.legend{
+  margin-bottom:10px;
+  flex-direction: row;
+  display: flex;
+}

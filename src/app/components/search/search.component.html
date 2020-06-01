@@ -19,7 +19,14 @@
     </form>
     <div class="results">
       <div class="with-data" *ngIf="hasResults && restaurants && restaurants.length > 0">
+        <div class="legend">
+          <div class="col-sm"><b>Nom</b></div>
+          <div class="col-sm"><b>Type</b></div>
+          <div class="col-sm"><b>Adresse</b></div>
+          <div class="col-sm"></div>
+        </div>
         <div *ngFor="let restaurant of restaurants">
+          <div class="separator"></div>
           <app-restaurant-item [restaurant]="restaurant"></app-restaurant-item>
         </div>
       </div>

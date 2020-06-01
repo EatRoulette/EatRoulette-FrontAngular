@@ -12,6 +12,6 @@ export class SearchService {
   }
 
   search(searchQuery){
-    return this.service.post('/search/', searchQuery)
+    return this.service.post('/restaurant/search/', searchQuery)
   }
 }

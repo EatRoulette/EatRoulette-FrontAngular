@@ -34,7 +34,7 @@ export class SearchComponent implements OnInit {
     this.submitted = true;
     this.errorMessage = undefined;
     const searchValues = this.SearchForm.value;
-    if(this.isPresent(searchValues.name) || this.isPresent(searchValues.type) || this.isPresent(searchValues.postalCode)){
+    if(this.isPresent(searchValues.name) || this.isPresent(searchValues.city) || this.isPresent(searchValues.postalCode)){
       this.searchService.search(searchValues).subscribe(
         (response: any) => {
           this.hasResults = true;
