@@ -28,9 +28,5 @@ export class SupportService {
   sendSupportComment(request: SupportComment) {
     return this.service.post('/ticket/support/comment/' + this.userService.getToken(), request)
   }
-  getTicket(idTicket: string) {
-    const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin':'*' }) };
-    return this.http.get<Ticket>(this.Url + '/ticket/support/' + this.userService.getToken() + "/" + idTicket, httpOptions)
-  }
 
 }
