@@ -49,7 +49,10 @@ const routes: Routes = [
     component: SupportComponent,
     data: {
       title: 'Page Demande de support'
-    }
+    },
+    canActivate: [
+      AuthGuard
+    ]
   },
   {
     path: 'tickets',
