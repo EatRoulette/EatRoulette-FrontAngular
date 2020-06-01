@@ -1,33 +1,24 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { HttpHeaders } from '@angular/common/http';
 import { Register } from 'src/app/data/register';
 import { Login } from 'src/app/data/login';
 import {User} from "../../data/user";
+import {Service} from "../service";
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class UserService {
-  Url: string;
-  token: string;
-  header: any;
+  service: Service;
 
-  constructor(private http: HttpClient) {
-
-    this.Url = 'http://localhost:3000';
-
-    const headerSettings: { [name: string]: string | string[]; } = {};
-    this.header = new HttpHeaders(headerSettings);
+  constructor(service: Service) {
+    this.service = service;
   }
   Subscribe(register: Register) {
-    const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin':'*' }) };
-    return this.http.post<Register[]>(this.Url + '/auth/subscribe/', register, httpOptions)
+    return this.service.post('/auth/subscribe/', register)
   }
   Login(login: Login) {
-    const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin':'*' }) };
-    return this.http.post<Register[]>(this.Url + '/auth/login/', login, httpOptions)
+    return this.service.post('/auth/login/', login)
   }
   getToken() {
     return localStorage.getItem('access_token');
@@ -37,14 +28,12 @@ export class UserService {
     return (authToken !== null);
   }
   doLogout() {
-    const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin':'*' }) };
-    this.http.delete(this.Url + '/auth/logout/' + this.getToken(), httpOptions)
+    this.service.delete('/auth/logout/' + this.getToken())
     localStorage.removeItem('access_token');
     localStorage.removeItem('user');
   }
   getUser() {
-    const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin':'*' }) };
-    return this.http.get<User>(this.Url + '/user/' + this.getToken(), httpOptions)
+    return this.service.get('/user/' + this.getToken())
   }
   storeUser(user: User){
     localStorage.setItem('user', JSON.stringify(user))

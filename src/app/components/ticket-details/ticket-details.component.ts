@@ -59,4 +59,6 @@ export class TicketDetailsComponent implements OnInit {
     }
   }
 
+  // todo display error ?
+
 }
