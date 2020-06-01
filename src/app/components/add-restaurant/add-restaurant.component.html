@@ -1,1 +1,32 @@
-<p>add-restaurant works!</p>
+<div class="container">
+  <div class="content">
+    <div class="main-title">
+      <h1 class="centered-text">Ajout d'un restaurant</h1>
+    </div>
+    <div class="separator"></div>
+    <form [formGroup]="AddForm" (ngSubmit)="onFormSubmit()">
+      <div class="inputs">
+        <div class="input-row">
+          <input type="text" class="form-control" formControlName="name" id="name" placeholder="Nom"/>
+        </div>
+        <div class="input-row">
+          <input type="text" class="form-control" formControlName="address" id="address" placeholder="Adresse"/>
+        </div>
+        <div class="input-row">
+          <input type="text" class="form-control input-double" formControlName="city" id="city" placeholder="Ville"/>
+          <input type="text" class="form-control input-double" formControlName="postalCode" id="postalCode" placeholder="Code Postal"/>
+        </div>
+      </div>
+      <div class="separator"></div>
+      <br/>
+      <br/>
+      <br/>
+      <!--TODO refacto de situation pour ajouter le côté formulaire ici-->
+      <div class="separator"></div>
+      <br/>
+      <button type="submit" class="btn btn-block btn-success">Ajouter</button>
+
+    </form>
+  </div>
+</div>
+
