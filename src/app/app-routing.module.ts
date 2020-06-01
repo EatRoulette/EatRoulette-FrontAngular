@@ -11,6 +11,7 @@ import {SupportComponent} from "./components/support/support.component";
 import {TicketsComponent} from "./components/tickets/tickets.component";
 import {TicketDetailsComponent} from "./components/ticket-details/ticket-details.component";
 import {SearchComponent} from "./components/search/search.component";
+import {AddRestaurantComponent} from "./components/add-restaurant/add-restaurant.component";
 
 const routes: Routes = [
   {
@@ -60,6 +61,13 @@ const routes: Routes = [
     component: SearchComponent,
     data: {
       title: 'Page de recherche'
+    }
+  },
+  {
+    path: 'restaurant/add',
+    component: AddRestaurantComponent,
+    data: {
+      title: 'Page d\'ajout de restaurant'
     }
   },
   {
