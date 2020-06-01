@@ -4,7 +4,9 @@ import {Allergen} from "../../data/allergen";
 import {Characteristic} from "../../data/characteristic";
 import {AllergenService} from "../../services/allergen/allergen.service";
 import {CharacteristicService} from "../../services/characteristic/characteristic.service";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
+import {Restaurant} from "../../data/restaurant";
+import {RestaurantService} from "../../services/restaurant/restaurant.service";
 
 @Component({
   selector: 'app-add-restaurant',
@@ -17,9 +19,18 @@ export class AddRestaurantComponent implements OnInit {
   characteristics: Characteristic[] = [];
   allergenService: AllergenService;
   characteristicService: CharacteristicService;
+  restaurantService: RestaurantService;
   isLoading: boolean = false;
+  submitted: boolean = false;
+  message: string;
 
-  constructor(private route: ActivatedRoute, private formBuilder: FormBuilder, allergenService: AllergenService, characteristicService: CharacteristicService) {
+  constructor(private router: Router,
+              private route: ActivatedRoute,
+              private formBuilder: FormBuilder,
+              allergenService: AllergenService,
+              restaurantService: RestaurantService,
+              characteristicService: CharacteristicService) {
+    this.restaurantService = restaurantService;
     this.allergenService = allergenService;
     this.characteristicService = characteristicService;
   }
@@ -38,6 +49,9 @@ export class AddRestaurantComponent implements OnInit {
     });
     this.loadAllergensAndCharacteristics();
   }
+
+  // convenience getter for easy access to form fields
+  get fields() { return this.AddForm.controls; }
 
   loadAllergensAndCharacteristics(){
     this.isLoading = true;
@@ -62,7 +76,18 @@ export class AddRestaurantComponent implements OnInit {
   }
 
   onFormSubmit(){
-
+    this.submitted = true;
+    if(this.AddForm.valid){
+      const request = this.AddForm.value;
+      this.restaurantService.addRestaurant(request).subscribe(
+        (response: Restaurant) => {
+          this.router.navigate(['restaurant/'+response.id])
+        },
+        (error: any) => {
+          console.error(error);
+          this.message = error.error.message ? error.error.message : "Une erreur est survenue";
+        });
+    }
   }
 
 }
