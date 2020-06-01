@@ -33,7 +33,6 @@ export class TicketDetailsComponent implements OnInit {
       (data) => {
         this.isLoading = false;
         this.ticket = data;
-        console.log(JSON.stringify(data))
       },
       (error: any) => {
         this.isLoading = false;
