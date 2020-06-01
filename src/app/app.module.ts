@@ -19,6 +19,7 @@ import { SupportComponent } from './components/support/support.component';
 import { TicketsComponent } from './components/tickets/tickets.component';
 import { TicketDetailsComponent } from './components/ticket-details/ticket-details.component';
 import { SearchComponent } from './components/search/search.component';
+import { RestaurantItemComponent } from './components/search/restaurant-item/restaurant-item.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { SearchComponent } from './components/search/search.component';
     SupportComponent,
     TicketsComponent,
     TicketDetailsComponent,
-    SearchComponent
+    SearchComponent,
+    RestaurantItemComponent
   ],
   imports: [
     BrowserModule,

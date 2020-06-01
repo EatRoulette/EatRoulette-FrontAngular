@@ -19,7 +19,9 @@
     </form>
     <div class="results">
       <div class="with-data" *ngIf="hasResults && restaurants && restaurants.length > 0">
-        TEST
+        <div *ngFor="let restaurant of restaurants">
+          <app-restaurant-item [restaurant]="restaurant"></app-restaurant-item>
+        </div>
       </div>
       <div class="no-results" *ngIf="hasResults && (!restaurants || restaurants.length === 0)">
         Aucun résultat !
