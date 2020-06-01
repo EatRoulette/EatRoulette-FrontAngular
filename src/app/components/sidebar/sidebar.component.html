@@ -1,12 +1,12 @@
-<div *ngIf="isConnected" class="sidebar">
+<div class="sidebar">
 
   <div>
     <button class="btn btn-info button" (click)="navigate('/search')"> Recherche </button>
-    <button class="btn btn-success button" (click)="navigate('/list')"> Mes listes </button>
-    <button class="btn btn-success button" (click)="navigate('/friends')"> Mes amis </button>
-    <button class="btn btn-success button" (click)="navigate('/situation')"> Ma situation </button>
-    <button class="btn btn-info button" (click)="navigate('/history')"> Mon historique </button>
-    <button class="btn btn-warning button" (click)="navigate('/tickets')"> Mes tickets </button>
-    <button class="btn btn-primary button" (click)="logout()"> Déconnexion </button>
+    <button *ngIf="isConnected" class="btn btn-success button" (click)="navigate('/list')"> Mes listes </button>
+    <button *ngIf="isConnected" class="btn btn-success button" (click)="navigate('/friends')"> Mes amis </button>
+    <button *ngIf="isConnected" class="btn btn-success button" (click)="navigate('/situation')"> Ma situation </button>
+    <button *ngIf="isConnected" class="btn btn-info button" (click)="navigate('/history')"> Mon historique </button>
+    <button *ngIf="isConnected" class="btn btn-warning button" (click)="navigate('/tickets')"> Mes tickets </button>
+    <button *ngIf="isConnected" class="btn btn-primary button" (click)="logout()"> Déconnexion </button>
   </div>
 </div>
