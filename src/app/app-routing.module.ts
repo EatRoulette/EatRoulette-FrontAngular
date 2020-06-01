@@ -7,6 +7,9 @@ import {NotFoundComponent} from "./components/not-found/not-found.component";
 import {DashboardComponent} from "./components/dashboard/dashboard.component";
 import {SituationComponent} from "./components/situation/situation.component";
 import {AuthGuard} from "./auth/auth.guard";
+import {SupportComponent} from "./components/support/support.component";
+import {TicketsComponent} from "./components/tickets/tickets.component";
+import {TicketDetailsComponent} from "./components/ticket-details/ticket-details.component";
 
 const routes: Routes = [
   {
@@ -40,6 +43,30 @@ const routes: Routes = [
     canActivate: [
       AuthGuard
     ]
+  },
+  {
+    path: 'support',
+    component: SupportComponent,
+    data: {
+      title: 'Page Demande de support'
+    },
+    canActivate: [
+      AuthGuard
+    ]
+  },
+  {
+    path: 'tickets',
+    component: TicketsComponent,
+    data: {
+      title: 'Page Liste des Demande de support'
+    }
+  },
+  {
+    path: 'tickets/:idTicket',
+    component: TicketDetailsComponent,
+    data: {
+      title: 'Page Detail d\'une Demande de support'
+    }
   },
   {path: '404', component: NotFoundComponent},
   {path: '**', redirectTo: '/404'}];

@@ -1,0 +1,22 @@
+.loader{
+  margin-right: auto;
+  margin-left: auto;
+  width: 1px;
+  margin-top: 50px;
+}
+.item{
+  height: 90px;
+  padding:15px;
+}
+.item-row{
+  margin-top:10px;
+  display: flex;
+  flex-direction: row;
+}
+.small{
+  width: 80px;
+}
+
+.content{
+  margin-bottom:100px;
+}

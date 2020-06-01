@@ -28,6 +28,7 @@ export class LoginComponent implements OnInit {
       password: ['', [Validators.required]],
     });
   }
+
   // convenience getter for easy access to form fields
   get fields() { return this.UserForm.controls; }
 
@@ -43,13 +44,13 @@ export class LoginComponent implements OnInit {
     this.userService.Login(login).subscribe(
       (response: any) => {
         this.message = null;
-        localStorage.setItem('access_token', response.token)
-        this.eventService.tokenChange.emit(response.token)
-        this.router.navigate(['/']) // todo le header ne s'actualise pas
+        localStorage.setItem('access_token', response.token);
+        this.eventService.tokenChange.emit(response.token);
+        this.router.navigate(['/']);
       },
       (error: any) => {
         console.error(error);
-        this.message = error.error.message;
+        this.message = error.error.message ? error.error.message : "Une erreur est survenue";
       });
   }
 

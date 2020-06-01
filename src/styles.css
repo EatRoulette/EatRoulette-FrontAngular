@@ -9,7 +9,12 @@
 .container {
   padding: 20px;
   margin-top:30px;
-  margin-bottom: 30px;
+  margin-bottom: 80px;
+}
+.content{
+  width:50%;
+  margin-right: auto;
+  margin-left: auto;
 }
 .centered-text{
   text-align:center;
@@ -20,18 +25,12 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-.item {
-  padding: 0;
-  width: 300px;
-  height: 300px;
-  background-color: crimson;
-  color: #fff;
-  font-size: 50px;
-  line-height: 300px;
-  text-align: center;
-}
 .error{
   color: red;
+  margin-top: 10px;
+}
+.success{
+  color: green;
   margin-top: 10px;
 }
 .field-error{
@@ -42,4 +41,10 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   width: 100%;
   height:1px;
   background-color: grey;
+}
+.justify-space-between{
+  justify-content:space-between;
+}
+.width-100{
+  width:100%;
 }
