@@ -15,9 +15,16 @@
         </div>
       </div>
       <button type="submit" class="btn btn-block btn-success">Rechercher</button>
+      <div *ngIf="submitted && errorMessage" class="error centered-text">{{errorMessage}}</div>
     </form>
     <div class="results">
-
+      <div class="with-data" *ngIf="hasResults && restaurants && restaurants.length > 0">
+        TEST
+      </div>
+      <div class="no-results" *ngIf="hasResults && (!restaurants || restaurants.length === 0)">
+        Aucun résultat !
+        <button type="submit" class="btn btn-block btn-info small-button" (click)="gotToAdd()">L'ajouter</button>
+      </div>
     </div>
   </div>
 </div>
