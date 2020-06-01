@@ -1,23 +1,17 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { HttpHeaders } from '@angular/common/http';
-import {Characteristic} from "../../data/characteristic";
+import {Service} from "../service";
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class CharacteristicService {
-  Url: string;
-  header: any;
+  service: Service;
 
-  constructor(private http: HttpClient) {
-    this.Url = 'http://localhost:3000';
-    const headerSettings: { [name: string]: string | string[]; } = {};
-    this.header = new HttpHeaders(headerSettings);
+  constructor(service: Service) {
+    this.service = service;
   }
   getCharacteristics() {
-    const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin':'*' }) };
-    return this.http.get<Characteristic[]>(this.Url + '/characteristics/', httpOptions)
+    return this.service.get('/characteristics/')
   }
 }

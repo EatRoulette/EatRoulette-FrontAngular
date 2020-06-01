@@ -1,30 +1,23 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { HttpHeaders } from '@angular/common/http';
-import { Situation } from "../../data/situation";
 import {UserService} from "../user/user.service";
+import {Service} from "../service";
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class SituationService {
-  Url: string;
-  header: any;
+  service: Service;
   userService: UserService;
 
-  constructor(private http: HttpClient, userService: UserService) {
-    this.Url = 'http://localhost:3000';
-    const headerSettings: { [name: string]: string | string[]; } = {};
-    this.header = new HttpHeaders(headerSettings);
+  constructor(service: Service, userService: UserService) {
+    this.service = service;
     this.userService = userService;
   }
   getSituation() {
-    const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin':'*' }) };
-    return this.http.get<Situation>(this.Url + '/situation/' + this.userService.getToken(), httpOptions)
+    return this.service.get('/situation/' + this.userService.getToken())
   }
   updateSituation(data) {
-    const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin':'*' }) };
-    return this.http.post<undefined>(this.Url + '/situation/' + this.userService.getToken(), data, httpOptions)
+    return this.service.post('/situation/' + this.userService.getToken(), data)
   }
 }

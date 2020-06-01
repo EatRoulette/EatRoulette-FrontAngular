@@ -1,42 +1,32 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { HttpHeaders } from '@angular/common/http';
-import { Register } from 'src/app/data/register';
 import {Support} from "../../data/support";
 import {UserService} from "../user/user.service";
-import {Ticket} from "../../data/ticket";
 import {SupportComment} from "../../data/SupportComment";
+import {Service} from "../service";
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class SupportService {
-  Url: string;
-  header: any;
+  service: Service;
   userService: UserService;
 
-  constructor(private http: HttpClient, userService: UserService) {
-    this.Url = 'http://localhost:3000';
-    const headerSettings: { [name: string]: string | string[]; } = {};
-    this.header = new HttpHeaders(headerSettings);
+  constructor(service: Service, userService: UserService) {
     this.userService = userService;
+    this.service = service;
   }
   sendSupportRequest(support: Support) {
-    const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin':'*' }) };
-    return this.http.post<Register[]>(this.Url + '/ticket/support/' + this.userService.getToken(), support, httpOptions)
+    return this.service.post('/ticket/support/' + this.userService.getToken(), support)
   }
   getTickets() {
-    const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin':'*' }) };
-    return this.http.get<Ticket[]>(this.Url + '/ticket/support/' + this.userService.getToken(), httpOptions)
+    return this.service.get('/ticket/support/' + this.userService.getToken())
   }
   getTicket(idTicket: string) {
-    const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin':'*' }) };
-    return this.http.get<Ticket>(this.Url + '/ticket/support/' + this.userService.getToken() + "/" + idTicket, httpOptions)
+    return this.service.get('/ticket/support/' + this.userService.getToken() + "/" + idTicket)
   }
-  sendSupportComment(request: SupportComment) { // {idTicket: string, comment: string}
-    const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin':'*' }) };
-    return this.http.post<Ticket>(this.Url + '/ticket/support/comment/' + this.userService.getToken(), request, httpOptions)
+  sendSupportComment(request: SupportComment) {
+    return this.service.post('/ticket/support/comment/' + this.userService.getToken(), request)
   }
 
 }
