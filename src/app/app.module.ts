@@ -18,6 +18,8 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { SupportComponent } from './components/support/support.component';
 import { TicketsComponent } from './components/tickets/tickets.component';
 import { TicketDetailsComponent } from './components/ticket-details/ticket-details.component';
+import { SearchComponent } from './components/search/search.component';
+import { RestaurantItemComponent } from './components/search/restaurant-item/restaurant-item.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,9 @@ import { TicketDetailsComponent } from './components/ticket-details/ticket-detai
     SidebarComponent,
     SupportComponent,
     TicketsComponent,
-    TicketDetailsComponent
+    TicketDetailsComponent,
+    SearchComponent,
+    RestaurantItemComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,8 @@
+<div *ngIf="restaurant" class="item">
+  <div class="col-sm">{{restaurant.name}}</div>
+  <div class="col-sm">{{restaurant.type}}</div>
+  <div class="col-sm">{{restaurant.address}}</div>
+  <div class="col-sm" >
+    <button type="submit" class="button btn btn-block btn-info" (click)="see()">Voir</button>
+  </div>
+</div>
