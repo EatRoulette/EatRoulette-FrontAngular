@@ -18,10 +18,12 @@
         </div>
       </div>
       <div class="separator"></div>
-      <br/>
-      <br/>
-      <br/>
-      <!--TODO refacto de situation pour ajouter le côté formulaire ici-->
+        <div *ngIf="isLoading" class="loader">
+          <app-pizza-loader></app-pizza-loader>
+        </div>
+        <div *ngIf="!isLoading">
+          <app-situation-form [characteristics]="characteristics" [allergens]="allergens"></app-situation-form>
+        </div>
       <div class="separator"></div>
       <br/>
       <button type="submit" class="btn btn-block btn-success">Ajouter</button>

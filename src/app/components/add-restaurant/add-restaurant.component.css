@@ -12,3 +12,8 @@
 .input-double{
   width: 48%;
 }
+.loader{
+  width: 0px;
+  height: 90px;
+  margin: 55px auto auto;
+}

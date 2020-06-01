@@ -21,6 +21,7 @@ import { TicketDetailsComponent } from './components/ticket-details/ticket-detai
 import { SearchComponent } from './components/search/search.component';
 import { RestaurantItemComponent } from './components/search/restaurant-item/restaurant-item.component';
 import { AddRestaurantComponent } from './components/add-restaurant/add-restaurant.component';
+import { SituationFormComponent } from './components/situation-form/situation-form.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { AddRestaurantComponent } from './components/add-restaurant/add-restaura
     TicketDetailsComponent,
     SearchComponent,
     RestaurantItemComponent,
-    AddRestaurantComponent
+    AddRestaurantComponent,
+    SituationFormComponent
   ],
   imports: [
     BrowserModule,
