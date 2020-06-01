@@ -10,6 +10,7 @@ import {AuthGuard} from "./auth/auth.guard";
 import {SupportComponent} from "./components/support/support.component";
 import {TicketsComponent} from "./components/tickets/tickets.component";
 import {TicketDetailsComponent} from "./components/ticket-details/ticket-details.component";
+import {SearchComponent} from "./components/search/search.component";
 
 const routes: Routes = [
   {
@@ -53,6 +54,13 @@ const routes: Routes = [
     canActivate: [
       AuthGuard
     ]
+  },
+  {
+    path: 'search',
+    component: SearchComponent,
+    data: {
+      title: 'Page de recherche'
+    }
   },
   {
     path: 'tickets',

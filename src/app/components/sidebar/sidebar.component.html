@@ -1,6 +1,7 @@
 <div *ngIf="isConnected" class="sidebar">
 
   <div>
+    <button class="btn btn-info button" (click)="navigate('/search')"> Recherche </button>
     <button class="btn btn-success button" (click)="navigate('/list')"> Mes listes </button>
     <button class="btn btn-success button" (click)="navigate('/friends')"> Mes amis </button>
     <button class="btn btn-success button" (click)="navigate('/situation')"> Ma situation </button>
