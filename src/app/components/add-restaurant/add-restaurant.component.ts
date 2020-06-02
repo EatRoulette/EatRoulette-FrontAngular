@@ -44,9 +44,11 @@ export class AddRestaurantComponent implements OnInit {
       city: [city, [Validators.required]],
       address: ['', [Validators.required]],
       postalCode: [postalCode, [Validators.required]],
+      website: ['', []],
       allergens: [[], []],
       characteristics: [[], []],
     });
+    // todo manage types
     this.loadAllergensAndCharacteristics();
   }
 
@@ -79,13 +81,15 @@ export class AddRestaurantComponent implements OnInit {
     this.submitted = true;
     if(this.AddForm.valid){
       const request = this.AddForm.value;
+      request.characteristics = this.characteristics
+      request.allergens = this.allergens
       this.restaurantService.addRestaurant(request).subscribe(
         (response: Restaurant) => {
-          this.router.navigate(['restaurant/'+response.id])
+          this.router.navigate(['search'])
         },
         (error: any) => {
           console.error(error);
-          this.message = error.error.message ? error.error.message : "Une erreur est survenue";
+          this.message = error.error && error.error.message ? error.error.message : "Une erreur est survenue";
         });
     }
   }

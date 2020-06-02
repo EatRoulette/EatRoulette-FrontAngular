@@ -10,4 +10,5 @@ export class Restaurant {
   postalCode: string;
   characteristics: Characteristic[];
   allergens : Allergen[];
+  website: string;
 }
