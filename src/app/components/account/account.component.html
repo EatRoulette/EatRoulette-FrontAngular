@@ -1,0 +1,37 @@
+<div class="container">
+  <div class="main-title">
+    <h1 class="centered-text">Mon compte</h1>
+  </div>
+  <form class="content">
+    <div class="separator"></div>
+    <div class="row-account">
+      <div class="title col-sm"><b>Prénom</b></div>
+      <div class="item col-sm">{{user.firstName}}</div>
+    </div>
+    <div class="row-account">
+      <div class="title col-sm"><b>Nom</b></div>
+      <div class="item col-sm">{{user.lastName}}</div>
+    </div>
+    <div class="row-account">
+      <div class="title col-sm"><b>Email</b></div>
+      <div class="item col-sm">{{user.email}}</div>
+    </div>
+    <div class="row-account">
+      <div class="title col-sm"><b>Addresse</b></div>
+      <div class="item col-sm">{{user.address}}</div>
+    </div>
+    <div class="row-account">
+      <div class="title col-sm"><b>Ville</b></div>
+      <div class="item col-sm">{{user.town}}</div>
+    </div>
+    <div class="row-account">
+      <div class="title col-sm"><b>Code postal</b></div>
+      <div class="item col-sm">{{user.postalCode}}</div>
+    </div>
+    <div class="row-account">
+      <div class="title col-sm"><b>Téléphone</b></div>
+      <div class="item col-sm"> {{user.phone}}</div>
+    </div>
+    <button type="submit" class="btn btn-block btn-success" (click)="updateData()" >Modifier</button>
+  </form>
+</div>

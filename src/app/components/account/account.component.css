@@ -1,0 +1,14 @@
+.title {
+  align-items:center;
+}
+h1 {
+  margin-bottom: 50px;
+}
+.row-account{
+  display: flex;
+  flex-direction: row;
+  margin: 10px auto;
+}
+.item{
+  text-align: left;
+}
