@@ -27,6 +27,32 @@
         </div>
         <div class="separator" *ngIf="!last"></div>
       </div>
-      <button (click)="addNewFriendToGroup()" class="btn btn-block btn-success">Ajouter un nouvel ami à ce groupe</button>
+      <br/>
+      <button (click)="toggleSearch()" class="btn btn-block btn-success" *ngIf="!isSearching">Ajouter un nouvel ami à ce groupe</button>
+      <button (click)="toggleSearch()" class="btn btn-block btn-danger" *ngIf="isSearching">Annuler</button>
+      <div class="search" *ngIf="isSearching">
+        <form [formGroup]="SearchForm" (ngSubmit)="onFormSubmit()">
+          <div class="input-row">
+            <input type="text" class="form-control input-double" formControlName="firstName" id="firstName" placeholder="Prénom"/>
+            <input type="text" class="form-control input-double" formControlName="lastName" id="lastName" placeholder="Nom"/>
+          </div>
+          <button type="submit" class="btn btn-block btn-primary">Rechercher</button>
+          <div *ngIf="submitted && errorMessage" class="error centered-text">{{errorMessage}}</div>
+        </form>
+        <div class="no-results" *ngIf="submitted && !errorMessage && (!results || results.length === 0)">
+          Aucun résultat !
+        </div>
+        <div *ngIf="results && results.length > 0">
+          <div *ngFor="let newFriend of results">
+            <div  class="friend new-friend-row" >
+              <div class="friend-row">
+                <div>{{newFriend.firstName}}</div>&nbsp;<div>{{newFriend.lastName}}</div>
+              </div>
+              <div> <img src="assets/img/add.png" (click)="addNewFriend(newFriend.id)" width="24"/></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
     </div>
   </div>

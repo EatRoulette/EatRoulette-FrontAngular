@@ -18,6 +18,14 @@
   flex-direction: row;
   padding: 10px;
 }
+.new-friend-row {
+  display: flex;
+  flex-direction: row;
+  padding: 5px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  background-color: whitesmoke;
+}
 .select{
   margin-right:10px;
 }
@@ -32,4 +40,25 @@
   margin-left: auto;
   width: 1px;
   margin-top: 50px;
+}
+.input-double{
+  width: 48%;
+}
+.search{
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.input-row{
+  width: 100%;
+  margin-top:10px;
+  margin-bottom:20px;
+  justify-content: space-between;
+  flex-direction: row;
+  display:flex;
+}
+.no-results{
+  width: 50%;
+  text-align: center;
+  margin-right: auto;
+  margin-left: auto;
 }
