@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {UserService} from "../../services/user/user.service";
 import {User} from "../../data/user";
+import {Router} from "@angular/router";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+
 
 @Component({
   selector: 'app-account',
@@ -9,20 +12,56 @@ import {User} from "../../data/user";
 })
 export class AccountComponent implements OnInit {
   userService: UserService;
+  UpdateUserForm: FormGroup;
   user: User;
+  modified: boolean = false;
+  isLoading: boolean = false;
+  submitted: boolean = false;
 
-  constructor(userService: UserService) {
+  constructor(private formBuilder: FormBuilder, private router: Router,userService: UserService) {
     this.userService = userService;
   }
 
-  ngOnInit(): void {
-    this.userService.getUser().subscribe( (userResponse: User) => {
+  async ngOnInit(): Promise<void> {
+    await this.userService.getUser().subscribe( (userResponse: User) => {
       this.user = userResponse;
-    })
+      this.UpdateUserForm = this.formBuilder.group({
+        lastName: [this.user.lastName, [Validators.required]], // [initialValue, [validators]]
+        firstName: [this.user.firstName, [Validators.required]],
+        email: [this.user.email, [Validators.required, Validators.email]],
+        address: [this.user.address, [Validators.required]],
+        town: [this.user.town, [Validators.required]],
+        postalCode: [this.user.postalCode, [Validators.required, Validators.pattern(new RegExp('^([0-9]{5})$'))]],
+        phone: [this.user.phone, [Validators.required, Validators.pattern(new RegExp('^([0-9]{10})$'))]],
+      });
+    });
   }
 
-  updateData(){
-
+  modify(){
+    this.modified = true;
   }
 
+  onFormSubmit() {
+    this.submitted = true;
+    if(this.UpdateUserForm.valid){
+      const user = this.UpdateUserForm.value;
+      this.updateData(user);
+    }
+  }
+
+  // convenience getter for easy access to form fields
+  get fields() { return this.UpdateUserForm.controls; }
+
+  updateData(user: User){
+    this.isLoading = true;
+    this.userService.updateUser(user).subscribe(
+      () => {
+        this.isLoading = false;
+        this.router.navigate([''])
+      },
+      (error: any) => {
+        this.isLoading = false;
+        console.error(error);
+      })
+  }
 }

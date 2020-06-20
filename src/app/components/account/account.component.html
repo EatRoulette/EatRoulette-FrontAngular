@@ -2,36 +2,112 @@
   <div class="main-title">
     <h1 class="centered-text">Mon compte</h1>
   </div>
-  <form class="content">
+  <div class="content">
     <div class="separator"></div>
-    <div class="row-account">
-      <div class="title col-sm"><b>Prénom</b></div>
-      <div class="item col-sm">{{user.firstName}}</div>
+    <div class="form-container" class="container-form">
+      <div *ngIf="!modified">
+        <div class="row-account">
+          <div class="title col-sm"><b>Nom</b></div>
+          <div class="item col-sm">{{user && user.lastName}}</div>
+        </div>
+        <div class="row-account">
+          <div class="title col-sm"><b>Prénom</b></div>
+          <div class="item col-sm">{{user && user.firstName}}</div>
+        </div>
+        <div class="row-account">
+          <div class="title col-sm"><b>Email</b></div>
+          <div class="item col-sm">{{user && user.email}}</div>
+        </div>
+        <div class="row-account">
+          <div class="title col-sm"><b>Addresse</b></div>
+          <div class="item col-sm">{{user && user.address}}</div>
+        </div>
+        <div class="row-account">
+          <div class="title col-sm"><b>Ville</b></div>
+          <div class="item col-sm">{{user && user.town}}</div>
+        </div>
+        <div class="row-account">
+          <div class="title col-sm"><b>Code postal</b></div>
+          <div class="item col-sm">{{user && user.postalCode}}</div>
+        </div>
+        <div class="row-account">
+          <div class="title col-sm"><b>Téléphone</b></div>
+          <div class="item col-sm"> {{user && user.phone}}</div>
+        </div>
+        <div class="btn-form">
+          <button type="submit" class="btn btn-block btn-success" (click)="modify()" >Modifier</button>
+        </div>
+      </div>
+      <div *ngIf="modified">
+        <form [formGroup]="UpdateUserForm" (ngSubmit)="onFormSubmit()">
+          <div class="row-account">
+            <div class="title col-sm"><b>Nom</b></div>
+            <div class="item col-sm">
+              <input type="text" class="form-control input-double" placeholder="Nom" formControlName="lastName" value="{{user.lastName}}">
+              <div *ngIf="submitted && fields.lastName.errors" class="field-error">
+                <div *ngIf="fields.lastName.errors.required">Veuillez renseigner votre Nom</div>
+              </div>
+            </div>
+          </div>
+          <div class="row-account">
+            <div class="title col-sm"><b>Prénom</b></div>
+            <div class="item col-sm">
+              <input type="text" class="form-control input-double" placeholder="Prénom" formControlName="firstName">
+              <div *ngIf="submitted && fields.firstName.errors" class="field-error">
+                <div *ngIf="fields.firstName.errors.required">Veuillez renseigner votre prénom</div>
+              </div>
+            </div>
+          </div>
+          <div class="row-account">
+            <div class="title col-sm"><b>Email</b></div>
+            <div class="item col-sm">
+              <input type="text" class="form-control input-double" placeholder="Email" formControlName="email">
+              <div *ngIf="submitted && fields.email.errors" class="field-error">
+                Veuillez renseigner un email valide
+              </div>
+            </div>
+          </div>
+          <div class="row-account">
+            <div class="title col-sm"><b>Adresse</b></div>
+            <div class="item col-sm">
+              <input type="text" class="form-control input-double" placeholder="Adresse" formControlName="address">
+              <div *ngIf="submitted && fields.address.errors" class="field-error">
+                Veuillez renseigner une adresse
+              </div>
+            </div>
+          </div>
+          <div class="row-account">
+            <div class="title col-sm"><b>Ville</b></div>
+            <div class="item col-sm">
+              <input type="text" class="form-control input-double" placeholder="Ville" formControlName="town">
+              <div *ngIf="submitted && fields.town.errors" class="field-error">
+                Veuillez indiquer votre ville
+              </div>
+            </div>
+          </div>
+          <div class="row-account">
+            <div class="title col-sm"><b>Code Postal</b></div>
+            <div class="item col-sm">
+              <input type="text" class="form-control input-double" placeholder="Code Postal" formControlName="postalCode">
+              <div *ngIf="submitted && fields.postalCode.errors" class="field-error">
+                Veuillez indiquer un Code Postal valide
+              </div>
+            </div>
+          </div>
+          <div class="row-account">
+            <div class="title col-sm"><b>Téléphone</b></div>
+            <div class="item col-sm">
+              <input type="text" class="form-control input-double" placeholder="Télépone" formControlName="phone">
+              <div *ngIf="submitted && fields.phone.errors" class="field-error">
+                Veuillez renseigner un numéro de téléphone valide
+              </div>
+            </div>
+          </div>
+          <div class="btn-form">
+            <button type="submit" class="btn btn-block btn-success">Mettre à jour</button>
+          </div>
+        </form>
+      </div>
     </div>
-    <div class="row-account">
-      <div class="title col-sm"><b>Nom</b></div>
-      <div class="item col-sm">{{user.lastName}}</div>
-    </div>
-    <div class="row-account">
-      <div class="title col-sm"><b>Email</b></div>
-      <div class="item col-sm">{{user.email}}</div>
-    </div>
-    <div class="row-account">
-      <div class="title col-sm"><b>Addresse</b></div>
-      <div class="item col-sm">{{user.address}}</div>
-    </div>
-    <div class="row-account">
-      <div class="title col-sm"><b>Ville</b></div>
-      <div class="item col-sm">{{user.town}}</div>
-    </div>
-    <div class="row-account">
-      <div class="title col-sm"><b>Code postal</b></div>
-      <div class="item col-sm">{{user.postalCode}}</div>
-    </div>
-    <div class="row-account">
-      <div class="title col-sm"><b>Téléphone</b></div>
-      <div class="item col-sm"> {{user.phone}}</div>
-    </div>
-    <button type="submit" class="btn btn-block btn-success" (click)="updateData()" >Modifier</button>
-  </form>
+  </div>
 </div>
