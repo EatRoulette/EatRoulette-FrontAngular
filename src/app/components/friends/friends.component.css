@@ -21,10 +21,8 @@
 .new-friend-row {
   display: flex;
   flex-direction: row;
-  padding: 5px;
-  margin-top: 5px;
-  margin-bottom: 5px;
-  background-color: whitesmoke;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 .select{
   margin-right:10px;
@@ -61,4 +59,7 @@
   text-align: center;
   margin-right: auto;
   margin-left: auto;
+}
+.small{
+  width:100px;
 }

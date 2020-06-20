@@ -48,7 +48,7 @@
               <div class="friend-row">
                 <div>{{newFriend.firstName}}</div>&nbsp;<div>{{newFriend.lastName}}</div>
               </div>
-              <div> <img src="assets/img/add.png" (click)="addNewFriend(newFriend.id)" width="24"/></div>
+              <button type="submit" class="btn btn-block btn-success small" (click)="addNewFriend(newFriend.id)" [disabled]="existsIntoGroup(newFriend.id)">Ajouter</button>
             </div>
           </div>
         </div>

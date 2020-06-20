@@ -46,8 +46,25 @@ export class FriendsComponent implements OnInit {
     this.group = this.groups.find(g => g.id === event.target.value)
   }
 
+  reset(groups: Group[]){
+    console.log(groups)
+    this.groups = groups;
+    this.group = this.groups.find(g => g.id === this.group.id)
+    this.isSearching = false;
+    this.results = undefined;
+    this.submitted = false;
+    this.errorMessage = undefined;
+  }
+
   delete(id: string){
-    //todo delete => call api
+    this.friendsService.deleteFriend(id, this.group.id).subscribe(
+      (groups: any) => {
+        this.reset(groups)
+      },
+      (error: any) => {
+        console.error(error);
+        this.errorMessage = error.error.message ? error.error.message : "Une erreur est survenue";
+      });
   }
 
   addNewGroup(){
@@ -63,16 +80,18 @@ export class FriendsComponent implements OnInit {
 
   addNewFriend(idFriend: string){
     this.friendsService.addNewFriend(idFriend, this.group.id).subscribe(
-      (response: any) => {
-        this.toggleSearch();
-        this.results = undefined;
-        this.submitted = false;
-        this.errorMessage = undefined;
+      (groups: any) => {
+        this.reset(groups)
       },
       (error: any) => {
         console.error(error);
         this.errorMessage = error.error.message ? error.error.message : "Une erreur est survenue";
       });
+  }
+
+  existsIntoGroup(idFriend){
+    // todo check if it is me?
+    return this.group.friends.find(friend => friend.id === idFriend)
   }
 
   onFormSubmit(){

@@ -19,6 +19,9 @@ export class FriendsService {
   addNewFriend(idFriend, idGroup) {
     return this.service.post('/myFriendsListUsers/add/' + this.userService.getToken(), {idFriend, idGroup})
   }
+  deleteFriend(idFriend, idGroup) {
+    return this.service.post('/myFriendsListUsers/delete/' + this.userService.getToken(), {idFriend, idGroup})
+  }
   getGroups() {
     return this.service.get('/myFriendsListUsers/' + this.userService.getToken())
   }
