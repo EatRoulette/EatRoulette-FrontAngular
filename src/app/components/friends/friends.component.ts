@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Group} from "../../data/group";
+import {FriendsService} from "../../services/friends/friends.service";
+import {User} from "../../data/user";
 
 @Component({
   selector: 'app-friends',
@@ -9,81 +11,24 @@ import {Group} from "../../data/group";
 export class FriendsComponent implements OnInit {
   groups: Group[];
   group: Group = undefined;
+  friendsService: FriendsService;
+  isLoading: boolean = false;
 
-  constructor() { }
+  constructor(friendsService: FriendsService) {
+    this.friendsService = friendsService;
+  }
 
   ngOnInit(): void {
-    // todo mock data => call api to fetch groups for user
-    this.groups = [
-      {
-        id:"1",
-        name:"group 1",
-        friends: [
-          {
-            id: "1",
-              firstName: "FirstName11",
-              lastName: "lastName11"
-          },
-          {
-            id: "2",
-            firstName: "FirstName12",
-            lastName: "lastName 12",
-          },
-          {
-            id: "2",
-            firstName: "FirstName12",
-            lastName: "lastName 12",
-          },
-          {
-            id: "2",
-            firstName: "FirstName12",
-            lastName: "lastName 12",
-          },
-          {
-            id: "2",
-            firstName: "FirstName12",
-            lastName: "lastName 12",
-          },
-          {
-            id: "2",
-            firstName: "FirstName12",
-            lastName: "lastName 12",
-          }
-        ],
+    this.isLoading = true; // todo display pizza loader into html
+    this.friendsService.getGroups().subscribe(
+      (groups: Group[]) => {
+        this.isLoading = false;
+        this.groups = groups;
       },
-      {
-        id:"2",
-        name:"group 2",
-        friends: [
-          {
-            id: "3",
-            firstName: "FirstName21",
-            lastName: "lastName21"
-          }
-        ],
-      },
-      {
-        id:"3",
-        name:"group 3",
-        friends: [
-          {
-            id: "5",
-            firstName: "FirstName31",
-            lastName: "lastName31"
-          },
-          {
-            id: "6",
-            firstName: "FirstName32",
-            lastName: "lastName 32",
-          },
-          {
-            id: "4",
-            firstName: "FirstName34",
-            lastName: "lastName 32eee",
-          }
-        ],
-      }
-    ]
+      (error: any) => {
+        this.isLoading = false;
+        console.error(error);
+      })
   }
 
   selectValue(event){
