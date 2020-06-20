@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="content">
+    <div class="main-title">
+      <h1 class="centered-text">Amis</h1>
+    </div>
+    <div class="separator"></div>
+    <div class="selection">
+      <select (change)="selectValue($event)"  class="form-control select">
+        <option value="" disabled selected>Choisissez un groupe</option>
+        <option *ngFor="let groupSelection of groups"
+                [value]="groupSelection.id">
+          {{groupSelection.name}}
+        </option>
+      </select>
+      <div> <img src="assets/img/add.png" (click)="addNewGroup()" width="30"/></div>
+    </div>
+
+    <div *ngIf="group">
+      <div *ngFor="let friend of group.friends; let last = last;">
+        <div  class="friend friend-row" >
+          <div class="friend-row">
+            <div>{{friend.firstName}}</div>&nbsp;<div>{{friend.lastName}}</div>
+          </div>
+          <div> <img src="assets/img/delete.png" (click)="delete(friend.id)" width="24"/></div>
+        </div>
+        <div class="separator" *ngIf="!last"></div>
+      </div>
+      <button (click)="addNewFriendToGroup()" class="btn btn-block btn-success">Ajouter un nouvel ami à ce groupe</button>
+    </div>
+  </div>

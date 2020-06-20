@@ -1,0 +1,29 @@
+.wrapper {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 10px;
+  margin-top: 20px;
+}
+.group{
+  text-align:center;
+  padding: 10px;
+  align-items:center;
+}
+.friend {
+  justify-content:space-between;
+  align-items:center;
+}
+.friend-row {
+  display:flex;
+  flex-direction: row;
+  padding: 10px;
+}
+.select{
+  margin-right:10px;
+}
+.selection{
+  display:flex;
+  flex-direction: row;
+  margin-top: 20px;
+  align-items: center;
+}
