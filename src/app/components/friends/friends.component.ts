@@ -16,6 +16,7 @@ export class FriendsComponent implements OnInit {
   friendsService: FriendsService;
   isLoading: boolean = false;
   isSearching: boolean = false;
+  hasResults: boolean = false;
   submitted: boolean = false;
   SearchForm: FormGroup;
   results: Friend[];
@@ -24,6 +25,8 @@ export class FriendsComponent implements OnInit {
   constructor(friendsService: FriendsService, private formBuilder: FormBuilder) {
     this.friendsService = friendsService;
   }
+
+  // todo no result que qaund on a eu du result
 
   ngOnInit(): void {
     this.isLoading = true;
@@ -53,6 +56,7 @@ export class FriendsComponent implements OnInit {
     this.isSearching = false;
     this.results = undefined;
     this.submitted = false;
+    this.hasResults = false;
     this.errorMessage = undefined;
   }
 
@@ -102,6 +106,7 @@ export class FriendsComponent implements OnInit {
         (response: any) => {
           this.errorMessage = undefined;
           this.results = response;
+          this.hasResults = true;
         },
         (error: any) => {
           console.error(error);

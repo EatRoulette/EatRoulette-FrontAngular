@@ -39,7 +39,7 @@
           <button type="submit" class="btn btn-block btn-primary">Rechercher</button>
           <div *ngIf="submitted && errorMessage" class="error centered-text">{{errorMessage}}</div>
         </form>
-        <div class="no-results" *ngIf="submitted && !errorMessage && (!results || results.length === 0)">
+        <div class="no-results" *ngIf="hasResults && submitted && !errorMessage && (!results || results.length === 0)">
           Aucun résultat !
         </div>
         <div *ngIf="results && results.length > 0">
