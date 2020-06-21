@@ -1,0 +1,70 @@
+.wrapper {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 10px;
+  margin-top: 20px;
+}
+.list{
+  text-align:center;
+  padding: 10px;
+  align-items:center;
+}
+.restaurant {
+  justify-content:space-between;
+  align-items:center;
+}
+.restaurant-row {
+  display:flex;
+  flex-direction: row;
+  padding: 10px;
+}
+.new-restaurant-row {
+  display: flex;
+  flex-direction: row;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+.select{
+  margin-right:10px;
+}
+.selection{
+  display:flex;
+  flex-direction: row;
+  margin-top: 20px;
+  align-items: center;
+}
+.loader{
+  margin-right: auto;
+  margin-left: auto;
+  width: 1px;
+  margin-top: 50px;
+}
+.input-double{
+  width: 48%;
+}
+.search{
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.input-row{
+  width: 100%;
+  margin-top:10px;
+  margin-bottom:20px;
+  justify-content: space-between;
+  flex-direction: row;
+  display:flex;
+}
+.no-results{
+  width: 50%;
+  text-align: center;
+  margin-right: auto;
+  margin-left: auto;
+}
+.small{
+  width:100px;
+}
+.legend{
+  margin-bottom:10px;
+  flex-direction: row;
+  display: flex;
+}
