@@ -18,13 +18,13 @@ export class ListsService {
     return this.service.post('/myRestaurantList/new/' + this.userService.getToken(), {name})
   }
   deleteList(id) {
-    return this.service.delete('/TODO/'+ id)
+    return this.service.delete('/myRestaurantList/'+ id)
   }
   addNewRestaurant(idRestaurant, idList) {
     return this.service.post('/myRestaurantList/add/' + this.userService.getToken(), {idRestaurant, idList})
   }
   deleteRestaurant(idRestaurant, idList) {
-    return this.service.post('/TODO/delete/' + this.userService.getToken(), {idRestaurant, idList})
+    return this.service.post('/myRestaurantList/delete/' + this.userService.getToken(), {idRestaurant, idList})
   }
   getLists() {
     return this.service.get('/myRestaurantList/' + this.userService.getToken())
