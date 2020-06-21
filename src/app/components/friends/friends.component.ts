@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {Group} from "../../data/group";
 import {FriendsService} from "../../services/friends/friends.service";
-import {FormBuilder, FormGroup} from "@angular/forms";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import { isPresent } from "../../utils/utils";
 import {Friend} from "../../data/Friend";
+import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
   selector: 'app-friends',
@@ -17,16 +18,17 @@ export class FriendsComponent implements OnInit {
   isLoading: boolean = false;
   isSearching: boolean = false;
   hasResults: boolean = false;
-  submitted: boolean = false;
   SearchForm: FormGroup;
+  AddGroupForm: FormGroup;
   results: Friend[];
+  submitted: boolean = false;
   errorMessage: string;
+  addGroupSubmitted: boolean = false;
+  addGroupErrorMessage: string;
 
-  constructor(friendsService: FriendsService, private formBuilder: FormBuilder) {
+  constructor(friendsService: FriendsService, private formBuilder: FormBuilder, private modalService: NgbModal) {
     this.friendsService = friendsService;
   }
-
-  // todo no result que qaund on a eu du result
 
   ngOnInit(): void {
     this.isLoading = true;
@@ -34,6 +36,13 @@ export class FriendsComponent implements OnInit {
       firstName: ['', []],
       lastName: ['', []],
     });
+    this.AddGroupForm = this.formBuilder.group({
+      name: ['', [Validators.required]],
+    });
+    this.refresh();
+  }
+
+  refresh(){
     this.friendsService.getGroups().subscribe(
       (groups: Group[]) => {
         this.isLoading = false;
@@ -71,8 +80,8 @@ export class FriendsComponent implements OnInit {
       });
   }
 
-  addNewGroup(){
-    // todo add => go to new group form
+  openModalAddNewGroup(content){
+    this.modalService.open(content)
   }
 
   toggleSearch(){
@@ -114,6 +123,25 @@ export class FriendsComponent implements OnInit {
         });
     }else{
       this.errorMessage = "Veuillez saisir au moins un critère de recherche"
+    }
+  }
+
+  onAddGroupFormSubmit(){
+    const {name} = this.AddGroupForm.value;
+    this.addGroupSubmitted = true;
+    if(this.AddGroupForm.valid){
+      this.friendsService.addGroup(name).subscribe(
+        (response: any) => {
+          this.addGroupErrorMessage = undefined;
+          this.modalService.dismissAll();
+          this.refresh();
+        },
+        (error: any) => {
+          console.error(error);
+          this.addGroupErrorMessage = error.error && error.error.message ? error.error.message : "Une erreur est survenue";
+        });
+    }else{
+      this.addGroupErrorMessage = "Veuillez saisir un nom pour le nouveau groupe"
     }
   }
 

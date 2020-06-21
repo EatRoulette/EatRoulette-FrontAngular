@@ -23,6 +23,7 @@ import { RestaurantItemComponent } from './components/search/restaurant-item/res
 import { AddRestaurantComponent } from './components/add-restaurant/add-restaurant.component';
 import { SituationFormComponent } from './components/situation-form/situation-form.component';
 import { FriendsComponent } from './components/friends/friends.component';
+import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 
 @NgModule({
   declarations: [
@@ -43,14 +44,15 @@ import { FriendsComponent } from './components/friends/friends.component';
     RestaurantItemComponent,
     AddRestaurantComponent,
     SituationFormComponent,
-    FriendsComponent
+    FriendsComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     StorageServiceModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]
