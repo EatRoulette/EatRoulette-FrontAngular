@@ -59,7 +59,6 @@ export class FriendsComponent implements OnInit {
   }
 
   reset(groups: Group[]){
-    console.log(groups)
     this.groups = groups;
     this.group = this.groups.find(g => g.id === this.group.id)
     this.isSearching = false;
@@ -105,6 +104,17 @@ export class FriendsComponent implements OnInit {
   existsIntoGroup(idFriend){
     // todo check if it is me?
     return this.group.friends.find(friend => friend.id === idFriend)
+  }
+
+  deleteGroup(){
+    this.friendsService.deleteGroup(this.group.id).subscribe(
+      (response: any) => {
+        window.location.reload();
+      },
+      (error: any) => {
+        console.error(error);
+        this.errorMessage = error.error && error.error.message ? error.error.message : "Une erreur est survenue";
+      });
   }
 
   onFormSubmit(){

@@ -45,6 +45,7 @@
         <div class="separator" *ngIf="!last"></div>
       </div>
       <br/>
+      <button (click)="deleteGroup()" class="btn btn-block btn-danger">Supprimer le groupe</button>
       <button (click)="toggleSearch()" class="btn btn-block btn-success" *ngIf="!isSearching">Ajouter un nouvel ami à ce groupe</button>
       <button (click)="toggleSearch()" class="btn btn-block btn-danger" *ngIf="isSearching">Annuler</button>
       <div class="search" *ngIf="isSearching">
