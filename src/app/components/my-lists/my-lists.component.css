@@ -16,7 +16,8 @@
 .restaurant-row {
   display:flex;
   flex-direction: row;
-  padding: 10px;
+  width: 100%;
+  justify-content: center;
 }
 .new-restaurant-row {
   display: flex;
@@ -64,7 +65,11 @@
   width:100px;
 }
 .legend{
-  margin-bottom:10px;
+  margin-top:10px;
   flex-direction: row;
   display: flex;
+}
+.special-padding {
+  padding: 5px 0 5px 0 !important;
+  min-height: 60px;
 }

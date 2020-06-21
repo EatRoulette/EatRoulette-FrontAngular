@@ -36,21 +36,21 @@
     </div>
     <div *ngIf="list">
       <div class="legend"  *ngIf="list.restaurants && list.restaurants.length > 0">
-        <div class="col-sm"><b>Nom</b></div>
-        <div class="col-sm"><b>Type</b></div>
-        <div class="col-sm"><b>Adresse</b></div>
-        <div class="col-sm"><b>Ville</b></div>
-        <div class="col-sm"></div>
+        <div class="col-sm special-padding"><b>Nom</b></div>
+        <div class="col-sm special-padding"><b>Type</b></div>
+        <div class="col-sm special-padding"><b>Adresse</b></div>
+        <div class="col-sm special-padding"><b>Ville</b></div>
+        <div class="col-sm special-padding"></div>
       </div>
       <div *ngFor="let restaurant of list.restaurants; let last = last;">
         <div  class="restaurant restaurant-row" >
           <div class="restaurant-row">
-            <div class="col-sm">{{restaurant.name}}</div>
-            <div class="col-sm">{{restaurant.type}}</div>
-            <div class="col-sm">{{restaurant.address}}</div>
-            <div class="col-sm">{{restaurant.city}}</div>
+            <div class="col-sm special-padding">{{restaurant.name}}</div>
+            <div class="col-sm special-padding">{{restaurant.type}}</div>
+            <div class="col-sm special-padding">{{restaurant.address}}</div>
+            <div class="col-sm" special-padding>{{restaurant.city}}</div>
           </div>
-          <div> <img src="assets/img/delete.png" (click)="delete(restaurant.id)" width="24"/></div>
+          <button class="btn btn-block btn-danger small" (click)="delete(restaurant.id)">Supprimer</button>
         </div>
         <div class="separator" *ngIf="!last"></div>
       </div>
@@ -76,16 +76,17 @@
           Aucun résultat !
         </div>
         <div *ngIf="results && results.length > 0">
-          <div *ngFor="let newRestaurant of results">
-            <div  class="restaurant new-restaurant-row" >
+          <div *ngFor="let newRestaurant of results; let last = last;">
+            <div  class="restaurant restaurant-row" >
               <div class="restaurant-row">
-                <div class="col-sm">{{newRestaurant.name}}</div>
-                <div class="col-sm">{{newRestaurant.type}}</div>
-                <div class="col-sm">{{newRestaurant.address}}</div>
-                <div class="col-sm">{{newRestaurant.city}}</div>
+                <div class="col-sm special-padding">{{newRestaurant.name}}</div>
+                <div class="col-sm special-padding">{{newRestaurant.type}}</div>
+                <div class="col-sm special-padding">{{newRestaurant.address}}</div>
+                <div class="col-sm special-padding">{{newRestaurant.city}}</div>
               </div>
               <button type="submit" class="btn btn-block btn-success small" (click)="addNewRestaurant(newRestaurant.id)" [disabled]="existsIntoList(newRestaurant.id)">Ajouter</button>
             </div>
+            <div class="separator" *ngIf="!last"></div>
           </div>
         </div>
       </div>

@@ -14,11 +14,6 @@ export class ListsService {
     this.userService = userService;
   }
 
-  // todo right urls
-
-  search(searchValues) {
-    return this.service.post('/TODO/search', searchValues)
-  }
   addList(name) {
     return this.service.post('/myRestaurantList/new/' + this.userService.getToken(), {name})
   }
@@ -26,7 +21,7 @@ export class ListsService {
     return this.service.delete('/TODO/'+ id)
   }
   addNewRestaurant(idRestaurant, idList) {
-    return this.service.post('/TODO/add/' + this.userService.getToken(), {idRestaurant, idList})
+    return this.service.post('/myRestaurantList/add/' + this.userService.getToken(), {idRestaurant, idList})
   }
   deleteRestaurant(idRestaurant, idList) {
     return this.service.post('/TODO/delete/' + this.userService.getToken(), {idRestaurant, idList})

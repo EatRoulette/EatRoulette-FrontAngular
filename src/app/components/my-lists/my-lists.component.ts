@@ -5,6 +5,7 @@ import {Restaurant} from "../../data/restaurant";
 import {ListsService} from "../../services/lists/lists.service";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import { isPresent } from "../../utils/utils";
+import {SearchService} from "../../services/search/search.service";
 
 @Component({
   selector: 'app-my-lists',
@@ -15,6 +16,7 @@ export class MyListsComponent implements OnInit {
   lists: List[];
   list: List = undefined;
   listsService: ListsService;
+  searchService: SearchService;
   isLoading: boolean = false;
   isSearching: boolean = false;
   hasResults: boolean = false;
@@ -26,8 +28,9 @@ export class MyListsComponent implements OnInit {
   addListSubmitted: boolean = false;
   addListErrorMessage: string;
 
-  constructor(listsService: ListsService, private formBuilder: FormBuilder, private modalService: NgbModal) {
+  constructor(listsService: ListsService, searchService: SearchService, private formBuilder: FormBuilder, private modalService: NgbModal) {
     this.listsService = listsService;
+    this.searchService = searchService;
   }
 
   ngOnInit(): void {
@@ -121,7 +124,7 @@ export class MyListsComponent implements OnInit {
     const searchValues = this.SearchForm.value;
     this.submitted = true;
     if(isPresent(searchValues.name) || isPresent(searchValues.city) || isPresent(searchValues.postalCode)){
-      this.listsService.search(searchValues).subscribe(
+      this.searchService.search(searchValues).subscribe(
         (response: any) => {
           this.errorMessage = undefined;
           this.results = response;
@@ -129,7 +132,7 @@ export class MyListsComponent implements OnInit {
         },
         (error: any) => {
           console.error(error);
-          this.errorMessage = error.error && error.error.message ? error.error.message : "Une erreur est survenue";
+          this.errorMessage = error.error.message ? error.error.message : "Une erreur est survenue";
         });
     }else{
       this.errorMessage = "Veuillez saisir au moins un critère de recherche"
