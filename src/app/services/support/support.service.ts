@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {Support} from "../../data/support";
 import {UserService} from "../user/user.service";
-import {SupportComment} from "../../data/SupportComment";
+import {SupportComment} from "../../data/supportComment";
 import {Service} from "../service";
 
 @Injectable({

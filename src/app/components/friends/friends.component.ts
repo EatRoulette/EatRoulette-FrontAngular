@@ -3,7 +3,7 @@ import {Group} from "../../data/group";
 import {FriendsService} from "../../services/friends/friends.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import { isPresent } from "../../utils/utils";
-import {Friend} from "../../data/Friend";
+import {Friend} from "../../data/friend";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 
 @Component({

@@ -3,7 +3,7 @@ import {Ticket} from "../../data/ticket";
 import {SupportService} from "../../services/support/support.service";
 import {ActivatedRoute} from "@angular/router";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {SupportComment} from "../../data/SupportComment";
+import {SupportComment} from "../../data/supportComment";
 
 @Component({
   selector: 'app-ticket-details',
