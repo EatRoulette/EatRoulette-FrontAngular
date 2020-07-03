@@ -22,10 +22,20 @@
               </option>
             </select>
           </div>
-          <button type="submit" class="btn btn-block btn-primary" (click)="navigate(myLists)">Ajouter des amis ou groupe</button>
+          <button type="submit" class="btn btn-block btn-primary" (click)="navigate('myLists')">Ajouter des amis ou groupe</button>
           <button type="submit" class="btn btn-block btn-primary margin-bottom" (click)="toggleFilters()">Ajouter un filtre</button>
           <div class="filters margin-bottom" *ngIf="showFilters">
-            <!-- TODO FILTRES -->
+            <div class="input-row margin-bottom my-col margin-right">
+              <input type="text" class="form-control" formControlName="city" id="city" placeholder="Ville"/>
+            </div>
+            <select name="types" id="types" class="form-control" formControlName="types">
+              <option value="" disabled selected>Types</option>
+              <option *ngFor="let type of types"
+                      [value]="type.id">
+                {{type.name}}
+              </option>
+            </select>
+            <app-situation-form [characteristics]="characteristics" [allergens]="allergens"></app-situation-form>
           </div>
         </div>
         <div class="results" *ngIf="hasResults">

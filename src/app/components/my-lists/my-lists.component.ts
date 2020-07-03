@@ -123,6 +123,7 @@ export class MyListsComponent implements OnInit {
   onSearchFormSubmit(){
     const searchValues = this.SearchForm.value;
     this.submitted = true;
+    // TODO LOADER
     if(isPresent(searchValues.name) || isPresent(searchValues.city) || isPresent(searchValues.postalCode)){
       this.searchService.search(searchValues).subscribe(
         (response: any) => {
