@@ -14,4 +14,8 @@ export class RestaurantService {
   addRestaurant(restaurant) {
     return this.service.post('/restaurant/add/', restaurant)
   }
+
+  getRestaurantTypes(){
+    return this.service.get('/type/restaurant/')
+  }
 }

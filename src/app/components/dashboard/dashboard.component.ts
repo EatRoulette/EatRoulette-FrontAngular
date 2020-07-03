@@ -12,6 +12,7 @@ import {Type} from "../../data/type";
 import {Situation} from "../../data/situation";
 import {AllergenService} from "../../services/allergen/allergen.service";
 import {CharacteristicService} from "../../services/characteristic/characteristic.service";
+import {RestaurantService} from "../../services/restaurant/restaurant.service";
 
 @Component({
   selector: 'app-dashboard',
@@ -24,8 +25,9 @@ export class DashboardComponent implements OnInit {
   userService: UserService;
   allergenService: AllergenService;
   characteristicService: CharacteristicService;
-  RollForm: FormGroup;
   listsService: ListsService;
+  restaurantService: RestaurantService;
+  RollForm: FormGroup;
   showFilters: boolean = false;
   hasResults: boolean = false;
   submitted: boolean = false;
@@ -37,11 +39,12 @@ export class DashboardComponent implements OnInit {
   types: Type[]
 
   constructor(userService: UserService, private formBuilder: FormBuilder, private router: Router, listsService: ListsService,
-              allergenService: AllergenService, characteristicService: CharacteristicService) {
+              allergenService: AllergenService, characteristicService: CharacteristicService, restaurantService: RestaurantService) {
     this.userService = userService;
     this.listsService = listsService;
     this.characteristicService = characteristicService;
     this.allergenService = allergenService;
+    this.restaurantService = restaurantService;
   }
 
   ngOnInit(): void {
@@ -52,6 +55,7 @@ export class DashboardComponent implements OnInit {
       characteristics: [[], []],
       allergens: [[], []],
       city: ['', []],
+      types: [[], []],
     });
     this.loadFilters();
     if(this.isConnected){
@@ -68,6 +72,15 @@ export class DashboardComponent implements OnInit {
             .subscribe(
               (characteristicsResponse: Characteristic[]) => {
                 this.characteristics = characteristicsResponse;
+                this.restaurantService.getRestaurantTypes()
+                  .subscribe(
+                    (types: Type[]) => {
+                      this.types = types;
+                    },
+                    (error: any) => {
+                      this.isLoading = false;
+                      console.error(error);
+                    })
               },
               (error: any) => {
                 this.isLoading = false;
@@ -78,7 +91,6 @@ export class DashboardComponent implements OnInit {
           this.isLoading = false;
           console.error(error);
         })
-    // todo load types
   }
 
   loadUserData(){
