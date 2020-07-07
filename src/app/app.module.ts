@@ -22,6 +22,8 @@ import { SearchComponent } from './components/search/search.component';
 import { RestaurantItemComponent } from './components/search/restaurant-item/restaurant-item.component';
 import { AddRestaurantComponent } from './components/add-restaurant/add-restaurant.component';
 import { SituationFormComponent } from './components/situation-form/situation-form.component';
+import { FriendsComponent } from './components/friends/friends.component';
+import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 
 @NgModule({
   declarations: [
@@ -41,14 +43,16 @@ import { SituationFormComponent } from './components/situation-form/situation-fo
     SearchComponent,
     RestaurantItemComponent,
     AddRestaurantComponent,
-    SituationFormComponent
+    SituationFormComponent,
+    FriendsComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     StorageServiceModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]

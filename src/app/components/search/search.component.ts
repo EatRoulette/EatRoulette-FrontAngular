@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from "@angular/forms";
 import { Restaurant } from "../../data/restaurant";
+import { isPresent } from "../../utils/utils";
 import {SearchService} from "../../services/search/search.service";
 import {Router} from "@angular/router";
 
@@ -34,7 +35,7 @@ export class SearchComponent implements OnInit {
     this.submitted = true;
     this.errorMessage = undefined;
     const searchValues = this.SearchForm.value;
-    if(this.isPresent(searchValues.name) || this.isPresent(searchValues.city) || this.isPresent(searchValues.postalCode)){
+    if(isPresent(searchValues.name) || isPresent(searchValues.city) ||  isPresent(searchValues.postalCode)){
       this.searchService.search(searchValues).subscribe(
         (response: any) => {
           this.hasResults = true;
@@ -51,10 +52,6 @@ export class SearchComponent implements OnInit {
 
   gotToAdd(){
     this.router.navigate(['restaurant/add', this.SearchForm.value])
-  }
-
-  isPresent(value){
-    return value && value !== "";
   }
 
 }

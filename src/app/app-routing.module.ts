@@ -12,6 +12,7 @@ import {TicketsComponent} from "./components/tickets/tickets.component";
 import {TicketDetailsComponent} from "./components/ticket-details/ticket-details.component";
 import {SearchComponent} from "./components/search/search.component";
 import {AddRestaurantComponent} from "./components/add-restaurant/add-restaurant.component";
+import {FriendsComponent} from "./components/friends/friends.component";
 
 const routes: Routes = [
   {
@@ -75,6 +76,13 @@ const routes: Routes = [
     component: TicketsComponent,
     data: {
       title: 'Page Liste des Demande de support'
+    }
+  },
+  {
+    path: 'friends',
+    component: FriendsComponent,
+    data: {
+      title: 'Page Liste des amis et groupes'
     }
   },
   {

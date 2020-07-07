@@ -1,0 +1,77 @@
+<div class="container">
+  <div class="content">
+    <div class="main-title">
+      <h1 class="centered-text">Amis</h1>
+    </div>
+    <div class="separator"></div>
+    <ng-template #addNewGroupModal let-modal>
+      <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Ajout d'un nouveau groupe d'amis</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="AddGroupForm" (ngSubmit)="onAddGroupFormSubmit()">
+          <div class="input-row">
+            <input type="text" class="form-control" formControlName="name" id="name" placeholder="Nom du groupe"/>
+          </div>
+          <button type="submit" class="btn btn-block btn-primary">Ajouter</button>
+          <div *ngIf="addGroupSubmitted && addGroupErrorMessage" class="error centered-text">{{addGroupErrorMessage}}</div>
+        </form>
+      </div>
+    </ng-template>
+    <div class="selection">
+      <select (change)="selectValue($event)"  class="form-control select">
+        <option value="" disabled selected>Choisissez un groupe</option>
+        <option *ngFor="let groupSelection of groups"
+                [value]="groupSelection.id">
+          {{groupSelection.name}}
+        </option>
+      </select>
+      <div> <img src="assets/img/add.png" (click)="openModalAddNewGroup(addNewGroupModal)" width="30"/></div>
+    </div>
+    <div *ngIf="isLoading" class="loader">
+      <app-pizza-loader></app-pizza-loader>
+    </div>
+    <div *ngIf="group">
+      <div *ngFor="let friend of group.friends; let last = last;">
+        <div  class="friend friend-row" >
+          <div class="friend-row">
+            <div>{{friend.firstName}}</div>&nbsp;<div>{{friend.lastName}}</div>
+          </div>
+          <div> <img src="assets/img/delete.png" (click)="delete(friend.id)" width="24"/></div>
+        </div>
+        <div class="separator" *ngIf="!last"></div>
+      </div>
+      <br/>
+      <button (click)="deleteGroup()" class="btn btn-block btn-danger">Supprimer le groupe</button>
+      <button (click)="toggleSearch()" class="btn btn-block btn-success" *ngIf="!isSearching">Ajouter un nouvel ami à ce groupe</button>
+      <button (click)="toggleSearch()" class="btn btn-block btn-danger" *ngIf="isSearching">Annuler</button>
+      <div class="search" *ngIf="isSearching">
+        <form [formGroup]="SearchForm" (ngSubmit)="onFormSubmit()">
+          <div class="input-row">
+            <input type="text" class="form-control input-double" formControlName="firstName" id="firstName" placeholder="Prénom"/>
+            <input type="text" class="form-control input-double" formControlName="lastName" id="lastName" placeholder="Nom"/>
+          </div>
+          <button type="submit" class="btn btn-block btn-primary">Rechercher</button>
+          <div *ngIf="submitted && errorMessage" class="error centered-text">{{errorMessage}}</div>
+        </form>
+        <div class="no-results" *ngIf="hasResults && submitted && !errorMessage && (!results || results.length === 0)">
+          Aucun résultat !
+        </div>
+        <div *ngIf="results && results.length > 0">
+          <div *ngFor="let newFriend of results">
+            <div  class="friend new-friend-row" >
+              <div class="friend-row">
+                <div>{{newFriend.firstName}}</div>&nbsp;<div>{{newFriend.lastName}}</div>
+              </div>
+              <button type="submit" class="btn btn-block btn-success small" (click)="addNewFriend(newFriend.id)" [disabled]="existsIntoGroup(newFriend.id)">Ajouter</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
