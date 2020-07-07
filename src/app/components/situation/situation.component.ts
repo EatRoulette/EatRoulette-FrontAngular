@@ -67,21 +67,6 @@ export class SituationComponent implements OnInit {
     });
   }
 
-  onCheckboxChange(idAllergen: string){
-    this.allergens.forEach(allergen => {
-      if(allergen.id === idAllergen){
-        allergen.selected = !allergen.selected;
-      }
-    })
-  }
-
-  onRadioChange(idCharacteristic: string, newValue: boolean){
-    this.characteristics.forEach(characteristic => {
-      if(characteristic.id === idCharacteristic){
-        characteristic.selected = newValue;
-      }
-    })
-  }
 
   sendData(){
     this.isLoading = true;

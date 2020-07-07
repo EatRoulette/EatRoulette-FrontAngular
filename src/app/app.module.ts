@@ -20,6 +20,8 @@ import { TicketsComponent } from './components/tickets/tickets.component';
 import { TicketDetailsComponent } from './components/ticket-details/ticket-details.component';
 import { SearchComponent } from './components/search/search.component';
 import { RestaurantItemComponent } from './components/search/restaurant-item/restaurant-item.component';
+import { AddRestaurantComponent } from './components/add-restaurant/add-restaurant.component';
+import { SituationFormComponent } from './components/situation-form/situation-form.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,9 @@ import { RestaurantItemComponent } from './components/search/restaurant-item/res
     TicketsComponent,
     TicketDetailsComponent,
     SearchComponent,
-    RestaurantItemComponent
+    RestaurantItemComponent,
+    AddRestaurantComponent,
+    SituationFormComponent
   ],
   imports: [
     BrowserModule,

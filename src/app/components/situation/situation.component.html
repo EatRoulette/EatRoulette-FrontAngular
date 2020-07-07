@@ -7,22 +7,7 @@
   </div>
   <form class="content">
     <div class="separator"></div>
-    <div class="row subcontent">
-      <div class="title">Allergènes</div>
-      <div class="grid">
-        <div class="row select" *ngFor="let allergen of allergens">
-          <input type="checkbox" [checked]="allergen.selected" (change)="onCheckboxChange(allergen.id)">&nbsp;&nbsp;{{allergen.name}}
-        </div>
-      </div>
-    </div>
-    <div *ngFor="let characteristic of characteristics">
-      <div class="separator"></div>
-      <div class="row subcontent-radio">
-        <div class="title-radio">{{characteristic.name}}</div>
-        <div class="row radio"><input type="radio" (change)="onRadioChange(characteristic.id, true)" [checked]="characteristic.selected"> Oui</div>
-        <div class="row radio"><input type="radio" (change)="onRadioChange(characteristic.id, false)" [checked]="!characteristic.selected"> Non</div>
-      </div>
-    </div>
+    <app-situation-form [characteristics]="characteristics" [allergens]="allergens"></app-situation-form>
     <button type="submit" class="btn btn-block btn-success" (click)="sendData()" >Appliquer</button>
   </form>
 </div>
