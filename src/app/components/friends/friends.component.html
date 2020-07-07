@@ -40,7 +40,8 @@
           <div class="friend-row">
             <div>{{friend.firstName}}</div>&nbsp;<div>{{friend.lastName}}</div>
           </div>
-          <div> <img src="assets/img/delete.png" (click)="delete(friend.id)" width="24"/></div>
+
+          <button class="btn btn-block btn-danger small" (click)="delete(friend.id)">Supprimer</button>
         </div>
         <div class="separator" *ngIf="!last"></div>
       </div>

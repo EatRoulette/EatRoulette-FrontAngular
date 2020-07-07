@@ -13,6 +13,7 @@ import {TicketDetailsComponent} from "./components/ticket-details/ticket-details
 import {SearchComponent} from "./components/search/search.component";
 import {AddRestaurantComponent} from "./components/add-restaurant/add-restaurant.component";
 import {FriendsComponent} from "./components/friends/friends.component";
+import {MyListsComponent} from "./components/my-lists/my-lists.component";
 
 const routes: Routes = [
   {
@@ -76,21 +77,40 @@ const routes: Routes = [
     component: TicketsComponent,
     data: {
       title: 'Page Liste des Demande de support'
-    }
+    },
+    canActivate: [
+      AuthGuard
+    ]
   },
   {
     path: 'friends',
     component: FriendsComponent,
     data: {
       title: 'Page Liste des amis et groupes'
-    }
+    },
+    canActivate: [
+      AuthGuard
+    ]
+  },
+  {
+    path: 'myLists',
+    component: MyListsComponent,
+    data: {
+      title: 'Page de mes listes de restaurant'
+    },
+    canActivate: [
+      AuthGuard
+    ]
   },
   {
     path: 'tickets/:idTicket',
     component: TicketDetailsComponent,
     data: {
       title: 'Page Detail d\'une Demande de support'
-    }
+    },
+    canActivate: [
+      AuthGuard
+    ]
   },
   {path: '404', component: NotFoundComponent},
   {path: '**', redirectTo: '/404'}];

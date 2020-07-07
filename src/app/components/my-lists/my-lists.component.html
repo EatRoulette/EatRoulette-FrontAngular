@@ -1,0 +1,95 @@
+<div class="container">
+  <div class="content">
+    <div class="main-title">
+      <h1 class="centered-text">Mes listes</h1>
+    </div>
+    <div class="separator"></div>
+    <ng-template #addNewListModal let-modal>
+      <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Ajout d'une nouvelle liste</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="AddListForm" (ngSubmit)="onAddListFormSubmit()">
+          <div class="input-row">
+            <input type="text" class="form-control" formControlName="name" id="name" placeholder="Nom de la liste"/>
+          </div>
+          <button type="submit" class="btn btn-block btn-primary">Ajouter</button>
+          <div *ngIf="addListSubmitted && addListErrorMessage" class="error centered-text">{{addListErrorMessage}}</div>
+        </form>
+      </div>
+    </ng-template>
+    <div class="selection">
+      <select (change)="selectValue($event)"  class="form-control select">
+        <option value="" disabled selected>Choisissez une liste</option>
+        <option *ngFor="let listSelection of lists"
+                [value]="listSelection.id">
+          {{listSelection.name}}
+        </option>
+      </select>
+      <div> <img src="assets/img/add.png" (click)="openModalAddNewList(addNewListModal)" width="30"/></div>
+    </div>
+    <div *ngIf="isLoading" class="loader">
+      <app-pizza-loader></app-pizza-loader>
+    </div>
+    <div *ngIf="list">
+      <div class="legend"  *ngIf="list.restaurants && list.restaurants.length > 0">
+        <div class="col-sm special-padding"><b>Nom</b></div>
+        <div class="col-sm special-padding"><b>Type</b></div>
+        <div class="col-sm special-padding"><b>Adresse</b></div>
+        <div class="col-sm special-padding"><b>Ville</b></div>
+        <div class="col-sm special-padding"></div>
+      </div>
+      <div *ngFor="let restaurant of list.restaurants; let last = last;">
+        <div  class="restaurant restaurant-row" >
+          <div class="restaurant-row">
+            <div class="col-sm special-padding">{{restaurant.name}}</div>
+            <div class="col-sm special-padding">{{restaurant.type}}</div>
+            <div class="col-sm special-padding">{{restaurant.address}}</div>
+            <div class="col-sm special-padding">{{restaurant.city}}</div>
+          </div>
+          <button class="btn btn-block btn-danger small" (click)="delete(restaurant.id)">Supprimer</button>
+        </div>
+        <div class="separator" *ngIf="!last"></div>
+      </div>
+      <br/>
+      <button (click)="deleteList()" class="btn btn-block btn-danger">Supprimer la liste</button>
+      <button (click)="toggleSearch()" class="btn btn-block btn-success" *ngIf="!isSearching">Ajouter un nouveau restaurant à cette liste</button>
+      <button (click)="toggleSearch()" class="btn btn-block btn-danger" *ngIf="isSearching">Annuler</button>
+      <div class="search" *ngIf="isSearching">
+        <form [formGroup]="SearchForm" (ngSubmit)="onSearchFormSubmit()">
+          <div class="inputs">
+            <div class="input-row">
+              <input type="text" class="form-control" formControlName="name" id="restaurantName" placeholder="Nom"/>
+            </div>
+            <div class="input-row">
+              <input type="text" class="form-control input-double" formControlName="city" id="city" placeholder="Ville"/>
+              <input type="text" class="form-control input-double" formControlName="postalCode" id="postalCode" placeholder="Code Postal"/>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-block btn-primary">Rechercher</button>
+          <div *ngIf="submitted && errorMessage" class="error centered-text">{{errorMessage}}</div>
+        </form>
+        <div class="no-results" *ngIf="hasResults && submitted && !errorMessage && (!results || results.length === 0)">
+          Aucun résultat !
+        </div>
+        <div *ngIf="results && results.length > 0">
+          <div *ngFor="let newRestaurant of results; let last = last;">
+            <div  class="restaurant restaurant-row" >
+              <div class="restaurant-row">
+                <div class="col-sm special-padding">{{newRestaurant.name}}</div>
+                <div class="col-sm special-padding">{{newRestaurant.type}}</div>
+                <div class="col-sm special-padding">{{newRestaurant.address}}</div>
+                <div class="col-sm special-padding">{{newRestaurant.city}}</div>
+              </div>
+              <button type="submit" class="btn btn-block btn-success small" (click)="addNewRestaurant(newRestaurant.id)" [disabled]="existsIntoList(newRestaurant.id)">Ajouter</button>
+            </div>
+            <div class="separator" *ngIf="!last"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

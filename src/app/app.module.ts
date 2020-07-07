@@ -24,6 +24,7 @@ import { AddRestaurantComponent } from './components/add-restaurant/add-restaura
 import { SituationFormComponent } from './components/situation-form/situation-form.component';
 import { FriendsComponent } from './components/friends/friends.component';
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
+import { MyListsComponent } from './components/my-lists/my-lists.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
     AddRestaurantComponent,
     SituationFormComponent,
     FriendsComponent,
+    MyListsComponent,
   ],
   imports: [
     BrowserModule,
