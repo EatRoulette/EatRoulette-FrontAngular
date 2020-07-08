@@ -11,7 +11,6 @@
             <div *ngIf="submitted && errorMessage" class="error centered-text">{{errorMessage}}</div>
           </div>
         </div>
-
         <div *ngIf="isConnected">
           <div class="input-row">
             <select name="list" id="list" class="form-control margin-bottom" formControlName="list">
@@ -23,15 +22,11 @@
             </select>
           </div>
           <button type="submit" class="btn btn-block btn-primary" (click)="navigate('myLists')">Ajouter des amis ou groupe</button>
-          <button type="submit" class="btn btn-block btn-primary margin-bottom" (click)="toggleFilters()">Ajouter un filtre</button>
-          <div class="filters margin-bottom" *ngIf="showFilters">
+          <button type="submit" class="btn btn-block btn-primary margin-bottom" (click)="toggleFilters()"  *ngIf="!isConnected">Ajouter un filtre</button>
+          <div class="filters margin-bottom" *ngIf="showFilters && !isConnected">
             <div class="input-row margin-bottom my-col margin-right">
               <input type="text" class="form-control" formControlName="city" id="city" placeholder="Ville"/>
             </div>
-
-
-
-
             <app-situation-form [characteristics]="characteristics" [allergens]="allergens" [types]="types"></app-situation-form>
           </div>
         </div>

@@ -36,7 +36,7 @@ export class DashboardComponent implements OnInit {
   results: Restaurant[];
   characteristics: Characteristic[];
   allergens: Allergen[];
-  types: Type[]
+  types: Type[];
 
   constructor(userService: UserService, private formBuilder: FormBuilder, private router: Router, listsService: ListsService,
               allergenService: AllergenService, characteristicService: CharacteristicService, restaurantService: RestaurantService) {
@@ -52,6 +52,7 @@ export class DashboardComponent implements OnInit {
     this.RollForm = this.formBuilder.group({
       name: ['', []],
       list: ['', []],
+      // ces filtres ne seront que si on est déconnecté (connecté ca se fera avec les préférences utilisateur)
       characteristics: [[], []],
       allergens: [[], []],
       city: ['', []],
@@ -127,7 +128,7 @@ export class DashboardComponent implements OnInit {
   }
 
   navigate(link: string){
-    // TODO
+    this.router.navigate([link])
   }
 
 }
