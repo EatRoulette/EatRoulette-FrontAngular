@@ -1,5 +1,5 @@
 import { RegisterComponent } from './register.component';
-import {browser, by, element} from 'protractor';
+import {browser, by, element, Key} from 'protractor';
 
 describe('RegisterComponent', () => {
 
@@ -17,17 +17,18 @@ describe('RegisterComponent', () => {
   });
 
   it('Register - All fields are empty', () => {
-    element(by.id('lname')).sendKeys('');
-    element(by.id('fname')).sendKeys('');
-    element(by.id('email')).sendKeys('');
-    element(by.id('pwd')).sendKeys('');
-    element(by.id('address')).sendKeys('');
-    element(by.id('town')).sendKeys('');
-    element(by.id('cp')).sendKeys('');
-    element(by.id('phone')).sendKeys('');
+    element(by.id('lname')).sendKeys(Key.SHIFT, Key.ARROW_UP, Key.BACK_SPACE);
+    element(by.id('fname')).sendKeys(Key.SHIFT, Key.ARROW_UP, Key.BACK_SPACE);
+    element(by.id('email')).sendKeys(Key.SHIFT, Key.ARROW_UP, Key.BACK_SPACE);
+    element(by.id('pwd')).sendKeys(Key.SHIFT, Key.ARROW_UP, Key.BACK_SPACE);
+    element(by.id('address')).sendKeys(Key.SHIFT, Key.ARROW_UP, Key.BACK_SPACE);
+    element(by.id('town')).sendKeys(Key.SHIFT, Key.ARROW_UP, Key.BACK_SPACE);
+    element(by.id('cp')).sendKeys(Key.SHIFT, Key.ARROW_UP, Key.BACK_SPACE);
+    element(by.id('phone')).sendKeys(Key.SHIFT, Key.ARROW_UP, Key.BACK_SPACE);
     element(by.id('cgu')).click();
     element(by.id('btnSubmit')).click();
     browser.driver.sleep(1000);
+
     expect(element(by.id('nameError')).isPresent()).toBe(true);
     expect(element(by.id('emailError')).isPresent()).toBe(true);
     expect(element(by.id('pwdError')).isPresent()).toBe(true);
@@ -39,6 +40,7 @@ describe('RegisterComponent', () => {
   });
 
   it('Register - Invalid email format', () => {
+    element(by.id('email')).clear();
     element(by.id('email')).sendKeys('badEmail.fr@');
     element(by.id('btnSubmit')).click();
     browser.driver.sleep(1000);
@@ -46,20 +48,24 @@ describe('RegisterComponent', () => {
   });
 
   it('Register - Invalid postal code', () => {
+    element(by.id('cp')).clear();
     element(by.id('cp')).sendKeys('Toto');
     element(by.id('btnSubmit')).click();
     browser.driver.sleep(1000);
     expect(element(by.id('cpError')).isPresent()).toBe(true);
+    element(by.id('cp')).clear();
     element(by.id('cp')).sendKeys('74852186');
     element(by.id('btnSubmit')).click();
     expect(element(by.id('cpError')).isPresent()).toBe(true);
   });
 
   it('Register - Invalid phone number ', () => {
+    element(by.id('phone')).clear();
     element(by.id('phone')).sendKeys('PhoneNumber');
     element(by.id('btnSubmit')).click();
     browser.driver.sleep(1000);
     expect(element(by.id('phoneError')).isPresent()).toBe(true);
+    element(by.id('phone')).clear();
     element(by.id('phone')).sendKeys('74852186');
     element(by.id('btnSubmit')).click();
     expect(element(by.id('phoneError')).isPresent()).toBe(true);
@@ -67,10 +73,9 @@ describe('RegisterComponent', () => {
 
   it('Register - CGU not checked', () => {
     element(by.id('cgu')).click();
+    element(by.id('btnSubmit')).click();
     browser.driver.sleep(1000);
     expect(element(by.id('cguError')).isPresent()).toBe(true);
   });
-
-
 
 });

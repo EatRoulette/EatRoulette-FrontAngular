@@ -1,5 +1,3 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { NotFoundComponent } from './not-found.component';
 import {browser, by, element} from 'protractor';
 
@@ -19,8 +17,6 @@ describe('NotFoundComponent', () => {
     const expectedUrl = browser.driver.getCurrentUrl();
     expect(expectedUrl).toEqual('http://localhost:4200/');
   });
-
-
 
 });
 

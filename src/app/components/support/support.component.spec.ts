@@ -11,7 +11,6 @@ describe('SupportComponent', () => {
     browser.get('http://localhost:4200/login');
     browser.executeScript("window.localStorage.setItem('access_token','edd515a0b007d98f3361949c242bdb02ecc4efa696e154d9c4787885e02363b6');");
     browser.get('http://localhost:4200/support');
-
   });
 
   it('should create new support', function() {
