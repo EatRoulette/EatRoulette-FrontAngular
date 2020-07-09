@@ -7,6 +7,6 @@
     <button *ngIf="isConnected" class="btn btn-success button" (click)="navigate('/situation')"> Ma situation </button>
     <button *ngIf="isConnected" class="btn btn-info button" (click)="navigate('/history')"> Mon historique </button>
     <button *ngIf="isConnected" class="btn btn-warning button" (click)="navigate('/tickets')"> Mes tickets </button>
-    <button *ngIf="isConnected" class="btn btn-primary button" (click)="logout()"> Déconnexion </button>
+    <button *ngIf="isConnected" class="btn btn-primary button"  id="logout" (click)="logout()"> Déconnexion </button>
   </div>
 </div>
