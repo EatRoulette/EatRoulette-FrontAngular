@@ -1,4 +1,4 @@
-import { RegisterComponent } from './register.component';
+import { RegisterComponent } from '../../src/app/components/register/register.component';
 import {browser, by, element, Key} from 'protractor';
 
 describe('RegisterComponent', () => {

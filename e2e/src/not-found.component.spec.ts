@@ -1,4 +1,4 @@
-import { NotFoundComponent } from './not-found.component';
+import { NotFoundComponent } from '../../src/app/components/not-found/not-found.component';
 import {browser, by, element} from 'protractor';
 
 describe('NotFoundComponent', () => {

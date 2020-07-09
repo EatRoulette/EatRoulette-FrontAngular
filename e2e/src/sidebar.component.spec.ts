@@ -1,4 +1,4 @@
-import { SidebarComponent } from './sidebar.component';
+import { SidebarComponent } from '../../src/app/components/sidebar/sidebar.component';
 import {browser, by, element} from 'protractor';
 
 describe('SidebarComponent', () => {

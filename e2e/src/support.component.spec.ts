@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SupportComponent } from './support.component';
+import { SupportComponent } from '../../src/app/components/support/support.component';
 import {browser, by, element} from "protractor";
 
 describe('SupportComponent', () => {
