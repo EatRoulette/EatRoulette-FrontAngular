@@ -21,6 +21,15 @@
               </option>
             </select>
           </div>
+          <div class="input-row">
+            <select name="friendList" id="friendList" class="form-control margin-bottom" formControlName="friendList">
+              <option value="" disabled selected>Mes listes d'ami</option>
+              <option *ngFor="let friendList of myFriendLists"
+                      [value]="friendList.id">
+                {{friendList.name}}
+              </option>
+            </select>
+          </div>
           <button type="submit" class="btn btn-block btn-primary" (click)="navigate('myLists')">Ajouter des amis ou groupe</button>
           <button type="submit" class="btn btn-block btn-primary margin-bottom" (click)="toggleFilters()"  *ngIf="!isConnected">Ajouter un filtre</button>
           <div class="filters margin-bottom" *ngIf="showFilters && !isConnected">
@@ -31,7 +40,7 @@
           </div>
         </div>
         <div class="results" *ngIf="hasResults">
-          <!-- TODO RESULTS -->
+          <!-- TODO DISPLAY RESULTS -->
         </div>
         <div class="no-results" *ngIf="hasResults && submitted && !errorMessage && (!results || results.length === 0)">
           Aucun résultat !
