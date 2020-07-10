@@ -42,6 +42,6 @@ export class UserService {
     return JSON.parse(localStorage.getItem('user'));
   }
   updateUser(user: User) {
-    return this.service.put('/auth/user/'+ this.getToken(), user)
+    return this.service.post('/user/update/'+ this.getToken(), user)
   }
 }

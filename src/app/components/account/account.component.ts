@@ -14,9 +14,11 @@ export class AccountComponent implements OnInit {
   userService: UserService;
   UpdateUserForm: FormGroup;
   user: User;
-  modified: boolean = false;
+  isModifying: boolean = false;
   isLoading: boolean = false;
   submitted: boolean = false;
+
+  // todo mettre une background image
 
   constructor(private formBuilder: FormBuilder, private router: Router,userService: UserService) {
     this.userService = userService;
@@ -38,7 +40,7 @@ export class AccountComponent implements OnInit {
   }
 
   modify(){
-    this.modified = true;
+    this.isModifying = true;
   }
 
   onFormSubmit() {
@@ -55,9 +57,10 @@ export class AccountComponent implements OnInit {
   updateData(user: User){
     this.isLoading = true;
     this.userService.updateUser(user).subscribe(
-      () => {
+      (userUpdated: User) => {
         this.isLoading = false;
-        this.router.navigate([''])
+        this.user = userUpdated;
+        this.isModifying = false;
       },
       (error: any) => {
         this.isLoading = false;

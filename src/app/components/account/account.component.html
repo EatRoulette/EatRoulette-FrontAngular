@@ -5,7 +5,7 @@
   <div class="content">
     <div class="separator"></div>
     <div class="form-container" class="container-form">
-      <div *ngIf="!modified">
+      <div *ngIf="!isModifying">
         <div class="row-account">
           <div class="title col-sm"><b>Nom</b></div>
           <div class="item col-sm">{{user && user.lastName}}</div>
@@ -38,7 +38,7 @@
           <button type="submit" class="btn btn-block btn-success" (click)="modify()" >Modifier</button>
         </div>
       </div>
-      <div *ngIf="modified">
+      <div *ngIf="isModifying">
         <form [formGroup]="UpdateUserForm" (ngSubmit)="onFormSubmit()">
           <div class="row-account">
             <div class="title col-sm"><b>Nom</b></div>
