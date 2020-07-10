@@ -102,7 +102,6 @@ export class FriendsComponent implements OnInit {
   }
 
   existsIntoGroup(idFriend){
-    // todo check if it is me?
     return this.group.friends.find(friend => friend.id === idFriend)
   }
 
