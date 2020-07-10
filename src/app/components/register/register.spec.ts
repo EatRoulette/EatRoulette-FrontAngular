@@ -1,7 +1,9 @@
 import { Register } from '../../data/register';
 
-describe('Register', () => {
+describe('Test - Register component', () => {
+
   it('should create an instance', () => {
     expect(new Register()).toBeTruthy();
   });
+
 });

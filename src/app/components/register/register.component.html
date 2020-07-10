@@ -7,58 +7,58 @@
               <h1 class="centered-text">S'enregistrer</h1>
               <div class="mb-3">
                 <div class="input-group">
-                  <input type="text" class="form-control" placeholder="Nom" formControlName="lastName" required>
-                  <input type="text" class="form-control" placeholder="Prénom" formControlName="firstName" required>
+                  <input type="text" class="form-control" id="lname" placeholder="Nom" formControlName="firstName" required>
+                  <input type="text" class="form-control" id="fname" placeholder="Prénom" formControlName="lastName" required>
                 </div>
                 <div *ngIf="submitted && (fields.firstName.errors || fields.lastName.errors)" class="field-error">
-                  <div *ngIf="fields.firstName.errors.required">Veuillez renseigner votre nom complet</div>
+                  <div *ngIf="fields.firstName.errors.required" id="nameError">Veuillez renseigner votre nom complet</div>
                 </div>
               </div>
               <div class="mb-3">
                 <div class="input-group">
-                  <input type="email" class="form-control" placeholder="Email" formControlName="email" required>
+                  <input type="email" class="form-control" id="email" placeholder="Email" formControlName="email" required>
                 </div>
-                <div *ngIf="submitted && fields.email.errors" class="field-error">
+                <div *ngIf="submitted && fields.email.errors" id="emailError" class="field-error">
                   Veuillez renseigner un email valide
                 </div>
               </div>
               <div class="mb-3">
                 <div class="input-group">
-                  <input type="password" class="form-control" placeholder="Mot de Passe" formControlName="password" required>
+                  <input type="password" class="form-control" id="pwd" placeholder="Mot de Passe" formControlName="password" required>
                 </div>
                 <div *ngIf="submitted && fields.password.errors" class="field-error">
-                  <div *ngIf="fields.password.errors.required">Veuillez renseigner un mot de passe</div>
+                  <div *ngIf="fields.password.errors.required" id="pwdError">Veuillez renseigner un mot de passe</div>
                 </div>
               </div>
               <div class="mb-3">
                 <div class="input-group">
-                  <input type="address" class="form-control" placeholder="Adresse" formControlName="address" required>
+                  <input type="address" class="form-control" id="address" placeholder="Adresse" formControlName="address" required>
                 </div>
-                <div *ngIf="submitted && fields.address.errors" class="field-error">
+                <div *ngIf="submitted && fields.address.errors" id="addressError" class="field-error">
                   Veuillez renseigner une adresse
                 </div>
               </div>
               <div class="mb-3">
                 <div class="input-group">
-                  <input type="text" class="form-control" placeholder="Ville" formControlName="town" required>
+                  <input type="text" class="form-control" id="town" placeholder="Ville" formControlName="town" required>
                 </div>
-                <div *ngIf="submitted && fields.town.errors" class="field-error">
+                <div *ngIf="submitted && fields.town.errors" id="townError" class="field-error">
                   Veuillez indiquer votre ville
                 </div>
               </div>
               <div class="mb-3">
                 <div class="input-group">
-                  <input type="text" class="form-control" placeholder="Code Postal" formControlName="postalCode" required>
+                  <input type="text" class="form-control" id="cp" placeholder="Code Postal" formControlName="postalCode" required>
                 </div>
-                <div *ngIf="submitted && fields.postalCode.errors" class="field-error">
+                <div *ngIf="submitted && fields.postalCode.errors" id="cpError" class="field-error">
                   Veuillez indiquer un Code Postal valide
                 </div>
               </div>
               <div class="mb-3">
                 <div class="input-group">
-                  <input type="tel" class="form-control" placeholder="Téléphone" formControlName="phone" required>
+                  <input type="tel" class="form-control" id="phone" placeholder="Téléphone" formControlName="phone" required>
                 </div>
-                <div *ngIf="submitted && fields.phone.errors" class="field-error">
+                <div *ngIf="submitted && fields.phone.errors" id="phoneError" class="field-error">
                   Veuillez renseigner un numéro de téléphone valide
                 </div>
               </div>
@@ -67,11 +67,11 @@
                   <input type="checkbox" class="form-control" formControlName="cgu" id="cgu" required>
                   <label for="cgu" class="label">J'accepte les conditions générales d'utilisation</label>
                 </div>
-                <div *ngIf="submitted && fields.cgu.errors" class="field-error">
-                  Veuillez raccepter les conditions générales d'utilisation
+                <div *ngIf="submitted && fields.cgu.errors" id="cguError" class="field-error">
+                  Veuillez accepter les conditions générales d'utilisation
                 </div>
               </div>
-              <button type="submit" class="btn btn-block btn-success">Ajouter un utilisateur</button>
+              <button type="submit" id="btnSubmit" class="btn btn-block btn-success">Ajouter un utilisateur</button>
             </form>
           </div>
         </div>

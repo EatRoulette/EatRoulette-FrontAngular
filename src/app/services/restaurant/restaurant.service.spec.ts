@@ -1,16 +1,30 @@
 import { TestBed } from '@angular/core/testing';
 
-import { RestaurantsService } from './restaurant.service';
+import { RestaurantService } from './restaurant.service';
+import {Restaurant} from '../../data/restaurant';
 
-describe('RestaurantsService', () => {
-  let service: RestaurantsService;
+describe('Test - RestaurantsService', () => {
+  let restaurantService: RestaurantService;
+  // @ts-ignore
+  const mockedService = jasmine.createSpyObj(RestaurantService, ['addRestaurant']);
+  const restaurant = new Restaurant('1', 'Test', 'unit',
+                              'Test', 'UNIT', '123456',
+                              [], [], 'www.test.unit');
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
-    service = TestBed.inject(RestaurantsService);
+    TestBed.configureTestingModule({
+      providers: [
+        { provide: RestaurantService, useValue: mockedService}
+      ]
+    });
+    restaurantService = TestBed.inject(RestaurantService);
   });
 
-  it('should be created', () => {
-    expect(service).toBeTruthy();
+  it('Test - Mocked add restaurant', async() => {
+    mockedService.addRestaurant.and.returnValue(restaurant);
+    const result = await restaurantService.addRestaurant(restaurant);
+    expect(result).toBe(result);
+    expect(mockedService.addRestaurant).toHaveBeenCalled();
   });
+
 });
