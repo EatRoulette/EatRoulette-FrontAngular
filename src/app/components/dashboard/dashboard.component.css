@@ -1,12 +1,13 @@
 .loader{
   margin-right: auto;
   margin-left: auto;
+  padding-top:100px;
   width: 1px;
 }
 .dashboard-content{
   width:35%;
   margin: auto auto;
-  padding-top:15%;
+  padding-top:5%;
 }
 .sub-content{
   border-radius: 15px;
