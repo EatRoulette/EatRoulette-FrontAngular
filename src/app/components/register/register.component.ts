@@ -43,10 +43,8 @@ export class RegisterComponent {
     }
   }
 
-
   // convenience getter for easy access to form fields
   get fields() { return this.UserForm.controls; }
-
 
   CreateUser(register: Register) {
     this.userService.Subscribe(register).subscribe(
