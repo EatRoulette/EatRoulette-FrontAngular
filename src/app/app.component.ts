@@ -7,8 +7,6 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
 
-  // TODO add background images everywhere
-
   title: string = 'eat-roulette';
 
 }
