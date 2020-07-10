@@ -20,7 +20,13 @@
 .content{
   margin-bottom:100px;
 }
-
+.pagination  /deep/ .ngx-pagination{
+  padding-top: 20px;
+  height: 30px;
+  text-align: center;
+  margin-left: 230px;
+  color: white;
+}
 .tickets-container {
   background-image: url("../../../assets/img/background-tickets.jpg");
   width:100%;

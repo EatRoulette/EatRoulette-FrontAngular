@@ -12,6 +12,7 @@ export class TicketsComponent implements OnInit {
   tickets: Ticket[] = [];
   supportService: SupportService;
   isLoading: boolean = false;
+  p: number = 1; // page for pagination
 
   constructor(private router: Router, supportService: SupportService) {
     this.supportService = supportService;

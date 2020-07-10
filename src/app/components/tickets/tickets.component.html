@@ -7,7 +7,7 @@
     <div *ngIf="isLoading" class="loader">
       <app-pizza-loader></app-pizza-loader>
     </div>
-    <div *ngFor="let ticket of tickets" class="item">
+    <div *ngFor="let ticket of tickets | paginate: { itemsPerPage: 6, currentPage: p }" class="item">
       <div class="separator"></div>
       <div class="width-100">
         <div class="item-row justify-space-between width-100">
@@ -20,6 +20,8 @@
         </div>
       </div>
     </div>
+
+    <pagination-controls (pageChange)="p = $event"  class="pagination"></pagination-controls>
   </div>
 </div>
 
