@@ -53,3 +53,8 @@
   z-index:1;
   color: white;
 }
+.scrollable-comments {
+  overflow-y:scroll;
+  height:600px;
+}
+
