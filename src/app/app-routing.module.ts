@@ -44,7 +44,6 @@ const routes: Routes = [
     data: {
       title: 'Page Compte Utilisateur'
     },
-    // this means that if a not connected user tries to access this url, he will be redirected to the login page (see app/auth/auth.gard.ts)
     canActivate: [
       AuthGuard
     ]
