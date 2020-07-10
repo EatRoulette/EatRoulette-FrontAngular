@@ -28,4 +28,9 @@ export class Service {
     const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin':'*' }) };
     return this.http.delete<any>(this.Url + url, httpOptions)
   }
+  put(url, body) {
+    const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin':'*' }) };
+    return this.http.put<any>(this.Url + url, body, httpOptions)
+  }
+
 }

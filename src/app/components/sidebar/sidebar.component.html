@@ -2,6 +2,7 @@
 
   <div>
     <button class="btn btn-info button" (click)="navigate('/search')"> Recherche </button>
+    <button *ngIf="isConnected" class="btn btn-success button" (click)="navigate('/account')"> Mon Compte </button>
     <button *ngIf="isConnected" class="btn btn-success button" (click)="navigate('/myLists')"> Mes listes </button>
     <button *ngIf="isConnected" class="btn btn-success button" (click)="navigate('/friends')"> Mes amis </button>
     <button *ngIf="isConnected" class="btn btn-success button" (click)="navigate('/situation')"> Ma situation </button>

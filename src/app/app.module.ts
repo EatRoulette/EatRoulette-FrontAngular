@@ -25,6 +25,7 @@ import { SituationFormComponent } from './components/situation-form/situation-fo
 import { FriendsComponent } from './components/friends/friends.component';
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { MyListsComponent } from './components/my-lists/my-lists.component';
+import { AccountComponent } from './components/account/account.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,8 @@ import { MyListsComponent } from './components/my-lists/my-lists.component';
     TicketsComponent,
     TicketDetailsComponent,
     SearchComponent,
+    RestaurantItemComponent,
+    AccountComponent
     RestaurantItemComponent,
     AddRestaurantComponent,
     SituationFormComponent,
