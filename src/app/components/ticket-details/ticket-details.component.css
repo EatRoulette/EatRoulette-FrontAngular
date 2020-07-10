@@ -41,3 +41,15 @@
   border-radius: 30px;
   background-color: #ff8ca3;
 }
+
+.ticket-detail-container {
+  background-image: url("../../../assets/img/background-ticket-detail.jpg");
+  width:100%;
+  height:100%;
+  padding: 30px 20px 80px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  z-index:1;
+  color: white;
+}

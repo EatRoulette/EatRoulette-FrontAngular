@@ -6,14 +6,24 @@
 #notfound .notfound {
   position: absolute;
   left: 50%;
-  top: 30%;
+  top: 15%;
   align-items:center;
   justify-content: center;
   -webkit-transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
 }
+#container{
+  border-radius: 15px;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding:15px;
+  color: white;
+  width:50%;
+  height:45%;
+  margin:auto;
+  margin-top:7%;
 
+}
 .notfound {
   max-width: 767px;
   width: 100%;
@@ -60,4 +70,16 @@
   .notfound .notfound-404 h1 {
     font-size: 120px;
   }
+}
+
+.not-found-container {
+  background-image: url("../../../assets/img/background-404.jpg");
+  width:100%;
+  height:100%;
+  padding: 30px 20px 80px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  z-index:1;
+  color: white;
 }

@@ -59,6 +59,8 @@ export class TicketDetailsComponent implements OnInit {
     }
   }
 
+  // TODO scroll dans la messagerie (pas sur la page)
+
   // todo display error ?
 
 }

@@ -53,7 +53,11 @@ export class DashboardComponent implements OnInit {
     this.friendsService = friendsService;
   }
 
+  // todo les resultats => clic sur y aller met à jour l'historique
+  // todo page détail restaut => itinéraire
+
   ngOnInit(): void {
+    // attention name doit dégager => on remplace par ville
     this.isConnected = this.userService.isLoggedIn;
     this.RollForm = this.formBuilder.group({
       name: ['', []],

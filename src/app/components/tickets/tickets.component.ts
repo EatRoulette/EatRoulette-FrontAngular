@@ -34,5 +34,6 @@ export class TicketsComponent implements OnInit {
     this.router.navigate(['tickets/' + idTicket])
   }
 
+  // todo pagination
   // todo display error ?
 }

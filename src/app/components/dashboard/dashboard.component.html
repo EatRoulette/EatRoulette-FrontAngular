@@ -1,7 +1,7 @@
 <div class="dashboard-container">
   <div class="main">
-    <div *ngIf="!isLoading" class="content ">
-      <form [formGroup]="RollForm" (ngSubmit)="onRollForm()">
+    <div *ngIf="!isLoading" class="dashboard-content ">
+      <form [formGroup]="RollForm" (ngSubmit)="onRollForm()" class="sub-content">
         <div class="split-row">
           <div class="input-row margin-bottom my-col margin-right">
             <input type="text" class="form-control" formControlName="name" id="name" placeholder="Nom"/>
