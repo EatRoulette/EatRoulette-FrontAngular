@@ -25,6 +25,8 @@ export class FriendsComponent implements OnInit {
   errorMessage: string;
   addGroupSubmitted: boolean = false;
   addGroupErrorMessage: string;
+  p1: number = 1; // page for pagination
+  p2: number = 1;
 
   constructor(friendsService: FriendsService, private formBuilder: FormBuilder, private modalService: NgbModal) {
     this.friendsService = friendsService;
