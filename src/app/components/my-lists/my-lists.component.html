@@ -55,7 +55,7 @@
           </div>
           <div class="separator" *ngIf="!last"></div>
         </div>
-        <pagination-controls (pageChange)="p1 = $event"  class="pagination"></pagination-controls>
+        <pagination-controls (pageChange)="p1 = $event"  class="pagination" *ngIf="list.restaurants.length > 0"></pagination-controls>
       </div>
 
       <br/>

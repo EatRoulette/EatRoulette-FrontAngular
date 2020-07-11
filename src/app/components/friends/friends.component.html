@@ -46,7 +46,7 @@
           </div>
           <div class="separator" *ngIf="!last"></div>
         </div>
-        <pagination-controls (pageChange)="p1 = $event"  class="pagination"></pagination-controls>
+        <pagination-controls (pageChange)="p1 = $event"  class="pagination" *ngIf="group.friends.length > 0"></pagination-controls>
       </div>
       <br/>
       <button (click)="deleteGroup()" class="btn btn-block btn-danger">Supprimer le groupe</button>
