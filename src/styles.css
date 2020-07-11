@@ -70,10 +70,23 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .margin-right {
   margin-right: 5px;
 }
-.pagination  /deep/ .ngx-pagination{
+.pagination  /deep/ .ngx-pagination {
   padding-top: 20px;
   height: 30px;
   text-align: center;
-  margin-left: 230px;
+  margin-left: 250px;
+  color: white !important;
+}
+
+.pagination  /deep/ .ngx-pagination a{
+  color: white !important;
+}
+/* sets font color for pagination to white */
+.pagination /deep/ .ngx-pagination a {
   color: white;
-} /*todo soucis de positionnement responsive*/
+}
+
+/* sets font color for disabled previous or next words */
+.pagination /deep/ .ngx-pagination .disabled {
+  color: white !important;
+}
