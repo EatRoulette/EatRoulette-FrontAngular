@@ -12,7 +12,7 @@
   margin-bottom: 80px;
 }
 .content{
-  width:50%;
+  width:53%;
   margin-right: auto;
   margin-left: auto;
 }
@@ -69,4 +69,11 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 }
 .margin-right {
   margin-right: 5px;
+}
+.pagination  /deep/ .ngx-pagination{
+  padding-top: 20px;
+  height: 30px;
+  text-align: center;
+  margin-left: 230px;
+  color: white;
 }

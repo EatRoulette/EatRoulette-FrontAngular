@@ -27,6 +27,8 @@ export class MyListsComponent implements OnInit {
   errorMessage: string;
   addListSubmitted: boolean = false;
   addListErrorMessage: string;
+  p1: number = 1; // page for pagination
+  p2: number = 1;
 
   constructor(listsService: ListsService, searchService: SearchService, private formBuilder: FormBuilder, private modalService: NgbModal) {
     this.listsService = listsService;

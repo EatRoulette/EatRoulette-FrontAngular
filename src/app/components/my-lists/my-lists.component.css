@@ -73,6 +73,7 @@
 }
 .special-padding {
   padding: 5px 0 5px 0 !important;
+  min-width: 165px;
 }
 
 .list-container {
