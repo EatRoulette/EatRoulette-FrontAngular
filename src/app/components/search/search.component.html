@@ -26,10 +26,11 @@
           <div class="col-sm"><b>Ville</b></div>
           <div class="col-sm"></div>
         </div>
-        <div *ngFor="let restaurant of restaurants">
+        <div *ngFor="let restaurant of restaurants | paginate: { itemsPerPage: 5, currentPage: p }">
           <div class="separator"></div>
           <app-restaurant-item [restaurant]="restaurant"></app-restaurant-item>
         </div>
+        <pagination-controls (pageChange)="p = $event"  class="pagination"></pagination-controls>
       </div>
       <div class="no-results" *ngIf="hasResults && (!restaurants || restaurants.length === 0)">
         Aucun résultat !
