@@ -51,6 +51,7 @@ export class TicketDetailsComponent implements OnInit {
       this.supportService.sendSupportComment(request).subscribe(
         (data) => {
           this.ticket = data;
+          this.CommentForm.reset()
         },
         (error: any) => {
           console.error(error);
