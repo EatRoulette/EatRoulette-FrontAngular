@@ -15,8 +15,6 @@ export class SupportComponent implements OnInit {
   submitted: boolean = false;
   supportService: SupportService;
 
-  // TODO types of support from API
-
   constructor(private router: Router, private formBuilder: FormBuilder, supportService: SupportService) {
     this.supportService = supportService;
   }
