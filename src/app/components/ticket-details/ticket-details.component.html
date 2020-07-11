@@ -23,7 +23,7 @@
       <div class="separator"></div>
       <div class="comments">
         <div>Commentaires :</div>
-        <div class="scrollable-comments">
+        <div class="scrollable-comments" #scroll>
           <div *ngFor="let comment of ticket.comments" >
             <div *ngIf="comment.isAuthor" class="chat" >
               <div class="author-comment">{{comment.message}}</div>
