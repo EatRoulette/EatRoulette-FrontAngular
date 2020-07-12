@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {Validators} from "@angular/forms";
 import {RestaurantService} from '../../services/restaurant/restaurant.service';
-import {ActivatedRoute} from "@angular/router";
-import {Restaurant} from "../../data/restaurant";
+import {ActivatedRoute} from '@angular/router';
+import {Restaurant} from '../../data/restaurant';
+import {ListsService} from '../../services/lists/lists.service';
+import {List} from '../../data/list';
 
 @Component({
   selector: 'app-restaurant-detail',
@@ -10,20 +11,27 @@ import {Restaurant} from "../../data/restaurant";
   styleUrls: ['./restaurant-detail.component.css']
 })
 export class RestaurantDetailComponent implements OnInit {
+  lists: List[];
+  list: List = undefined;
   restaurantService: RestaurantService;
+  listService: ListsService;
   idRestaurant: string;
   restaurant: Restaurant;
   isLoading: boolean;
+  isRoll: boolean;
   message: string;
+  successMessage: string;
 
-  constructor( private route: ActivatedRoute,  restaurantService: RestaurantService) {
+  constructor( private route: ActivatedRoute,  restaurantService: RestaurantService, listsService: ListsService) {
     this.restaurantService = restaurantService;
+    this.listService = listsService;
+    this.isRoll = (localStorage.getItem('isRoll') === 'true');
   }
 
   ngOnInit(): void {
     this.idRestaurant = this.route.snapshot.paramMap.get('idRestaurant');
-    console.log(this.idRestaurant)
-    // this.isLoading = true;
+    // console.log(this.idRestaurant);
+    this.isLoading = false;
     this.restaurantService.getRestaurantById(this.idRestaurant).subscribe(
       (data) => {
         this.isLoading = false;
@@ -34,7 +42,38 @@ export class RestaurantDetailComponent implements OnInit {
         this.message = error.error.message ? error.error.message : 'Une erreur est survenue';
         console.error(error);
       });
-    console.log(this.restaurant);
+    this.listService.getLists().subscribe(
+      (lists: List[]) => {
+        this.isLoading = false;
+        this.lists = lists;
+      },
+      (error: any) => {
+        this.isLoading = false;
+        console.error(error);
+      });
+
+  }
+
+  addRestaurantToList(){
+    console.log(this.idRestaurant);
+    console.log(this.list.id);
+    this.listService.addNewRestaurant(this.idRestaurant, this.list.id).subscribe(
+      (lists: any) => {
+        this.lists = lists;
+        this.successMessage = 'Restaurant bien ajouté !';
+      },
+      (error: any) => {
+        console.error(error);
+      });
+  }
+
+  selectValue(event){
+    this.list = this.lists.find(l => l.id === event.target.value);
+    console.log(this.list);
+  }
+
+  reroll(){
+    console.log('reroll clicked');
   }
 
 }
