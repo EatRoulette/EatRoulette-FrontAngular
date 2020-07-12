@@ -1,4 +1,4 @@
-<div class="container">
+<div class="list-container">
   <div class="content">
     <div class="main-title">
       <h1 class="centered-text">Mes listes</h1>
@@ -35,25 +35,29 @@
       <app-pizza-loader></app-pizza-loader>
     </div>
     <div *ngIf="list">
-      <div class="legend"  *ngIf="list.restaurants && list.restaurants.length > 0">
-        <div class="col-sm special-padding"><b>Nom</b></div>
-        <div class="col-sm special-padding"><b>Type</b></div>
-        <div class="col-sm special-padding"><b>Adresse</b></div>
-        <div class="col-sm special-padding"><b>Ville</b></div>
-        <div class="col-sm special-padding"></div>
-      </div>
-      <div *ngFor="let restaurant of list.restaurants; let last = last;">
-        <div  class="restaurant restaurant-row" >
-          <div class="restaurant-row">
-            <div class="col-sm special-padding">{{restaurant.name}}</div>
-            <div class="col-sm special-padding">{{restaurant.type}}</div>
-            <div class="col-sm special-padding">{{restaurant.address}}</div>
-            <div class="col-sm special-padding">{{restaurant.city}}</div>
-          </div>
-          <button class="btn btn-block btn-danger small" (click)="delete(restaurant.id)">Supprimer</button>
+      <div  *ngIf="!isSearching">
+        <div class="legend"  *ngIf="list.restaurants && list.restaurants.length > 0">
+          <div class="col-sm special-padding"><b>Nom</b></div>
+          <div class="col-sm special-padding"><b>Type</b></div>
+          <div class="col-sm special-padding"><b>Adresse</b></div>
+          <div class="col-sm special-padding"><b>Ville</b></div>
+          <div class="col-sm special-padding"></div>
         </div>
-        <div class="separator" *ngIf="!last"></div>
+        <div *ngFor="let restaurant of list.restaurants | paginate: { itemsPerPage: 5, currentPage: p1 }; let last = last;">
+          <div  class="restaurant restaurant-row" >
+            <div class="restaurant-row">
+              <div class="col-sm special-padding">{{restaurant.name}}</div>
+              <div class="col-sm special-padding">{{restaurant.type !== 'undefined' ? restaurant.type : ''}}</div>
+              <div class="col-sm special-padding">{{restaurant.address}}</div>
+              <div class="col-sm special-padding">{{restaurant.city}}</div>
+            </div>
+            <button class="btn btn-block btn-danger small" (click)="delete(restaurant.id)">Supprimer</button>
+          </div>
+          <div class="separator" *ngIf="!last"></div>
+        </div>
+        <pagination-controls (pageChange)="p1 = $event"  class="pagination" *ngIf="list.restaurants.length > 0"></pagination-controls>
       </div>
+
       <br/>
       <button (click)="deleteList()" class="btn btn-block btn-danger">Supprimer la liste</button>
       <button (click)="toggleSearch()" class="btn btn-block btn-success" *ngIf="!isSearching">Ajouter un nouveau restaurant à cette liste</button>
@@ -76,7 +80,7 @@
           Aucun résultat !
         </div>
         <div *ngIf="results && results.length > 0">
-          <div *ngFor="let newRestaurant of results; let last = last;">
+          <div *ngFor="let newRestaurant of results | paginate: { itemsPerPage: 5, currentPage: p2 }; let last = last; ">
             <div  class="restaurant restaurant-row" >
               <div class="restaurant-row">
                 <div class="col-sm special-padding">{{newRestaurant.name}}</div>
@@ -88,6 +92,7 @@
             </div>
             <div class="separator" *ngIf="!last"></div>
           </div>
+          <pagination-controls (pageChange)="p2 = $event"  class="pagination"></pagination-controls>
         </div>
       </div>
     </div>

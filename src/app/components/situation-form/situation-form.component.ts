@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Characteristic} from "../../data/characteristic";
 import {Allergen} from "../../data/allergen";
+import {Type} from "../../data/type";
 
 @Component({
   selector: 'app-situation-form',
@@ -12,13 +13,22 @@ export class SituationFormComponent implements OnInit {
   characteristics: Characteristic[];
   @Input()
   allergens: Allergen[];
+  @Input()
+  types: Type[];
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  onCheckboxChange(idAllergen: string){
+  onTypeChange(idType: string){
+    this.types.forEach(type => {
+      if(type.id === idType){
+        type.selected = !type.selected;
+      }
+    })
+  }
+  onAllergenChange(idAllergen: string){
     this.allergens.forEach(allergen => {
       if(allergen.id === idAllergen){
         allergen.selected = !allergen.selected;

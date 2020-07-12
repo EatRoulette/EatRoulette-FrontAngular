@@ -27,7 +27,7 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     this.subscription = this.eventService.tokenChange.subscribe(token => this.isConnected = !!token)
     this.isConnected = this.userService.isLoggedIn;
-    const user: User = this.userService.getStoredUser()
+    const user: User = this.userService.getStoredUser();
     if(user && this.isConnected){
       this.userName = user.firstName;
     }

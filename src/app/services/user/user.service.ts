@@ -41,4 +41,7 @@ export class UserService {
   getStoredUser(): User{
     return JSON.parse(localStorage.getItem('user'));
   }
+  updateUser(user: User) {
+    return this.service.post('/user/update/'+ this.getToken(), user)
+  }
 }

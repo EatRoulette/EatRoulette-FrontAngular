@@ -1,4 +1,4 @@
-import {Friend} from "./Friend";
+import {Friend} from "./friend";
 
 export class Group {
   id:string;

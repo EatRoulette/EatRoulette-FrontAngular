@@ -13,7 +13,7 @@ export class RegisterComponent {
   UserForm: FormGroup;
   message: string;
   submitted: boolean = false;
-  userService: UserService; // TODO exemples disagree on camel case or upper camel case
+  userService: UserService;
 
   constructor(private formBuilder: FormBuilder, userService: UserService, private router: Router) {
 
@@ -43,10 +43,8 @@ export class RegisterComponent {
     }
   }
 
-
   // convenience getter for easy access to form fields
   get fields() { return this.UserForm.controls; }
-
 
   CreateUser(register: Register) {
     this.userService.Subscribe(register).subscribe(

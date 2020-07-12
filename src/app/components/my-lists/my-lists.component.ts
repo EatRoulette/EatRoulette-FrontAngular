@@ -27,6 +27,8 @@ export class MyListsComponent implements OnInit {
   errorMessage: string;
   addListSubmitted: boolean = false;
   addListErrorMessage: string;
+  p1: number = 1; // page for pagination
+  p2: number = 1;
 
   constructor(listsService: ListsService, searchService: SearchService, private formBuilder: FormBuilder, private modalService: NgbModal) {
     this.listsService = listsService;
@@ -123,15 +125,18 @@ export class MyListsComponent implements OnInit {
   onSearchFormSubmit(){
     const searchValues = this.SearchForm.value;
     this.submitted = true;
+    this.isLoading = true;
     if(isPresent(searchValues.name) || isPresent(searchValues.city) || isPresent(searchValues.postalCode)){
       this.searchService.search(searchValues).subscribe(
         (response: any) => {
           this.errorMessage = undefined;
           this.results = response;
           this.hasResults = true;
+          this.isLoading = false;
         },
         (error: any) => {
           console.error(error);
+          this.isLoading = false;
           this.errorMessage = error.error.message ? error.error.message : "Une erreur est survenue";
         });
     }else{

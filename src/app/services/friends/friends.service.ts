@@ -14,7 +14,7 @@ export class FriendsService {
     this.userService = userService;
   }
   search(searchValues) {
-    return this.service.post('/user/search', searchValues)
+    return this.service.post('/user/search/' + this.userService.getToken(), searchValues)
   }
   addGroup(name) {
     return this.service.post('/myFriendsListUsers/new/' + this.userService.getToken(), {name})

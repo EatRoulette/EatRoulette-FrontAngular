@@ -1,5 +1,5 @@
 export class Support {
   object: string;
-  type: string; // todo enum?
+  type: string; // enum 'bug', 'request'
   description: string;
 }

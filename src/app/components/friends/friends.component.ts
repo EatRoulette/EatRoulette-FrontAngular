@@ -3,7 +3,7 @@ import {Group} from "../../data/group";
 import {FriendsService} from "../../services/friends/friends.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import { isPresent } from "../../utils/utils";
-import {Friend} from "../../data/Friend";
+import {Friend} from "../../data/friend";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
@@ -25,6 +25,8 @@ export class FriendsComponent implements OnInit {
   errorMessage: string;
   addGroupSubmitted: boolean = false;
   addGroupErrorMessage: string;
+  p1: number = 1; // page for pagination
+  p2: number = 1;
 
   constructor(friendsService: FriendsService, private formBuilder: FormBuilder, private modalService: NgbModal) {
     this.friendsService = friendsService;
@@ -102,7 +104,6 @@ export class FriendsComponent implements OnInit {
   }
 
   existsIntoGroup(idFriend){
-    // todo check if it is me?
     return this.group.friends.find(friend => friend.id === idFriend)
   }
 

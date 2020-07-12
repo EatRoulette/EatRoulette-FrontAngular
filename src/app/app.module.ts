@@ -25,6 +25,8 @@ import { SituationFormComponent } from './components/situation-form/situation-fo
 import { FriendsComponent } from './components/friends/friends.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MyListsComponent } from './components/my-lists/my-lists.component';
+import { NgxPaginationModule } from "ngx-pagination";
+import { AccountComponent } from './components/account/account.component';
 import { RestaurantDetailComponent } from './components/restaurant-detail/restaurant-detail.component';
 
 @NgModule({
@@ -44,6 +46,7 @@ import { RestaurantDetailComponent } from './components/restaurant-detail/restau
     TicketDetailsComponent,
     SearchComponent,
     RestaurantItemComponent,
+    AccountComponent,
     AddRestaurantComponent,
     SituationFormComponent,
     FriendsComponent,
@@ -56,7 +59,8 @@ import { RestaurantDetailComponent } from './components/restaurant-detail/restau
     HttpClientModule,
     StorageServiceModule,
     BrowserAnimationsModule,
-    NgbModule
+    NgbModule,
+    NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]

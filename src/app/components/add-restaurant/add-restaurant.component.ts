@@ -7,6 +7,7 @@ import {CharacteristicService} from "../../services/characteristic/characteristi
 import {ActivatedRoute, Router} from "@angular/router";
 import {Restaurant} from "../../data/restaurant";
 import {RestaurantService} from "../../services/restaurant/restaurant.service";
+import {Type} from "../../data/type";
 
 @Component({
   selector: 'app-add-restaurant',
@@ -17,6 +18,7 @@ export class AddRestaurantComponent implements OnInit {
   AddForm: FormGroup;
   allergens: Allergen[] = []; //starting with empty array
   characteristics: Characteristic[] = [];
+  types: Type[] = [];
   allergenService: AllergenService;
   characteristicService: CharacteristicService;
   restaurantService: RestaurantService;
@@ -47,15 +49,15 @@ export class AddRestaurantComponent implements OnInit {
       website: ['', []],
       allergens: [[], []],
       characteristics: [[], []],
+      types: [[], []],
     });
-    // todo manage types
-    this.loadAllergensAndCharacteristics();
+    this.loadAllergensAndCharacteristicsAndTypes();
   }
 
   // convenience getter for easy access to form fields
   get fields() { return this.AddForm.controls; }
 
-  loadAllergensAndCharacteristics(){
+  loadAllergensAndCharacteristicsAndTypes(){
     this.isLoading = true;
     this.allergenService.getAllergens()
       .subscribe((allergensResponse: Allergen[]) => {
@@ -64,7 +66,16 @@ export class AddRestaurantComponent implements OnInit {
             .subscribe(
               (characteristicsResponse: Characteristic[]) => {
                 this.characteristics = characteristicsResponse;
-                this.isLoading = false;
+                this.restaurantService.getRestaurantTypes()
+                  .subscribe(
+                    (types: Type[]) => {
+                      this.types = types;
+                      this.isLoading = false;
+                    },
+                    (error: any) => {
+                      this.isLoading = false;
+                      console.error(error);
+                    })
               },
               (error: any) => {
                 this.isLoading = false;
@@ -83,6 +94,7 @@ export class AddRestaurantComponent implements OnInit {
       const request = this.AddForm.value;
       request.characteristics = this.characteristics
       request.allergens = this.allergens
+      request.types = this.types
       this.restaurantService.addRestaurant(request).subscribe(
         (response: Restaurant) => {
           this.router.navigate(['search'])

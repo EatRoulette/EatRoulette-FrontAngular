@@ -1,13 +1,15 @@
-<div class="container">
-  <div class="main-title">
-    <h1 class="centered-text">Situation</h1>
-    <div *ngIf="isLoading" class="loader">
-      <app-pizza-loader></app-pizza-loader>
+<div class="situation-container">
+  <div class="content">
+    <div class="main-title">
+      <h1 class="centered-text">Situation</h1>
+      <div *ngIf="isLoading" class="loader">
+        <app-pizza-loader></app-pizza-loader>
+      </div>
     </div>
+    <form>
+      <div class="separator"></div>
+      <app-situation-form [characteristics]="characteristics" [allergens]="allergens"></app-situation-form>
+      <button type="submit" class="btn btn-block btn-success" (click)="sendData()" >Appliquer</button>
+    </form>
   </div>
-  <form class="content">
-    <div class="separator"></div>
-    <app-situation-form [characteristics]="characteristics" [allergens]="allergens"></app-situation-form>
-    <button type="submit" class="btn btn-block btn-success" (click)="sendData()" >Appliquer</button>
-  </form>
 </div>

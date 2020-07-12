@@ -17,6 +17,7 @@ export class SearchComponent implements OnInit {
   submitted: boolean = false;
   hasResults: boolean = false;
   searchService: SearchService;
+  p: number = 1; // page for pagination
 
   constructor(private router: Router, private formBuilder: FormBuilder, searchService: SearchService) {
     this.searchService = searchService;

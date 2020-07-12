@@ -1,4 +1,4 @@
-<div class="container">
+<div class="ticket-detail-container">
   <div class="content">
     <div class="main-title">
       <h1 class="centered-text">Détails</h1>
@@ -23,14 +23,17 @@
       <div class="separator"></div>
       <div class="comments">
         <div>Commentaires :</div>
-        <div *ngFor="let comment of ticket.comments">
-          <div *ngIf="comment.isAuthor" class="chat" >
-            <div class="author-comment">{{comment.message}}</div>
-          </div>
-          <div *ngIf="!comment.isAuthor" class="chat">
-            <div class="not-author-comment">{{comment.message}}</div>
+        <div class="scrollable-comments" #scroll>
+          <div *ngFor="let comment of ticket.comments" >
+            <div *ngIf="comment.isAuthor" class="chat" >
+              <div class="author-comment">{{comment.message}}</div>
+            </div>
+            <div *ngIf="!comment.isAuthor" class="chat">
+              <div class="not-author-comment">{{comment.message}}</div>
+            </div>
           </div>
         </div>
+
         <form class="comment" (ngSubmit)="comment()" [formGroup]="CommentForm">
           <input type="text" class="form-control" formControlName="message" id="message" placeholder="Commentaire"/>
           <button class="btn btn-block btn-primary send" type="submit">Commenter</button>

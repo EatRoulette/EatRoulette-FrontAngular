@@ -1,3 +1,3 @@
-export function isPresent(value){
-  return value && value !== "";
-}
+// export function isPresent(value){
+//   return value && value !== "";
+// }

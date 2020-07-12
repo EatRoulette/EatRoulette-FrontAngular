@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {Ticket} from "../../data/ticket";
 import {SupportService} from "../../services/support/support.service";
 import {ActivatedRoute} from "@angular/router";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {SupportComment} from "../../data/SupportComment";
+import {SupportComment} from "../../data/supportComment";
 
 @Component({
   selector: 'app-ticket-details',
@@ -11,6 +11,8 @@ import {SupportComment} from "../../data/SupportComment";
   styleUrls: ['./ticket-details.component.css']
 })
 export class TicketDetailsComponent implements OnInit {
+  @ViewChild('scroll') private myScrollContainer: ElementRef;
+
   ticket: Ticket;
   supportService: SupportService;
   CommentForm: FormGroup;
@@ -21,6 +23,15 @@ export class TicketDetailsComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder, private route: ActivatedRoute, supportService: SupportService) {
     this.supportService = supportService;
+  }
+  ngAfterViewChecked() {
+    this.scrollToBottom();
+  }
+
+  scrollToBottom(): void {
+    try {
+      this.myScrollContainer.nativeElement.scrollTop = this.myScrollContainer.nativeElement.scrollHeight;
+    } catch(err) { }
   }
 
   ngOnInit(): void {
@@ -33,6 +44,7 @@ export class TicketDetailsComponent implements OnInit {
       (data) => {
         this.isLoading = false;
         this.ticket = data;
+        this.scrollToBottom();
       },
       (error: any) => {
         this.isLoading = false;
@@ -51,6 +63,7 @@ export class TicketDetailsComponent implements OnInit {
       this.supportService.sendSupportComment(request).subscribe(
         (data) => {
           this.ticket = data;
+          this.CommentForm.reset()
         },
         (error: any) => {
           console.error(error);
@@ -58,7 +71,6 @@ export class TicketDetailsComponent implements OnInit {
         });
     }
   }
-
   // todo display error ?
 
 }
