@@ -44,8 +44,7 @@ import { AccountComponent } from './components/account/account.component';
     TicketDetailsComponent,
     SearchComponent,
     RestaurantItemComponent,
-    AccountComponent
-    RestaurantItemComponent,
+    AccountComponent,
     AddRestaurantComponent,
     SituationFormComponent,
     FriendsComponent,
