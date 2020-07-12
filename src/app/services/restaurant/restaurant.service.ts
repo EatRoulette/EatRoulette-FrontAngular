@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import {Service} from "../service";
-import {UserService} from "../user/user.service";
+import {Service} from '../service';
+import {UserService} from '../user/user.service';
 
 
 @Injectable({
@@ -17,6 +17,7 @@ export class RestaurantService {
 
   addRestaurant(restaurant) {
     return this.service.post('/restaurant/add/', restaurant);
+
   }
 
   roll(filters) {
@@ -26,5 +27,15 @@ export class RestaurantService {
 
   getRestaurantTypes(){
     return this.service.get('/type/restaurant/')
+
   }
+
+  getAllRestaurants(){
+    return this.service.get('/restaurants');
+  }
+
+  getRestaurantById(id: string){
+    return this.service.get('/restaurant/' + id);
+  }
+
 }

@@ -15,6 +15,7 @@ import {AddRestaurantComponent} from "./components/add-restaurant/add-restaurant
 import {FriendsComponent} from "./components/friends/friends.component";
 import {MyListsComponent} from "./components/my-lists/my-lists.component";
 import {AccountComponent} from "./components/account/account.component";
+import {RestaurantDetailComponent} from './components/restaurant-detail/restaurant-detail.component';
 
 const routes: Routes = [
   {
@@ -81,6 +82,13 @@ const routes: Routes = [
     component: AddRestaurantComponent,
     data: {
       title: 'Page d\'ajout de restaurant'
+    }
+  },
+  {
+    path: 'restaurant/:idRestaurant',
+    component: RestaurantDetailComponent,
+    data: {
+      title: 'Restaurant'
     }
   },
   {

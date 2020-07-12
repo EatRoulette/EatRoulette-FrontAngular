@@ -23,10 +23,11 @@ import { RestaurantItemComponent } from './components/search/restaurant-item/res
 import { AddRestaurantComponent } from './components/add-restaurant/add-restaurant.component';
 import { SituationFormComponent } from './components/situation-form/situation-form.component';
 import { FriendsComponent } from './components/friends/friends.component';
-import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MyListsComponent } from './components/my-lists/my-lists.component';
-import {NgxPaginationModule} from "ngx-pagination";
+import { NgxPaginationModule } from "ngx-pagination";
 import { AccountComponent } from './components/account/account.component';
+import { RestaurantDetailComponent } from './components/restaurant-detail/restaurant-detail.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { AccountComponent } from './components/account/account.component';
     SituationFormComponent,
     FriendsComponent,
     MyListsComponent,
+    RestaurantDetailComponent,
   ],
   imports: [
     BrowserModule,
