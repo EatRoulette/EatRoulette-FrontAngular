@@ -1,10 +1,13 @@
-<div class="container">
+<div class="register-container">
+  <div class="content">
     <div class="row">
-      <div class="col-md-6 mx-auto">
-        <div class="card mx-4">
-          <div class="card-body p-4">
+      <div class="col-md-8 mx-auto">
+        <div class=" mx-4">
+          <div class=" p-4">
             <form [formGroup]="UserForm" (ngSubmit)="onFormSubmit()">
               <h1 class="centered-text">S'enregistrer</h1>
+              <div class="separator"></div>
+              <br/>
               <div class="mb-3">
                 <div class="input-group">
                   <input type="text" class="form-control" id="lname" placeholder="Nom" formControlName="firstName" required>
@@ -64,7 +67,7 @@
               </div>
               <div class="mb-3">
                 <div class="input-group">
-                  <input type="checkbox" class="form-control" formControlName="cgu" id="cgu" required>
+                  <input type="checkbox" class="form-control margin-right" formControlName="cgu" id="cgu" required>
                   <label for="cgu" class="label">J'accepte les conditions générales d'utilisation</label>
                 </div>
                 <div *ngIf="submitted && fields.cgu.errors" id="cguError" class="field-error">
@@ -78,4 +81,5 @@
       </div>
     </div>
     <div class="error centered-text">{{message}}</div>
+  </div>
 </div>

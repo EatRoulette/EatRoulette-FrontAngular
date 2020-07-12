@@ -14,6 +14,9 @@
   width: 100%;
   z-index: 100;
   background-color: white;
+  -moz-box-shadow: 0 -5px 6px rgba(0,0,0,0.2);
+  -webkit-box-shadow: 0 -5px 6px rgba(0,0,0,0.2);
+  box-shadow: 0 -5px 6px rgba(0,0,0,0.2);
 }
 
 .right-footer{

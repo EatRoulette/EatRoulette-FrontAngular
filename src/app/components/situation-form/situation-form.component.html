@@ -1,8 +1,16 @@
+<div *ngIf="types" class="row subcontent">
+  <div class="title">Types</div>
+  <div class="grid">
+    <div class="row select" *ngFor="let type of types">
+      <input type="checkbox" [checked]="type.selected" (change)="onTypeChange(type.id)">&nbsp;&nbsp;{{type.name}}
+    </div>
+  </div>
+</div>
 <div class="row subcontent">
   <div class="title">Allergènes</div>
   <div class="grid">
     <div class="row select" *ngFor="let allergen of allergens">
-      <input type="checkbox" [checked]="allergen.selected" (change)="onCheckboxChange(allergen.id)">&nbsp;&nbsp;{{allergen.name}}
+      <input type="checkbox" [checked]="allergen.selected" (change)="onAllergenChange(allergen.id)">&nbsp;&nbsp;{{allergen.name}}
     </div>
   </div>
 </div>

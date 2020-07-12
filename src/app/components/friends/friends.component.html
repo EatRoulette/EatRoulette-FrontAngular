@@ -1,4 +1,4 @@
-<div class="container">
+<div class="friends-container">
   <div class="content">
     <div class="main-title">
       <h1 class="centered-text">Amis</h1>
@@ -35,15 +35,18 @@
       <app-pizza-loader></app-pizza-loader>
     </div>
     <div *ngIf="group">
-      <div *ngFor="let friend of group.friends; let last = last;">
-        <div  class="friend friend-row" >
-          <div class="friend-row">
-            <div>{{friend.firstName}}</div>&nbsp;<div>{{friend.lastName}}</div>
-          </div>
+      <div *ngIf="!isSearching">
+        <div *ngFor="let friend of group.friends  | paginate: { itemsPerPage: 5, currentPage: p1 }; let last = last;">
+          <div  class="friend friend-row" >
+            <div class="friend-row">
+              <div>{{friend.firstName}}</div>&nbsp;<div>{{friend.lastName}}</div>
+            </div>
 
-          <button class="btn btn-block btn-danger small" (click)="delete(friend.id)">Supprimer</button>
+            <button class="btn btn-block btn-danger small" (click)="delete(friend.id)">Supprimer</button>
+          </div>
+          <div class="separator" *ngIf="!last"></div>
         </div>
-        <div class="separator" *ngIf="!last"></div>
+        <pagination-controls (pageChange)="p1 = $event"  class="pagination" *ngIf="group.friends.length > 0"></pagination-controls>
       </div>
       <br/>
       <button (click)="deleteGroup()" class="btn btn-block btn-danger">Supprimer le groupe</button>
@@ -58,11 +61,12 @@
           <button type="submit" class="btn btn-block btn-primary">Rechercher</button>
           <div *ngIf="submitted && errorMessage" class="error centered-text">{{errorMessage}}</div>
         </form>
+        <br/>
         <div class="no-results" *ngIf="hasResults && submitted && !errorMessage && (!results || results.length === 0)">
           Aucun résultat !
         </div>
         <div *ngIf="results && results.length > 0">
-          <div *ngFor="let newFriend of results">
+          <div *ngFor="let newFriend of results  | paginate: { itemsPerPage: 5, currentPage: p2 }">
             <div  class="friend new-friend-row" >
               <div class="friend-row">
                 <div>{{newFriend.firstName}}</div>&nbsp;<div>{{newFriend.lastName}}</div>
@@ -70,6 +74,7 @@
               <button type="submit" class="btn btn-block btn-success small" (click)="addNewFriend(newFriend.id)" [disabled]="existsIntoGroup(newFriend.id)">Ajouter</button>
             </div>
           </div>
+          <pagination-controls (pageChange)="p2 = $event"  class="pagination"></pagination-controls>
         </div>
 
       </div>

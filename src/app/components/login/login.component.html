@@ -1,10 +1,13 @@
-<div class="container">
+<div class="login-container">
+  <div class="content">
   <div class="row">
-    <div class="col-md-6 mx-auto">
-      <div class="card mx-4">
-        <div class="card-body p-4">
+    <div class="col-md-8 mx-auto">
+      <div class=" mx-4">
+        <div class=" p-4">
           <form [formGroup]="UserForm" (ngSubmit)="onFormSubmit()">
             <h1 class="centered-text">Se Connecter</h1>
+            <div class="separator"></div>
+            <br/>
             <div class="mb-3">
               <div class="input-group">
                 <input type="text" id="email" class="form-control" placeholder="Email" formControlName="email">
@@ -28,4 +31,5 @@
     </div>
   </div>
   <div class="error centered-text">{{message}}</div>
+  </div>
 </div>
