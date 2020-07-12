@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {Service} from "../service";
 import {UserService} from "../user/user.service";
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -15,7 +16,7 @@ export class RestaurantService {
   }
 
   addRestaurant(restaurant) {
-    return this.service.post('/restaurant/add/', restaurant)
+    return this.service.post('/restaurant/add/', restaurant);
   }
 
   roll(filters) {

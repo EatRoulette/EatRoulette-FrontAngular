@@ -16,7 +16,7 @@
           <div class="input-row">
             <input type="text" class="form-control" formControlName="name" id="name" placeholder="Nom du groupe"/>
           </div>
-          <button type="submit" class="btn btn-block btn-primary">Ajouter</button>
+          <button type="submit" id="add" class="btn btn-block btn-primary">Ajouter</button>
           <div *ngIf="addGroupSubmitted && addGroupErrorMessage" class="error centered-text">{{addGroupErrorMessage}}</div>
         </form>
       </div>
@@ -29,7 +29,7 @@
           {{groupSelection.name}}
         </option>
       </select>
-      <div> <img src="assets/img/add.png" (click)="openModalAddNewGroup(addNewGroupModal)" width="30"/></div>
+      <div> <img src="assets/img/add.png" id="test" (click)="openModalAddNewGroup(addNewGroupModal)" width="30"/></div>
     </div>
     <div *ngIf="isLoading" class="loader">
       <app-pizza-loader></app-pizza-loader>

@@ -8,32 +8,32 @@
       <div class="inputs">
         <div class="input-row">
           <input type="text" class="form-control" formControlName="object" id="object" placeholder="Objet"/>
-          <div *ngIf="submitted && fields.object.errors" class="field-error">
+          <div *ngIf="submitted && fields.object.errors" id="errorObject" class="field-error">
             Veuillez indiquer un objet
           </div>
         </div>
         <div class="input-row">
           <select name="type" id="type" class="form-control" formControlName="type">
             <option value="" disabled selected>Choisissez un type de demande</option>
-            <option value="request">Demande</option>
-            <option value="bug">Bug</option>
+            <option id="request" value="request">Demande</option>
+            <option id="bug" value="bug">Bug</option>
           </select>
-          <div *ngIf="submitted && fields.type.errors" class="field-error">
+          <div *ngIf="submitted && fields.type.errors" id="errorType" class="field-error">
             Veuillez indiquer un type
           </div>
         </div>
         <div class="input-row">
           <textarea id="description" class="form-control" rows="4" cols="50" formControlName="description" placeholder="Description"></textarea>
-          <div *ngIf="submitted && fields.description.errors" class="field-error">
+          <div *ngIf="submitted && fields.description.errors" id="errorDescription" class="field-error">
             Veuillez indiquer une description
           </div>
         </div>
       </div>
       <button *ngIf="submitted && successMessage" class="btn btn-block btn-primary" (click)="navigate('/')">Retour</button>
-      <button *ngIf="!submitted || !successMessage" type="submit" class="btn btn-block btn-success">Envoyer ma demande</button>
+      <button *ngIf="!submitted || !successMessage" type="submit" id="btnSubmit" class="btn btn-block btn-success">Envoyer ma demande</button>
     </form>
-    <div *ngIf="submitted && message" class="error centered-text">{{message}}</div>
-    <div *ngIf="submitted && successMessage" class="success centered-text">{{successMessage}}</div>
+    <div *ngIf="submitted && message" id="error" class="error centered-text">{{message}}</div>
+    <div *ngIf="submitted && successMessage" id="success" class="success centered-text">{{successMessage}}</div>
   </div>
 </div>
 
