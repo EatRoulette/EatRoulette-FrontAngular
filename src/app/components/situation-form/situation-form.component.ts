@@ -23,7 +23,7 @@ export class SituationFormComponent implements OnInit {
 
   onTypeChange(idType: string){
     this.types.forEach(type => {
-      if(type.id === idType){
+      if(type._id === idType){
         type.selected = !type.selected;
       }
     })

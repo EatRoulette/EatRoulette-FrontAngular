@@ -22,7 +22,11 @@ export class RestaurantService {
 
   roll(filters) {
     const token = this.userService.getToken()
-    return this.service.post('/restaurant/roll/' + token? token : '', filters)
+    if(token){
+      return this.service.post('/restaurant/roll/' + token, filters)
+    }else{
+      return this.service.post('/restaurant/rand', filters)
+    }
   }
 
   getRestaurantTypes(){

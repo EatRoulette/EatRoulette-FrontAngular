@@ -12,7 +12,6 @@ import {Type} from "../../data/type";
 import {AllergenService} from "../../services/allergen/allergen.service";
 import {CharacteristicService} from "../../services/characteristic/characteristic.service";
 import {RestaurantService} from "../../services/restaurant/restaurant.service";
-import {Friend} from "../../data/friend";
 import {Group} from "../../data/group";
 import {FriendsService} from "../../services/friends/friends.service";
 
@@ -24,6 +23,7 @@ import {FriendsService} from "../../services/friends/friends.service";
 export class DashboardComponent implements OnInit {
   isLoading: boolean = false;
   isConnected: boolean = false;
+  hasResults: boolean = false;
   userService: UserService;
   allergenService: AllergenService;
   characteristicService: CharacteristicService;
@@ -31,13 +31,11 @@ export class DashboardComponent implements OnInit {
   restaurantService: RestaurantService;
   friendsService: FriendsService;
   RollForm: FormGroup;
-  showFilters: boolean = false;
-  hasResults: boolean = false;
   submitted: boolean = false;
   errorMessage: string;
   myLists: List[];
   myFriendLists: Group[];
-  results: Restaurant[];
+  result: Restaurant;
   characteristics: Characteristic[];
   allergens: Allergen[];
   types: Type[];
@@ -60,7 +58,6 @@ export class DashboardComponent implements OnInit {
     // attention name doit dégager => on remplace par ville
     this.isConnected = this.userService.isLoggedIn;
     this.RollForm = this.formBuilder.group({
-      name: ['', []],
       list: ['', []],
       friendList: ['', []],
       // ces filtres ne seront que si on est déconnecté (connecté ca se fera avec les préférences utilisateur)
@@ -88,6 +85,8 @@ export class DashboardComponent implements OnInit {
                   .subscribe(
                     (types: Type[]) => {
                       this.types = types;
+
+                      this.isLoading = false;
                     },
                     (error: any) => {
                       this.isLoading = false;
@@ -140,21 +139,19 @@ export class DashboardComponent implements OnInit {
 
   onRollForm(){
     const filters = this.RollForm.value;
+    this.submitted = true;
     this.restaurantService.roll(filters).subscribe(
-      (restaurants: Restaurant[]) => {
-        this.results = restaurants;
-        this.hasResults = restaurants.length > 0;
+      (restaurants: {restaurant: Restaurant, score: number}) => {
+        this.hasResults = true;
+        this.result = restaurants ? restaurants.restaurant : null;
+        this.isLoading = false;
       },
       (error: any) => {
         this.isLoading = false;
-        this.errorMessage = error.error.message ? error.error.message : "Une erreur est survenue";
+        this.errorMessage = error.error && error.error.message ? error.error.message : "Une erreur est survenue";
         console.error(error);
       }
     )
-  }
-
-  toggleFilters(){
-    this.showFilters = !this.showFilters;
   }
 
   navigate(link: string){
