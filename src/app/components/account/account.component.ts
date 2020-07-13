@@ -18,8 +18,6 @@ export class AccountComponent implements OnInit {
   isLoading: boolean = false;
   submitted: boolean = false;
 
-  // todo mettre une background image
-
   constructor(private formBuilder: FormBuilder, private router: Router,userService: UserService) {
     this.userService = userService;
   }

@@ -17,7 +17,11 @@ export class RestaurantService {
 
   addRestaurant(restaurant) {
     return this.service.post('/restaurant/add/', restaurant);
+  }
 
+  choose(list) {
+    const token = this.userService.getToken()
+    return this.service.post('/gotoRestaurant/user/'+ token, {friendList : list});
   }
 
   roll(filters) {
@@ -31,7 +35,6 @@ export class RestaurantService {
 
   getRestaurantTypes(){
     return this.service.get('/type/restaurant/')
-
   }
 
   getAllRestaurants(){

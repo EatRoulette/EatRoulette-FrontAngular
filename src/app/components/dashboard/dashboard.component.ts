@@ -156,7 +156,20 @@ export class DashboardComponent implements OnInit {
   }
 
   choose(){
-    // TODO
+    const filters = this.RollForm.value;
+    const list = filters.friendList
+    console.log(list)
+
+    this.restaurantService.choose(list).subscribe(
+      (ret) => {
+        // todo
+        console.log(ret)
+      },
+      (error: any) => {
+        // todo
+        console.error(error);
+      }
+    )
     console.log('choose clicked');
   }
 
