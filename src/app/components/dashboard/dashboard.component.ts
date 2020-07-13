@@ -160,7 +160,7 @@ export class DashboardComponent implements OnInit {
     const list = filters.friendList
     console.log(list)
 
-    this.restaurantService.choose(list).subscribe(
+    this.restaurantService.choose(list, this.result.id).subscribe(
       (ret) => {
         // todo
         console.log(ret)

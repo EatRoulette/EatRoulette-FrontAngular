@@ -19,9 +19,9 @@ export class RestaurantService {
     return this.service.post('/restaurant/add/', restaurant);
   }
 
-  choose(list) {
+  choose(list, id) {
     const token = this.userService.getToken()
-    return this.service.post('/gotoRestaurant/user/'+ token, {friendList : list});
+    return this.service.post('/gotoRestaurant/user/'+ token, {friendList : list, restaurant: id});
   }
 
   roll(filters) {
