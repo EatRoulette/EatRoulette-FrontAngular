@@ -4,6 +4,8 @@ import {ActivatedRoute} from '@angular/router';
 import {Restaurant} from '../../data/restaurant';
 import {ListsService} from '../../services/lists/lists.service';
 import {List} from '../../data/list';
+//import {AgmGeocoder, MapsAPILoader} from "@agm/core";
+//import {google} from "@agm/core/services/google-maps-types";
 
 @Component({
   selector: 'app-restaurant-detail',
@@ -18,18 +20,26 @@ export class RestaurantDetailComponent implements OnInit {
   idRestaurant: string;
   restaurant: Restaurant;
   isLoading: boolean = false;
+  hasCoordinates: boolean = false;
   isRoll: boolean = false;
   message: string;
   successMessage: string;
+  lat: number = 0;
+  lng: number = 0;
+  //geocoder: AgmGeocoder;
 
-  constructor( private route: ActivatedRoute,  restaurantService: RestaurantService, listsService: ListsService) {
+  constructor(/*public mapsApiLoader: MapsAPILoader, */private route: ActivatedRoute,  restaurantService: RestaurantService, listsService: ListsService) {
     this.restaurantService = restaurantService;
     this.listService = listsService;
+    /*this.mapsApiLoader.load().then(() => {
+      this.geocoder = new google.maps.Geocoder();
+    });*/
   }
 
   ngOnInit(): void {
     this.idRestaurant = this.route.snapshot.paramMap.get('idRestaurant');
     this.isRoll = this.route.snapshot.paramMap.get('from') === "roll";
+    this.getCoordinates();
     this.restaurantService.getRestaurantById(this.idRestaurant).subscribe(
       (data) => {
         this.restaurant = data;
@@ -48,6 +58,21 @@ export class RestaurantDetailComponent implements OnInit {
         this.message = error.error.message ? error.error.message : 'Une erreur est survenue';
         console.error(error);
       });
+  }
+
+  getCoordinates(){
+    /*const address = this.restaurant.address + " " + this.restaurant.postalCode + " " + this.restaurant.city
+    if (!this.geocoder) this.geocoder = new google.maps.Geocoder()
+    this.geocoder.geocode({
+      'address': address
+    }, (results, status) => {
+      console.log(results);
+      if (status == google.maps.GeocoderStatus.OK) {
+        // decompose the result
+      } else {
+        alert("Sorry, this search produced no results.");
+      }
+    })*/
   }
 
   addRestaurantToList(){

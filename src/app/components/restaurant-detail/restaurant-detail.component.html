@@ -6,8 +6,7 @@
         <app-pizza-loader></app-pizza-loader>
       </div>
     </div>
-    <div class="separator"></div>
-
+    <div class="separator margin-bottom"></div>
     <div *ngIf="!isRoll">
       <p>Ajouter à ma liste</p>
       <div  class="selection">
@@ -23,14 +22,17 @@
       <p *ngIf="successMessage"> {{ successMessage }} </p>
     </div>
     <div *ngIf="restaurant">
-      <p>{{ restaurant.name }}</p>
-      <p>{{ restaurant.type }}</p>
-      <p>{{ restaurant.address }}</p>
-      <p>{{ restaurant.postalCode }}</p>
-      <p>{{ restaurant.characteristics }}</p>
-      <p>{{ restaurant.allergens }}</p>
-      <p>{{ restaurant.website }}</p>
-      <p>{{ restaurant.city }}</p>
+      <p><b>Nom : </b>{{ restaurant.name }}</p>
+      <p><b>Type : </b>{{ restaurant.type }}</p>
+      <p><b>Adresse : </b>{{ restaurant.address }}</p>
+      <p><b>Code Postal : </b>{{ restaurant.postalCode }}</p>
+      <p><b>Ville : </b>{{ restaurant.city }}</p>
+      <p><b>Caractéritisques : </b>{{ restaurant.characteristics }}</p>
+      <p><b>Allergènes : </b>{{ restaurant.allergens }}</p>
+      <p><b>Site internet : </b>{{ restaurant.website ? restaurant.website : "Non renseigné" }}</p>
+    </div>
+    <div *ngIf="hasCoordinates">
+      <!--<agm-map [latitude]="lat" [longitude]="lng"></agm-map>-->
     </div>
     <div *ngIf="isRoll" class="margin-top  margin-auto" >
       <button class="btn btn-success button full-width" (click)="choose()">Valider</button>

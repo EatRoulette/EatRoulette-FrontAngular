@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RegisterComponent } from './components/register/register.component';
@@ -28,6 +27,7 @@ import { MyListsComponent } from './components/my-lists/my-lists.component';
 import { NgxPaginationModule } from "ngx-pagination";
 import { AccountComponent } from './components/account/account.component';
 import { RestaurantDetailComponent } from './components/restaurant-detail/restaurant-detail.component';
+//import {AgmCoreModule} from "@agm/core";
 
 @NgModule({
   declarations: [
@@ -60,7 +60,10 @@ import { RestaurantDetailComponent } from './components/restaurant-detail/restau
     StorageServiceModule,
     BrowserAnimationsModule,
     NgbModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    /*AgmCoreModule.forRoot({
+      apiKey: 'YOUR_GOOGLE_MAPS_API_KEY'
+    })*/
   ],
   providers: [],
   bootstrap: [AppComponent]
