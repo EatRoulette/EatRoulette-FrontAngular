@@ -40,7 +40,7 @@
           </div>
         </div>
         <div class="results" *ngIf="result && hasResults">
-          <app-restaurant-item [restaurant]="result" [isRoll]="true"></app-restaurant-item>
+          <app-restaurant-item [restaurant]="result" [isRoll]="true" [friendList]="fields.friendList.value"></app-restaurant-item>
           <div class="btn btn-success button full-width" (click)="choose()">Valider</div>
         </div>
         <div class="no-results" *ngIf="submitted && !errorMessage && !result && hasResults">

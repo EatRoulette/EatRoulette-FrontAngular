@@ -85,10 +85,11 @@ const routes: Routes = [
     }
   },
   {
-    path: 'restaurant/:idRestaurant/:from',
+    path: 'restaurant/:idRestaurant/:from/:friendList',
     component: RestaurantDetailComponent,
     data: {
-      title: 'Restaurant'
+      title: 'Restaurant',
+      friendList: null
     }
   },
   {

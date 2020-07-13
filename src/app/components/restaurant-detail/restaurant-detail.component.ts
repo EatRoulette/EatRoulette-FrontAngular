@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {RestaurantService} from '../../services/restaurant/restaurant.service';
 import {ActivatedRoute} from '@angular/router';
 import {Restaurant} from '../../data/restaurant';
@@ -20,6 +20,7 @@ interface Location {
   styleUrls: ['./restaurant-detail.component.css']
 })
 export class RestaurantDetailComponent implements OnInit {
+
   lists: List[];
   list: List = undefined;
   restaurantService: RestaurantService;
@@ -31,10 +32,9 @@ export class RestaurantDetailComponent implements OnInit {
   hasCoordinates: boolean = false;
   isRoll: boolean = false;
   message: string;
+  friendList: string;
   errorMessage: string;
   successMessage: string;
-  lat: number = 0;
-  lng: number = 0;
   geocoder: any;
   public location:Location = {
     lat: 51.678418,
@@ -50,6 +50,7 @@ export class RestaurantDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.idRestaurant = this.route.snapshot.paramMap.get('idRestaurant');
+    this.friendList = this.route.snapshot.paramMap.get('friendList');
     this.isRoll = this.route.snapshot.paramMap.get('from') === "roll";
     this.restaurantService.getRestaurantById(this.idRestaurant).subscribe(
       (data) => {
@@ -117,7 +118,16 @@ export class RestaurantDetailComponent implements OnInit {
   }
 
   choose(){
-    // TODO
+    this.restaurantService.choose(this.friendList, this.restaurant.id).subscribe(
+      (ret) => {
+        // todo
+        console.log(ret)
+      },
+      (error: any) => {
+        // todo
+        console.error(error);
+      }
+    )
     console.log('choose clicked');
   }
 

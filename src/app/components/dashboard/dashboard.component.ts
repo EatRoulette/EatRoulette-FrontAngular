@@ -51,8 +51,8 @@ export class DashboardComponent implements OnInit {
     this.friendsService = friendsService;
   }
 
-  // todo les resultats => clic sur y aller met à jour l'historique
-  // todo page détail restaut => itinéraire
+  // convenience getter for easy access to form fields
+  get fields() { return this.RollForm.controls; }
 
   ngOnInit(): void {
     // attention name doit dégager => on remplace par ville
@@ -158,7 +158,6 @@ export class DashboardComponent implements OnInit {
   choose(){
     const filters = this.RollForm.value;
     const list = filters.friendList
-    console.log(list)
 
     this.restaurantService.choose(list, this.result.id).subscribe(
       (ret) => {
