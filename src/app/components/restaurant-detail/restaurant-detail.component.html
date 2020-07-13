@@ -57,6 +57,10 @@
         <div class="col-sm title"><b>Site internet</b></div>
         <div class="col-sm item">{{ restaurant.website ? restaurant.website : "Non renseigné" }}</div>
       </div>
+      <div class="separator margin-bottom"></div>
+      <div class="row-detail">
+        <div class="col-sm title"><b>Carte</b></div>
+      </div>
     </div>
     <div *ngIf="isMapLoading" class="loader-map">
       <app-pizza-loader></app-pizza-loader>
