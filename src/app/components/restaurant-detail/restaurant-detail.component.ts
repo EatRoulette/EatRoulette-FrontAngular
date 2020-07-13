@@ -30,6 +30,7 @@ export class RestaurantDetailComponent implements OnInit {
   hasCoordinates: boolean = false;
   isRoll: boolean = false;
   message: string;
+  errorMessage: string;
   successMessage: string;
   lat: number = 0;
   lng: number = 0;
@@ -100,11 +101,11 @@ export class RestaurantDetailComponent implements OnInit {
   addRestaurantToList(){
     this.listService.addNewRestaurant(this.idRestaurant, this.list.id).subscribe(
       (lists: any) => {
-        // todo si déjà présent mettre un message d'erreur
         this.lists = lists;
         this.successMessage = 'Restaurant bien ajouté !';
       },
       (error: any) => {
+        this.errorMessage = error && error.error ? error.error.message : "Une erreur est survenue";
         console.error(error);
       });
   }

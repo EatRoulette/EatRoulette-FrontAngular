@@ -20,6 +20,7 @@
         <div> <img src="assets/img/add.png" (click)="addRestaurantToList()" width="30"/> </div>
       </div>
       <p *ngIf="successMessage" class="success centered-text"> {{ successMessage }} </p>
+      <p *ngIf="errorMessage" class="error centered-text"> {{ errorMessage }} </p>
     </div>
     <div *ngIf="restaurant" class="margin-bottom margin-top">
       <div class="row-detail">
