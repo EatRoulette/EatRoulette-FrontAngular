@@ -140,6 +140,7 @@ export class DashboardComponent implements OnInit {
   onRollForm(){
     const filters = this.RollForm.value;
     this.submitted = true;
+    // TODO si roll again => enlever du poids
     this.restaurantService.roll(filters).subscribe(
       (restaurants: {restaurant: Restaurant, score: number}) => {
         this.hasResults = true;
@@ -152,6 +153,11 @@ export class DashboardComponent implements OnInit {
         console.error(error);
       }
     )
+  }
+
+  choose(){
+    // TODO
+    console.log('choose clicked');
   }
 
   navigate(link: string){

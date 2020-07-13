@@ -17,41 +17,37 @@ export class RestaurantDetailComponent implements OnInit {
   listService: ListsService;
   idRestaurant: string;
   restaurant: Restaurant;
-  isLoading: boolean;
-  isRoll: boolean;
+  isLoading: boolean = false;
+  isRoll: boolean = false;
   message: string;
   successMessage: string;
 
   constructor( private route: ActivatedRoute,  restaurantService: RestaurantService, listsService: ListsService) {
     this.restaurantService = restaurantService;
     this.listService = listsService;
-    this.isRoll = (localStorage.getItem('isRoll') === 'true');
   }
 
   ngOnInit(): void {
     this.idRestaurant = this.route.snapshot.paramMap.get('idRestaurant');
-    // console.log(this.idRestaurant);
-    this.isLoading = false;
+    this.isRoll = this.route.snapshot.paramMap.get('from') === "roll";
     this.restaurantService.getRestaurantById(this.idRestaurant).subscribe(
       (data) => {
-        this.isLoading = false;
         this.restaurant = data;
+        this.listService.getLists().subscribe(
+          (lists: List[]) => {
+            this.isLoading = false;
+            this.lists = lists;
+          },
+          (error: any) => {
+            this.isLoading = false;
+            console.error(error);
+          });
       },
       (error: any) => {
         this.isLoading = false;
         this.message = error.error.message ? error.error.message : 'Une erreur est survenue';
         console.error(error);
       });
-    this.listService.getLists().subscribe(
-      (lists: List[]) => {
-        this.isLoading = false;
-        this.lists = lists;
-      },
-      (error: any) => {
-        this.isLoading = false;
-        console.error(error);
-      });
-
   }
 
   addRestaurantToList(){
@@ -72,8 +68,9 @@ export class RestaurantDetailComponent implements OnInit {
     console.log(this.list);
   }
 
-  reroll(){
-    console.log('reroll clicked');
+  choose(){
+    // TODO
+    console.log('choose clicked');
   }
 
 }

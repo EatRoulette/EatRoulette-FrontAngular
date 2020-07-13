@@ -9,6 +9,7 @@ import {Router} from "@angular/router";
 })
 export class RestaurantItemComponent implements OnInit {
   @Input() restaurant: Restaurant;
+  @Input() isRoll: boolean = false;
 
   constructor(private router: Router) { }
 
@@ -16,7 +17,7 @@ export class RestaurantItemComponent implements OnInit {
   }
 
   see(){
-    this.router.navigate(['restaurant/' + this.restaurant.id])
+    this.router.navigate(['restaurant/' + this.restaurant.id + (this.isRoll ? "/roll" : "/search")])
   }
 
 }
