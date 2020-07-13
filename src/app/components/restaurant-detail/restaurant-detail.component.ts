@@ -27,6 +27,7 @@ export class RestaurantDetailComponent implements OnInit {
   idRestaurant: string;
   restaurant: Restaurant;
   isLoading: boolean = false;
+  isMapLoading: boolean = true;
   hasCoordinates: boolean = false;
   isRoll: boolean = false;
   message: string;
@@ -85,6 +86,7 @@ export class RestaurantDetailComponent implements OnInit {
       }, (results, status) => {
         if (status == GeocoderStatus.OK) {
           this.hasCoordinates = true;
+          this.isMapLoading = false;
           this.location = {
             lat: results[0].geometry.location.lat(),
             lng: results[0].geometry.location.lng()

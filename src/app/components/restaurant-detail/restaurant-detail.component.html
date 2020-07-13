@@ -58,6 +58,9 @@
         <div class="col-sm item">{{ restaurant.website ? restaurant.website : "Non renseigné" }}</div>
       </div>
     </div>
+    <div *ngIf="isMapLoading" class="loader-map">
+      <app-pizza-loader></app-pizza-loader>
+    </div>
     <div *ngIf="hasCoordinates">
       <agm-map [(latitude)]="location.lat" [(longitude)]="location.lng" [zoom]="15" >
         <agm-marker
