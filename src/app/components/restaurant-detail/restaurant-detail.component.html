@@ -19,20 +19,50 @@
         </select>
         <div> <img src="assets/img/add.png" (click)="addRestaurantToList()" width="30"/> </div>
       </div>
-      <p *ngIf="successMessage"> {{ successMessage }} </p>
+      <p *ngIf="successMessage" class="success centered-text"> {{ successMessage }} </p>
     </div>
-    <div *ngIf="restaurant">
-      <p><b>Nom : </b>{{ restaurant.name }}</p>
-      <p><b>Type : </b>{{ restaurant.type }}</p>
-      <p><b>Adresse : </b>{{ restaurant.address }}</p>
-      <p><b>Code Postal : </b>{{ restaurant.postalCode }}</p>
-      <p><b>Ville : </b>{{ restaurant.city }}</p>
-      <p><b>Caractéritisques : </b>{{ restaurant.characteristics }}</p>
-      <p><b>Allergènes : </b>{{ restaurant.allergens }}</p>
-      <p><b>Site internet : </b>{{ restaurant.website ? restaurant.website : "Non renseigné" }}</p>
+    <div *ngIf="restaurant" class="margin-bottom margin-top">
+      <div class="row-detail">
+        <div class="col-sm title"><b>Nom</b></div>
+        <div class="col-sm item">{{ restaurant.name }}</div>
+      </div>
+      <div class="row-detail">
+        <div class="col-sm title"><b>Type</b></div>
+        <div class="col-sm item">{{ (restaurant.type && restaurant.type !== "" ) ? restaurant.type : "Non renseigné"}}</div>
+      </div>
+      <div class="row-detail">
+        <div class="col-sm title"><b>Adresse</b></div>
+        <div class="col-sm item">{{ (restaurant.address && restaurant.address !== "" ) ? restaurant.address : "Non renseigné" }}</div>
+      </div>
+      <div class="row-detail">
+        <div class="col-sm title"><b>Code Postal</b></div>
+        <div class="col-sm item">{{ (restaurant.postalCode && restaurant.postalCode !== "" ) ? restaurant.postalCode : "Non renseigné" }}</div>
+      </div>
+      <div class="row-detail">
+        <div class="col-sm title"><b>Caractéritisques</b></div>
+        <div class="col-sm item">
+          <div *ngIf="restaurant.characteristics && restaurant.characteristics.length > 0"><div *ngFor="let characteristic of restaurant.characteristics">{{ characteristic }}</div></div>
+          <div *ngIf="!restaurant.characteristics || (restaurant.characteristics && restaurant.characteristics.length === 0)">Non renseigné</div>
+        </div>
+      </div>
+      <div class="row-detail">
+        <div class="col-sm title"><b>Allergènes</b></div>
+        <div class="col-sm item">
+          <div *ngIf="restaurant.allergens && restaurant.allergens.length > 0"><div  *ngFor="let allergen of restaurant.allergens">{{ allergen }}</div></div>
+          <div *ngIf="!restaurant.allergens || (restaurant.allergens && restaurant.allergens.length === 0)">Non renseigné</div>
+        </div>
+      </div>
+      <div class="row-detail">
+        <div class="col-sm title"><b>Site internet</b></div>
+        <div class="col-sm item">{{ restaurant.website ? restaurant.website : "Non renseigné" }}</div>
+      </div>
     </div>
     <div *ngIf="hasCoordinates">
-      <!--<agm-map [latitude]="lat" [longitude]="lng"></agm-map>-->
+      <agm-map [(latitude)]="location.lat" [(longitude)]="location.lng" [zoom]="15" >
+        <agm-marker
+          [latitude]="location?.lat"
+          [longitude]="location?.lng"></agm-marker>
+      </agm-map>
     </div>
     <div *ngIf="isRoll" class="margin-top  margin-auto" >
       <button class="btn btn-success button full-width" (click)="choose()">Valider</button>

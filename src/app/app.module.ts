@@ -27,7 +27,7 @@ import { MyListsComponent } from './components/my-lists/my-lists.component';
 import { NgxPaginationModule } from "ngx-pagination";
 import { AccountComponent } from './components/account/account.component';
 import { RestaurantDetailComponent } from './components/restaurant-detail/restaurant-detail.component';
-//import {AgmCoreModule} from "@agm/core";
+import { AgmCoreModule, GoogleMapsAPIWrapper } from '@agm/core';
 
 @NgModule({
   declarations: [
@@ -61,11 +61,11 @@ import { RestaurantDetailComponent } from './components/restaurant-detail/restau
     BrowserAnimationsModule,
     NgbModule,
     NgxPaginationModule,
-    /*AgmCoreModule.forRoot({
-      apiKey: 'YOUR_GOOGLE_MAPS_API_KEY'
-    })*/
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyAkPspFDNUUOG8AepweE7A4iLTMknW1doE'
+    })
   ],
-  providers: [],
+  providers: [GoogleMapsAPIWrapper],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

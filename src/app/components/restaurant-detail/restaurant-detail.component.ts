@@ -4,8 +4,15 @@ import {ActivatedRoute} from '@angular/router';
 import {Restaurant} from '../../data/restaurant';
 import {ListsService} from '../../services/lists/lists.service';
 import {List} from '../../data/list';
-//import {AgmGeocoder, MapsAPILoader} from "@agm/core";
-//import {google} from "@agm/core/services/google-maps-types";
+import {GeocoderStatus, GoogleMapsAPIWrapper, MapsAPILoader} from "@agm/core";
+
+declare var google: any;
+
+interface Location {
+  lat: number;
+  lng: number;
+  viewport?: Object;
+}
 
 @Component({
   selector: 'app-restaurant-detail',
@@ -26,23 +33,29 @@ export class RestaurantDetailComponent implements OnInit {
   successMessage: string;
   lat: number = 0;
   lng: number = 0;
-  //geocoder: AgmGeocoder;
+  geocoder: any;
+  public location:Location = {
+    lat: 51.678418,
+    lng: 7.809007,
+  };
 
-  constructor(/*public mapsApiLoader: MapsAPILoader, */private route: ActivatedRoute,  restaurantService: RestaurantService, listsService: ListsService) {
+  constructor(public mapsApiLoader: MapsAPILoader, private wrapper: GoogleMapsAPIWrapper, private route: ActivatedRoute,  restaurantService: RestaurantService, listsService: ListsService) {
     this.restaurantService = restaurantService;
     this.listService = listsService;
-    /*this.mapsApiLoader.load().then(() => {
-      this.geocoder = new google.maps.Geocoder();
-    });*/
+    this.mapsApiLoader = mapsApiLoader;
+    this.wrapper = wrapper;
   }
 
   ngOnInit(): void {
     this.idRestaurant = this.route.snapshot.paramMap.get('idRestaurant');
     this.isRoll = this.route.snapshot.paramMap.get('from') === "roll";
-    this.getCoordinates();
     this.restaurantService.getRestaurantById(this.idRestaurant).subscribe(
       (data) => {
         this.restaurant = data;
+        this.mapsApiLoader.load().then(() => {
+          this.geocoder = new google.maps.Geocoder();
+          this.getCoordinates();
+        });
         this.listService.getLists().subscribe(
           (lists: List[]) => {
             this.isLoading = false;
@@ -61,25 +74,33 @@ export class RestaurantDetailComponent implements OnInit {
   }
 
   getCoordinates(){
-    /*const address = this.restaurant.address + " " + this.restaurant.postalCode + " " + this.restaurant.city
-    if (!this.geocoder) this.geocoder = new google.maps.Geocoder()
-    this.geocoder.geocode({
-      'address': address
-    }, (results, status) => {
-      console.log(results);
-      if (status == google.maps.GeocoderStatus.OK) {
-        // decompose the result
-      } else {
-        alert("Sorry, this search produced no results.");
+    if(this.restaurant){
+      const address = this.restaurant.address + " " + this.restaurant.postalCode + " " + this.restaurant.city
+      if (!this.geocoder){
+        this.geocoder = new google.maps.Geocoder();
       }
-    })*/
+      this.geocoder.geocode({
+        'address': address
+      }, (results, status) => {
+        if (status == GeocoderStatus.OK) {
+          this.hasCoordinates = true;
+          this.location = {
+            lat: results[0].geometry.location.lat(),
+            lng: results[0].geometry.location.lng()
+          }
+        } else {
+          console.log("Sorry, this search produced no results.");
+        }
+      })
+    } else {
+      console.log("no restaurant loaded yet")
+    }
   }
 
   addRestaurantToList(){
-    console.log(this.idRestaurant);
-    console.log(this.list.id);
     this.listService.addNewRestaurant(this.idRestaurant, this.list.id).subscribe(
       (lists: any) => {
+        // todo si déjà présent mettre un message d'erreur
         this.lists = lists;
         this.successMessage = 'Restaurant bien ajouté !';
       },
@@ -90,7 +111,6 @@ export class RestaurantDetailComponent implements OnInit {
 
   selectValue(event){
     this.list = this.lists.find(l => l.id === event.target.value);
-    console.log(this.list);
   }
 
   choose(){
