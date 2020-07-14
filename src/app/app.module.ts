@@ -28,6 +28,8 @@ import { MyListsComponent } from './components/my-lists/my-lists.component';
 import { NgxPaginationModule } from "ngx-pagination";
 import { AccountComponent } from './components/account/account.component';
 import { RestaurantDetailComponent } from './components/restaurant-detail/restaurant-detail.component';
+import { HistoricComponent } from './components/historic/historic.component';
+import { HistoricDetailsComponent } from './components/historic-details/historic-details.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +54,8 @@ import { RestaurantDetailComponent } from './components/restaurant-detail/restau
     FriendsComponent,
     MyListsComponent,
     RestaurantDetailComponent,
+    HistoricComponent,
+    HistoricDetailsComponent,
   ],
   imports: [
     BrowserModule,

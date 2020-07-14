@@ -16,6 +16,8 @@ import {FriendsComponent} from "./components/friends/friends.component";
 import {MyListsComponent} from "./components/my-lists/my-lists.component";
 import {AccountComponent} from "./components/account/account.component";
 import {RestaurantDetailComponent} from './components/restaurant-detail/restaurant-detail.component';
+import {HistoricComponent} from './components/historic/historic.component';
+import {HistoricDetailsComponent} from './components/historic-details/historic-details.component';
 
 const routes: Routes = [
   {
@@ -126,6 +128,26 @@ const routes: Routes = [
     component: TicketDetailsComponent,
     data: {
       title: 'Page Detail d\'une Demande de support'
+    },
+    canActivate: [
+      AuthGuard
+    ]
+  },
+  {
+    path: 'historic',
+    component: HistoricComponent,
+    data: {
+      title: `Historique de l'utilisateur`
+    },
+    canActivate: [
+      AuthGuard
+    ]
+  },
+  {
+    path: 'historic/:idRestaurant',
+    component: HistoricDetailsComponent,
+    data: {
+      title: `Historique de l'utilisateur avec le restaurant`
     },
     canActivate: [
       AuthGuard
