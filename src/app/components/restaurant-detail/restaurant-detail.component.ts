@@ -130,12 +130,10 @@ export class RestaurantDetailComponent implements OnInit {
   choose(){
     this.restaurantService.choose(this.friendList, this.restaurant.id).subscribe(
       (ret) => {
-        // todo display bon appetit
-        this.validationTitle = "Bon appetit ! "
-        console.log(ret)
+        this.validationTitle = "Bon appetit ! ";
       },
       (error: any) => {
-        // todo
+        this.errorMessage = error && error.error ? error.error.message : "Une erreur est survenue";
         console.error(error);
       }
     )
