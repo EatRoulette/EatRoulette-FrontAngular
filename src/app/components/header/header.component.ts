@@ -16,7 +16,8 @@ export class HeaderComponent implements OnInit {
   isConnected: boolean = false;
   userService: UserService;
   eventService: EventService;
-  subscription: any;
+  subscriptionToken: any;
+  subscriptionUser: any;
   userName: string;
 
   constructor(private router: Router, userService: UserService, eventService: EventService) {
@@ -25,16 +26,21 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.subscription = this.eventService.tokenChange.subscribe(token => this.isConnected = !!token)
+    this.subscriptionToken = this.eventService.tokenChange.subscribe(token => this.isConnected = !!token)
+    this.subscriptionUser = this.eventService.userChange.subscribe(firstName => this.userName = firstName)
     this.isConnected = this.userService.isLoggedIn;
-    const user: User = this.userService.getStoredUser();
-    if(user && this.isConnected){
-      this.userName = user.firstName;
+    if(!this.userName){
+      const user: User = this.userService.getStoredUser();
+      if(user && this.isConnected){
+        this.userName = user.firstName;
+      }
     }
+
   }
 
   ngOnDestroy() {
-    this.subscription.unsubscribe();
+    this.subscriptionToken.unsubscribe();
+    this.subscriptionUser.unsubscribe();
   }
 
   navigate(link: string){

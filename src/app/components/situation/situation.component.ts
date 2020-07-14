@@ -20,6 +20,7 @@ export class SituationComponent implements OnInit {
   characteristicService: CharacteristicService;
   situationService: SituationService;
   isLoading: boolean = false;
+  errorMessage: string;
 
   constructor(private router: Router, allergenService: AllergenService, characteristicService: CharacteristicService, situationService: SituationService) {
     this.allergenService = allergenService;
@@ -44,16 +45,19 @@ export class SituationComponent implements OnInit {
                   },
                   (error: any) => {
                     this.isLoading = false;
+                    this.errorMessage = error.error.message ? error.error.message : "Une erreur est survenue";
                     console.error(error);
                   })
               },
               (error: any) => {
                 this.isLoading = false;
+                this.errorMessage = error.error.message ? error.error.message : "Une erreur est survenue";
                 console.error(error);
               })
         },
         (error: any) => {
           this.isLoading = false;
+          this.errorMessage = error.error.message ? error.error.message : "Une erreur est survenue";
           console.error(error);
         })
   }
@@ -81,10 +85,9 @@ export class SituationComponent implements OnInit {
       },
       (error: any) => {
         this.isLoading = false;
+        this.errorMessage = error.error.message ? error.error.message : "Une erreur est survenue";
         console.error(error);
       })
   }
-
-  // todo display error?
 
 }
