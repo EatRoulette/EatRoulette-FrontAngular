@@ -72,6 +72,7 @@
           [longitude]="location?.lng"></agm-marker>
       </agm-map>
     </div>
+    <p *ngIf="errorMapMessage" class="error centered-text"> {{ errorMapMessage }} </p>
     <div *ngIf="isRoll" class="margin-top  margin-auto" >
       <button class="btn btn-success button full-width" (click)="choose()">Valider</button>
     </div>

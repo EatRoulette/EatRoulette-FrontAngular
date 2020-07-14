@@ -34,6 +34,7 @@ export class RestaurantDetailComponent implements OnInit {
   message: string;
   friendList: string;
   errorMessage: string;
+  errorMapMessage: string;
   successMessage: string;
   geocoder: any;
   public location:Location = {
@@ -86,6 +87,7 @@ export class RestaurantDetailComponent implements OnInit {
         'address': address
       }, (results, status) => {
         if (status == GeocoderStatus.OK) {
+          this.errorMapMessage = null;
           this.hasCoordinates = true;
           this.isMapLoading = false;
           this.location = {
@@ -93,10 +95,12 @@ export class RestaurantDetailComponent implements OnInit {
             lng: results[0].geometry.location.lng()
           }
         } else {
+          this.errorMapMessage = "Désolé, la carte ne peut pas être affichée.";
           console.log("Sorry, this search produced no results.");
         }
       })
     } else {
+      this.errorMapMessage = "Un erreur est survenue.";
       console.log("no restaurant loaded yet")
     }
   }
@@ -120,7 +124,7 @@ export class RestaurantDetailComponent implements OnInit {
   choose(){
     this.restaurantService.choose(this.friendList, this.restaurant.id).subscribe(
       (ret) => {
-        // todo
+        // todo go to detail and display bon appetit
         console.log(ret)
       },
       (error: any) => {
