@@ -36,6 +36,7 @@ export class RestaurantDetailComponent implements OnInit {
   errorMessage: string;
   errorMapMessage: string;
   successMessage: string;
+  validationTitle: string;
   geocoder: any;
   public location:Location = {
     lat: 51.678418,
@@ -52,7 +53,12 @@ export class RestaurantDetailComponent implements OnInit {
   ngOnInit(): void {
     this.idRestaurant = this.route.snapshot.paramMap.get('idRestaurant');
     this.friendList = this.route.snapshot.paramMap.get('friendList');
-    this.isRoll = this.route.snapshot.paramMap.get('from') === "roll";
+    const from = this.route.snapshot.paramMap.get('from')
+    this.isRoll =  from === "roll" || from === "validation";
+    if(from === "validation"){
+      this.validationTitle = "Bon Appetit !";
+    }
+
     this.restaurantService.getRestaurantById(this.idRestaurant).subscribe(
       (data) => {
         this.restaurant = data;
@@ -124,7 +130,8 @@ export class RestaurantDetailComponent implements OnInit {
   choose(){
     this.restaurantService.choose(this.friendList, this.restaurant.id).subscribe(
       (ret) => {
-        // todo go to detail and display bon appetit
+        // todo display bon appetit
+        this.validationTitle = "Bon appetit ! "
         console.log(ret)
       },
       (error: any) => {

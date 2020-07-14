@@ -1,7 +1,7 @@
 <div class="details-container">
   <div class="content">
     <div class="main-title">
-      <h1 class="centered-text">Detail du restaurant</h1>
+      <h1 class="centered-text">{{ validationTitle ? validationTitle : "Detail du restaurant" }}</h1>
       <div *ngIf="isLoading" class="loader">
         <app-pizza-loader></app-pizza-loader>
       </div>
@@ -73,7 +73,7 @@
       </agm-map>
     </div>
     <p *ngIf="errorMapMessage" class="error centered-text"> {{ errorMapMessage }} </p>
-    <div *ngIf="isRoll" class="margin-top  margin-auto" >
+    <div *ngIf="isRoll && !validationTitle" class="margin-top  margin-auto" >
       <button class="btn btn-success button full-width" (click)="choose()">Valider</button>
     </div>
   </div>
