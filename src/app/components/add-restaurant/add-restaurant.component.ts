@@ -94,10 +94,10 @@ export class AddRestaurantComponent implements OnInit {
       const request = this.AddForm.value;
       request.characteristics = this.characteristics;
       request.allergens = this.allergens;
-      request.types = this.types; // todo check if types ok
+      request.types = this.types;
       this.restaurantService.addRestaurant(request).subscribe(
         (response: Restaurant) => {
-          this.router.navigate(['search'])
+         this.router.navigate(['search'])
         },
         (error: any) => {
           console.error(error);
