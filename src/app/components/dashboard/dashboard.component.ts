@@ -81,7 +81,7 @@ export class DashboardComponent implements OnInit {
             .subscribe(
               (characteristicsResponse: Characteristic[]) => {
                 this.characteristics = characteristicsResponse;
-                this.restaurantService.getRestaurantTypes() // todo récupérer un bean please
+                this.restaurantService.getRestaurantTypes()
                   .subscribe(
                     (types: Type[]) => {
                       this.types = types;
@@ -137,15 +137,10 @@ export class DashboardComponent implements OnInit {
       })
   }
 
-  // todo si aucun filtre
-  // todo characterisic par default
-
-  // todo if error erase last result
-
   onRollForm(){
     const filters = this.RollForm.value;
     this.submitted = true;
-    // TODO si roll again => enlever du poids
+    // TODO bonus si roll again => enlever du poids ?
     filters.characteristics = this.characteristics.filter(c => c.selected).map(ch => ch.id);
     filters.types = this.types.filter(t => t.selected).map(ty => ty.id);
     filters.allergens = this.allergens.filter(a => a.selected).map(all => all.id);
@@ -158,6 +153,8 @@ export class DashboardComponent implements OnInit {
       },
       (error: any) => {
         this.isLoading = false;
+        this.hasResults = false;
+        this.result = null;
         this.errorMessage = error.error && error.error.message ? error.error.message : "Une erreur est survenue";
         console.error(error);
       }
@@ -174,7 +171,7 @@ export class DashboardComponent implements OnInit {
         ("/" + (list ? list : "-1"))])
       },
       (error: any) => {
-        // todo
+        this.errorMessage = error.error && error.error.message ? error.error.message : "Une erreur est survenue";
         console.error(error);
       }
     )
