@@ -23,11 +23,12 @@ export class SituationFormComponent implements OnInit {
 
   onTypeChange(idType: string){
     this.types.forEach(type => {
-      if(type._id === idType){
+      if(type.id === idType){
         type.selected = !type.selected;
       }
     })
   }
+
   onAllergenChange(idAllergen: string){
     this.allergens.forEach(allergen => {
       if(allergen.id === idAllergen){

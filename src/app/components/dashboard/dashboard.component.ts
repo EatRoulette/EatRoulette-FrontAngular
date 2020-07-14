@@ -81,7 +81,7 @@ export class DashboardComponent implements OnInit {
             .subscribe(
               (characteristicsResponse: Characteristic[]) => {
                 this.characteristics = characteristicsResponse;
-                this.restaurantService.getRestaurantTypes()
+                this.restaurantService.getRestaurantTypes() // todo récupérer un bean please
                   .subscribe(
                     (types: Type[]) => {
                       this.types = types;
@@ -137,16 +137,24 @@ export class DashboardComponent implements OnInit {
       })
   }
 
+  // todo si aucun filtre
+  // todo characterisic par default
+
+  // todo if error erase last result
+
   onRollForm(){
     const filters = this.RollForm.value;
     this.submitted = true;
-    // TODO test not connected
     // TODO si roll again => enlever du poids
+    filters.characteristics = this.characteristics.filter(c => c.selected).map(ch => ch.id);
+    filters.types = this.types.filter(t => t.selected).map(ty => ty.id);
+    filters.allergens = this.allergens.filter(a => a.selected).map(all => all.id);
     this.restaurantService.roll(filters).subscribe(
       (restaurants: {restaurant: Restaurant, score: number}) => {
         this.hasResults = true;
         this.result = restaurants ? restaurants.restaurant : null;
         this.isLoading = false;
+        this.errorMessage = null;
       },
       (error: any) => {
         this.isLoading = false;

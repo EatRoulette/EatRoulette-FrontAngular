@@ -1,5 +1,5 @@
 export class Type {
     name: string;
-    _id: string;
+    id: string;
     selected: boolean;
 }
