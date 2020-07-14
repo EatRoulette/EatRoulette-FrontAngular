@@ -14,6 +14,7 @@ import {CharacteristicService} from "../../services/characteristic/characteristi
 import {RestaurantService} from "../../services/restaurant/restaurant.service";
 import {Group} from "../../data/group";
 import {FriendsService} from "../../services/friends/friends.service";
+import {EventService} from "../../services/event/event.service";
 
 @Component({
   selector: 'app-dashboard',
@@ -24,6 +25,7 @@ export class DashboardComponent implements OnInit {
   isLoading: boolean = false;
   isConnected: boolean = false;
   hasResults: boolean = false;
+  eventService: EventService;
   userService: UserService;
   allergenService: AllergenService;
   characteristicService: CharacteristicService;
@@ -42,13 +44,14 @@ export class DashboardComponent implements OnInit {
 
   constructor(userService: UserService, private formBuilder: FormBuilder, private router: Router, listsService: ListsService,
               allergenService: AllergenService, characteristicService: CharacteristicService, restaurantService: RestaurantService,
-              friendsService: FriendsService) {
+              friendsService: FriendsService, eventService: EventService) {
     this.userService = userService;
     this.listsService = listsService;
     this.characteristicService = characteristicService;
     this.allergenService = allergenService;
     this.restaurantService = restaurantService;
     this.friendsService = friendsService;
+    this.eventService = eventService;
   }
 
   // convenience getter for easy access to form fields
@@ -109,6 +112,7 @@ export class DashboardComponent implements OnInit {
     this.userService.getUser().subscribe(
       (user: User) => {
         this.userService.storeUser(user)
+        this.eventService.userChange.emit(user.firstName);
         if(user && !user.hasCompletedSituation){
           this.router.navigate(['situation']).then(() => this.isLoading = false)
         }else{

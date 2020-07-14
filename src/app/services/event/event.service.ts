@@ -13,4 +13,12 @@ export class EventService {
   getTokenChangeEmitter() {
     return this.tokenChange;
   }
+
+  userChange: EventEmitter<string> = new EventEmitter();
+  emitUserChangeEvent(user: string) {
+    this.tokenChange.emit(user);
+  }
+  getUserChangeEmitter() {
+    return this.userChange;
+  }
 }
