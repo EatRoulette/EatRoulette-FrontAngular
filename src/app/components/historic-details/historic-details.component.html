@@ -6,21 +6,18 @@
     <div *ngIf="isLoading" class="loader">
       <app-pizza-loader></app-pizza-loader>
     </div>
-    <div class="item">
-      <div class="col-sm-2 text-center">Date du jour</div>
-      <div class="col-sm-2 text-center">utilisateurs vous accompagnant</div>
-      <div class="col-sm-2 text-center">Adresse</div>
-      <div class="col-sm-2 text-center">Ville</div>
-    </div>
-    <div *ngFor="let historic of historics.allStats | paginate: { itemsPerPage: 6, currentPage: p }">
+
+    <div *ngFor="let historic of historics.allStats">
       <div class="separator"></div>
       <div *ngIf="historic.restaurants" class="item">
-        <div class="col-sm-2 text-center">{{ historic.date_historical }}</div>
-        <div *ngFor="let user of historic.users" class="col-sm">
-         {{ user.email }}
-        </div>
+        <div class="col-sm-6 text-right font-weight-bold">Date du jour : </div>
+        <div class="col-sm-6 text-left">{{ historic.date_historical }}</div>
       </div>
+      <div class="col-sm-11 text-center font-weight-bold">Email des utilisateurs vous accompagnant :</div>
+      <div *ngFor="let user of historic.users" class="col-sm-11 text-center">
+         - {{ user.email }}
+      </div>
+      <br>
     </div>
-    <pagination-controls (pageChange)="p = $event"  class="pagination" *ngIf="historics.allStats.length > 0"></pagination-controls>
   </div>
 </div>
