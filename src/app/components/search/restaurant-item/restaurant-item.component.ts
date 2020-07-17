@@ -18,8 +18,8 @@ export class RestaurantItemComponent implements OnInit {
   }
 
   see(){
-    this.router.navigate(['restaurant/' + this.restaurant.id + (this.isRoll ? "/roll" : "/search") +
-    (this.isRoll ? "/" + (this.friendList? this.friendList : "-1") : "-1")])
+    this.router.navigate(['restaurant/' + this.restaurant.id + (this.isRoll ? "/roll/" : "/search/") +
+    (this.isRoll ? (this.friendList? this.friendList : "-1") : "-1")])
   }
 
 }
