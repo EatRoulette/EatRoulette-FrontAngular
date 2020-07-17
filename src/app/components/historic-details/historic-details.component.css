@@ -1,0 +1,10 @@
+.item{
+  flex-direction: row;
+  display: flex;
+  margin-bottom: 10px;
+  height:60px;
+  align-items:center;
+}
+.button {
+  margin-top: 10px;
+}

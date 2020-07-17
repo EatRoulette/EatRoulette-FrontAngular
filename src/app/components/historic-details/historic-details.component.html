@@ -1,0 +1,23 @@
+<div class="historic-container">
+  <div class="content">
+    <div class="main-title">
+      <h1 class="centered-text">Mon historique avec {{ historics.allStats[0].restaurants.name }}</h1>
+    </div>
+    <div *ngIf="isLoading" class="loader">
+      <app-pizza-loader></app-pizza-loader>
+    </div>
+
+    <div *ngFor="let historic of historics.allStats">
+      <div class="separator"></div>
+      <div *ngIf="historic.restaurants" class="item">
+        <div class="col-sm-6 text-right font-weight-bold">Date du jour : </div>
+        <div class="col-sm-6 text-left">{{ historic.date_historical }}</div>
+      </div>
+      <div class="col-sm-11 text-center font-weight-bold">Email des utilisateurs vous accompagnant :</div>
+      <div *ngFor="let user of historic.users" class="col-sm-11 text-center">
+         - {{ user.email }}
+      </div>
+      <br>
+    </div>
+  </div>
+</div>
