@@ -28,6 +28,7 @@ export class SituationFormComponent implements OnInit {
       }
     })
   }
+
   onAllergenChange(idAllergen: string){
     this.allergens.forEach(allergen => {
       if(allergen.id === idAllergen){

@@ -10,6 +10,7 @@
       <div class="separator"></div>
       <app-situation-form [characteristics]="characteristics" [allergens]="allergens"></app-situation-form>
       <button type="submit" class="btn btn-block btn-success" (click)="sendData()" >Appliquer</button>
+      <div *ngIf="errorMessage" class="error centered-text">{{errorMessage}}</div>
     </form>
   </div>
 </div>

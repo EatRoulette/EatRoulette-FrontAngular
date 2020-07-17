@@ -21,6 +21,7 @@
       </div>
     </div>
     <pagination-controls (pageChange)="p = $event"  class="pagination" *ngIf="tickets.length > 0"></pagination-controls>
+    <div *ngIf="message" class="error centered-text">{{message}}</div>
   </div>
 </div>
 

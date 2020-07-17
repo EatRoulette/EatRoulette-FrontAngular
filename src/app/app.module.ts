@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RegisterComponent } from './components/register/register.component';
@@ -30,6 +29,8 @@ import { AccountComponent } from './components/account/account.component';
 import { RestaurantDetailComponent } from './components/restaurant-detail/restaurant-detail.component';
 import { HistoricComponent } from './components/historic/historic.component';
 import { HistoricDetailsComponent } from './components/historic-details/historic-details.component';
+import { AgmCoreModule, GoogleMapsAPIWrapper } from '@agm/core';
+
 
 @NgModule({
   declarations: [
@@ -64,9 +65,12 @@ import { HistoricDetailsComponent } from './components/historic-details/historic
     StorageServiceModule,
     BrowserAnimationsModule,
     NgbModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyAkPspFDNUUOG8AepweE7A4iLTMknW1doE'
+    })
   ],
-  providers: [],
+  providers: [GoogleMapsAPIWrapper],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

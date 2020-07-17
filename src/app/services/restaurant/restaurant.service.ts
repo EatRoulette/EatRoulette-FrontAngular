@@ -16,18 +16,26 @@ export class RestaurantService {
   }
 
   addRestaurant(restaurant) {
-    return this.service.post('/restaurant/add/', restaurant);
+    const token = this.userService.getToken();
+    return this.service.post('/restaurant/add/'+ token, restaurant);
+  }
 
+  choose(list, id) {
+    const token = this.userService.getToken();
+    return this.service.post('/gotoRestaurant/user/'+ token, {friendList : list, restaurant: id});
   }
 
   roll(filters) {
-    const token = this.userService.getToken()
-    return this.service.post('/restaurant/roll/' + token? token : '', filters)
+    const token = this.userService.getToken();
+    if(token){
+      return this.service.post('/restaurant/roll/' + token, filters)
+    }else{
+      return this.service.post('/restaurant/rand', filters)
+    }
   }
 
   getRestaurantTypes(){
     return this.service.get('/type/restaurant/')
-
   }
 
   getAllRestaurants(){

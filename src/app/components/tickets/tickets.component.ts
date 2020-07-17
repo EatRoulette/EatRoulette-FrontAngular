@@ -13,6 +13,7 @@ export class TicketsComponent implements OnInit {
   supportService: SupportService;
   isLoading: boolean = false;
   p: number = 1; // page for pagination
+  message: string;
 
   constructor(private router: Router, supportService: SupportService) {
     this.supportService = supportService;
@@ -24,9 +25,11 @@ export class TicketsComponent implements OnInit {
       (data) => {
         this.isLoading = false;
         this.tickets = data;
+        this.message = null;
       },
       (error: any) => {
         this.isLoading = false;
+        this.message = error.error.message ? error.error.message : "Une erreur est survenue";
         console.error(error);
       })
   }
@@ -35,5 +38,4 @@ export class TicketsComponent implements OnInit {
     this.router.navigate(['tickets/' + idTicket])
   }
 
-  // todo display error ?
 }

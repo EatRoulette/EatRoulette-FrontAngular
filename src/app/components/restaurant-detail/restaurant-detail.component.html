@@ -1,31 +1,80 @@
-<div class="container">
-  <div *ngIf="isLoading" class="loader">
-    <app-pizza-loader></app-pizza-loader>
+<div class="details-container">
+  <div class="content">
+    <div class="main-title">
+      <h1 class="centered-text">{{ validationTitle ? validationTitle : "Detail du restaurant" }}</h1>
+      <div *ngIf="isLoading" class="loader">
+        <app-pizza-loader></app-pizza-loader>
+      </div>
+    </div>
+    <div class="separator margin-bottom"></div>
+    <div *ngIf="!isRoll">
+      <p>Ajouter à ma liste</p>
+      <div  class="selection">
+        <select (change)="selectValue($event)" class="form-control select">
+          <option value="" disabled selected>Choisissez une liste</option>
+          <option *ngFor="let listSelection of lists"
+                  [value]="listSelection.id">
+            {{listSelection.name}}
+          </option>
+        </select>
+        <div> <img src="assets/img/add.png" (click)="addRestaurantToList()" width="30"/> </div>
+      </div>
+      <p *ngIf="successMessage" class="success centered-text"> {{ successMessage }} </p>
+      <p *ngIf="errorMessage" class="error centered-text"> {{ errorMessage }} </p>
+    </div>
+    <div *ngIf="restaurant" class="margin-bottom margin-top">
+      <div class="row-detail">
+        <div class="col-sm title"><b>Nom</b></div>
+        <div class="col-sm item">{{ restaurant.name }}</div>
+      </div>
+      <div class="row-detail">
+        <div class="col-sm title"><b>Type</b></div>
+        <div class="col-sm item">{{ (restaurant.type && restaurant.type !== "" ) ? restaurant.type : "Non renseigné"}}</div>
+      </div>
+      <div class="row-detail">
+        <div class="col-sm title"><b>Adresse</b></div>
+        <div class="col-sm item">{{ (restaurant.address && restaurant.address !== "" ) ? restaurant.address : "Non renseigné" }}</div>
+      </div>
+      <div class="row-detail">
+        <div class="col-sm title"><b>Code Postal</b></div>
+        <div class="col-sm item">{{ (restaurant.postalCode && restaurant.postalCode !== "" ) ? restaurant.postalCode : "Non renseigné" }}</div>
+      </div>
+      <div class="row-detail">
+        <div class="col-sm title"><b>Caractéritisques</b></div>
+        <div class="col-sm item">
+          <div *ngIf="restaurant.characteristics && restaurant.characteristics.length > 0"><div *ngFor="let characteristic of restaurant.characteristics">{{ characteristic }}</div></div>
+          <div *ngIf="!restaurant.characteristics || (restaurant.characteristics && restaurant.characteristics.length === 0)">Non renseigné</div>
+        </div>
+      </div>
+      <div class="row-detail">
+        <div class="col-sm title"><b>Allergènes</b></div>
+        <div class="col-sm item">
+          <div *ngIf="restaurant.allergens && restaurant.allergens.length > 0"><div  *ngFor="let allergen of restaurant.allergens">{{ allergen }}</div></div>
+          <div *ngIf="!restaurant.allergens || (restaurant.allergens && restaurant.allergens.length === 0)">Non renseigné</div>
+        </div>
+      </div>
+      <div class="row-detail">
+        <div class="col-sm title"><b>Site internet</b></div>
+        <div class="col-sm item">{{ restaurant.website ? restaurant.website : "Non renseigné" }}</div>
+      </div>
+      <div class="separator margin-bottom"></div>
+      <div class="row-detail">
+        <div class="margin-auto title"><b>Plan</b></div>
+      </div>
+    </div>
+    <div *ngIf="isMapLoading" class="loader-map">
+      <app-pizza-loader></app-pizza-loader>
+    </div>
+    <div *ngIf="hasCoordinates">
+      <agm-map [(latitude)]="location.lat" [(longitude)]="location.lng" [zoom]="15" >
+        <agm-marker
+          [latitude]="location?.lat"
+          [longitude]="location?.lng"></agm-marker>
+      </agm-map>
+    </div>
+    <p *ngIf="errorMapMessage" class="error centered-text"> {{ errorMapMessage }} </p>
+    <div *ngIf="isRoll && !validationTitle" class="margin-top  margin-auto" >
+      <button class="btn btn-success button full-width" (click)="choose()">Valider</button>
+    </div>
   </div>
-
-  <button *ngIf="isRoll" class="btn btn-success button" (click)="reroll()">Choisir</button>
-  <button *ngIf="isRoll" class="btn btn-info button" (click)="reroll()">Reroll</button>
-  <!--<button *ngIf="!isRoll" class="btn btn-info button" (click)="reroll()">Ajouter à une liste</button>-->
-  <div *ngIf="!isRoll" class="selection">
-    <p>Ajouter à ma liste</p>
-    <select (change)="selectValue($event)" class="form-control select">
-      <option value="" disabled selected>Choisissez une liste</option>
-      <option *ngFor="let listSelection of lists"
-              [value]="listSelection.id">
-        {{listSelection.name}}
-      </option>
-    </select>
-    <div> <img src="assets/img/add.png" (click)="addRestaurantToList()" width="30"/> </div>
-    <p *ngIf="successMessage"> {{ successMessage }} </p>
-  </div>
-
-  <p>{{ restaurant.name }}</p>
-  <p>{{ restaurant.type }}</p>
-  <p>{{ restaurant.address }}</p>
-  <p>{{ restaurant.postalCode }}</p>
-  <p>{{ restaurant.characteristics }}</p>
-  <p>{{ restaurant.allergens }}</p>
-  <p>{{ restaurant.website }}</p>
-  <p>{{ restaurant.city }}</p>
-
 </div>

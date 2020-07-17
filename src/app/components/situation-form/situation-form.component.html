@@ -2,7 +2,7 @@
   <div class="title">Types</div>
   <div class="grid">
     <div class="row select" *ngFor="let type of types">
-      <input type="checkbox" [checked]="type.selected" (change)="onTypeChange(type.id)">&nbsp;&nbsp;{{type.name}}
+      <input type="checkbox" [checked]="type.selected" (change)="onTypeChange(type.id)" name="name" />&nbsp;&nbsp;{{type.name}}
     </div>
   </div>
 </div>
@@ -10,7 +10,7 @@
   <div class="title">Allergènes</div>
   <div class="grid">
     <div class="row select" *ngFor="let allergen of allergens">
-      <input type="checkbox" [checked]="allergen.selected" (change)="onAllergenChange(allergen.id)">&nbsp;&nbsp;{{allergen.name}}
+      <input type="checkbox" [checked]="allergen.selected" (change)="onAllergenChange(allergen.id)" />&nbsp;&nbsp;{{allergen.name}}
     </div>
   </div>
 </div>
@@ -18,7 +18,7 @@
   <div class="separator"></div>
   <div class="row subcontent-radio">
     <div class="title-radio">{{characteristic.name}}</div>
-    <div class="row radio"><input type="radio" (change)="onRadioChange(characteristic.id, true)" [checked]="characteristic.selected"> Oui</div>
-    <div class="row radio"><input type="radio" (change)="onRadioChange(characteristic.id, false)" [checked]="!characteristic.selected"> Non</div>
+    <div class="row radio"><input type="radio" (change)="onRadioChange(characteristic.id, true)" [checked]="characteristic.selected" /> Oui</div>
+    <div class="row radio"><input type="radio" (change)="onRadioChange(characteristic.id, false)" [checked]="!characteristic.selected" /> Non</div>
   </div>
 </div>
