@@ -22,7 +22,6 @@ export class HistoricComponent implements OnInit {
   ngOnInit(): void {
     this.isLoading = true;
     this.historicService.getHistoryUser().subscribe((response) => {
-      console.log(response)
       this.result = response.allStats;
       this.isLoading = false;
       this.hasResults = true;
