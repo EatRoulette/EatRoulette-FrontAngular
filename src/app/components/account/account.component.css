@@ -1,0 +1,29 @@
+.title {
+  align-items:center;
+}
+.row-account{
+  display: flex;
+  flex-direction: row;
+  margin: 10px auto;
+}
+.item{
+  text-align: left;
+}
+.container-form{
+  padding: 20px;
+}
+.btn-form{
+  padding-top: 20px;
+}
+
+.account-container {
+  background-image: url("../../../assets/img/background-account.jpg");
+  width:100%;
+  height:100%;
+  padding: 30px 20px 80px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  z-index:1;
+  color: white;
+}

@@ -1,0 +1,28 @@
+.item{
+  flex-direction: row;
+  display: flex;
+  margin-bottom: 10px;
+  height:60px;
+  align-items:center;
+}
+.button {
+  margin-top: 10px;
+}
+.no-results{
+  width: 50%;
+  text-align: center;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.historic-container {
+  background-image: url("../../../assets/img/bacground-historic-details.jpg");
+  width:100%;
+  height:100%;
+  padding: 30px 20px 80px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  z-index:1;
+  color: white;
+}

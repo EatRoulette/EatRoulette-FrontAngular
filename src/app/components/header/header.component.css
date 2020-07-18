@@ -1,0 +1,29 @@
+.header{
+  justify-content: center;
+  align-items:center;
+  -moz-box-shadow:  -5px 0  6px rgba(0,0,0,0.5);
+  -webkit-box-shadow: -5px 0  6px rgba(0,0,0,0.5);
+  box-shadow: -5px 0 6px rgba(0,0,0,0.5);
+}
+.logo-container{
+  justify-content: center;
+  align-items:center;
+}
+.logo{
+  width: 300px;
+}
+.right-header{
+  position: absolute;
+  right: 20px;
+}
+.user{
+  position: absolute;
+  left: 20px;
+  font-weight:bold;
+  font-size: 24px;
+}
+
+.user img{
+  width:80px;
+  height:80px;
+}

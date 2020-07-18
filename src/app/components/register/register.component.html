@@ -1,0 +1,85 @@
+<div class="register-container">
+  <div class="content">
+    <div class="row">
+      <div class="col-md-8 mx-auto">
+        <div class=" mx-4">
+          <div class=" p-4">
+            <form [formGroup]="UserForm" (ngSubmit)="onFormSubmit()">
+              <h1 class="centered-text">S'enregistrer</h1>
+              <div class="separator"></div>
+              <br/>
+              <div class="mb-3">
+                <div class="input-group">
+                  <input type="text" class="form-control" id="lname" placeholder="Nom" formControlName="firstName" required>
+                  <input type="text" class="form-control" id="fname" placeholder="Prénom" formControlName="lastName" required>
+                </div>
+                <div *ngIf="submitted && (fields.firstName.errors || fields.lastName.errors)" class="field-error">
+                  <div *ngIf="fields.firstName.errors.required" id="nameError">Veuillez renseigner votre nom complet</div>
+                </div>
+              </div>
+              <div class="mb-3">
+                <div class="input-group">
+                  <input type="email" class="form-control" id="email" placeholder="Email" formControlName="email" required>
+                </div>
+                <div *ngIf="submitted && fields.email.errors" id="emailError" class="field-error">
+                  Veuillez renseigner un email valide
+                </div>
+              </div>
+              <div class="mb-3">
+                <div class="input-group">
+                  <input type="password" class="form-control" id="pwd" placeholder="Mot de Passe" formControlName="password" required>
+                </div>
+                <div *ngIf="submitted && fields.password.errors" class="field-error">
+                  <div *ngIf="fields.password.errors.required" id="pwdError">Veuillez renseigner un mot de passe</div>
+                </div>
+              </div>
+              <div class="mb-3">
+                <div class="input-group">
+                  <input type="address" class="form-control" id="address" placeholder="Adresse" formControlName="address" required>
+                </div>
+                <div *ngIf="submitted && fields.address.errors" id="addressError" class="field-error">
+                  Veuillez renseigner une adresse
+                </div>
+              </div>
+              <div class="mb-3">
+                <div class="input-group">
+                  <input type="text" class="form-control" id="town" placeholder="Ville" formControlName="town" required>
+                </div>
+                <div *ngIf="submitted && fields.town.errors" id="townError" class="field-error">
+                  Veuillez indiquer votre ville
+                </div>
+              </div>
+              <div class="mb-3">
+                <div class="input-group">
+                  <input type="text" class="form-control" id="cp" placeholder="Code Postal" formControlName="postalCode" required>
+                </div>
+                <div *ngIf="submitted && fields.postalCode.errors" id="cpError" class="field-error">
+                  Veuillez indiquer un Code Postal valide
+                </div>
+              </div>
+              <div class="mb-3">
+                <div class="input-group">
+                  <input type="tel" class="form-control" id="phone" placeholder="Téléphone" formControlName="phone" required>
+                </div>
+                <div *ngIf="submitted && fields.phone.errors" id="phoneError" class="field-error">
+                  Veuillez renseigner un numéro de téléphone valide
+                </div>
+              </div>
+              <div class="mb-3">
+                <div class="input-group">
+                  <input type="checkbox" class="form-control margin-right" formControlName="cgu" id="cgu" required>
+                  <label for="cgu" class="label">J'accepte les conditions générales d'utilisation</label>
+                </div>
+                <div *ngIf="submitted && fields.cgu.errors" id="cguError" class="field-error">
+                  Veuillez accepter les conditions générales d'utilisation
+                </div>
+              </div>
+              <button type="submit" id="btnSubmit" class="btn btn-block btn-success">Ajouter un utilisateur</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="error centered-text">{{message}}</div>
+  </div>
+</div>

@@ -1,0 +1,56 @@
+<div class="dashboard-container">
+  <div class="main">
+    <div *ngIf="!isLoading" class="dashboard-content ">
+      <form [formGroup]="RollForm" (ngSubmit)="onRollForm()" class="sub-content">
+        <div class="main-title">
+          <h1 class="centered-text">Roulette</h1>
+        </div>
+        <div class="separator"></div>
+        <br/>
+        <div *ngIf="isConnected">
+          <div class="input-row">
+            <select name="list" id="list" class="form-control margin-bottom" formControlName="list">
+              <option value="" disabled selected>Mes listes</option>
+              <option *ngFor="let list of myLists"
+                      [value]="list.id">
+                {{list.name}}
+              </option>
+            </select>
+          </div>
+          <div class="input-row">
+            <select name="friendList" id="friendList" class="form-control margin-bottom" formControlName="friendList">
+              <option value="" disabled selected>Mes listes d'ami</option>
+              <option *ngFor="let friendList of myFriendLists"
+                      [value]="friendList.id">
+                {{friendList.name}}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="filters margin-bottom" *ngIf="!isConnected">
+          <div class="input-row margin-bottom my-col margin-right">
+            <input type="text" class="form-control" formControlName="city" id="city" placeholder="Ville"/>
+          </div>
+          <app-situation-form [characteristics]="characteristics" [allergens]="allergens" [types]="types"></app-situation-form>
+        </div>
+        <div class="input-row">
+          <div class="my-col margin-bottom">
+            <button type="submit" class="btn btn-block btn-primary">Roulette</button>
+            <div *ngIf="submitted && errorMessage" class="error centered-text">{{errorMessage}}</div>
+          </div>
+        </div>
+        <div class="results" *ngIf="result && hasResults">
+          <app-restaurant-item [restaurant]="result" [isRoll]="true" [friendList]="fields.friendList.value"></app-restaurant-item>
+          <div class="btn btn-success button full-width" (click)="choose()">Valider</div>
+        </div>
+        <div class="no-results" *ngIf="submitted && !errorMessage && !result && hasResults">
+          Aucun résultat !
+        </div>
+      </form>
+    </div>
+    <div *ngIf="isLoading" class="loader">
+      <app-pizza-loader></app-pizza-loader>
+    </div>
+  </div>
+
+</div>

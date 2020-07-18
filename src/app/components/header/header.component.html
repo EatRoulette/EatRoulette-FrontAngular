@@ -1,0 +1,17 @@
+<nav class="navbar header">
+  <div *ngIf="isConnected" class="user">
+    <img src="assets/img/pizza-user.png" />
+    {{userName}}
+  </div>
+  <!-- logo -->
+  <div class="navbar-brand logo-container">
+    <div class="navbar-item pointer" (click)="navigate('/')">
+      <img src="assets/img/logo.png" class="logo">
+    </div>
+  </div>
+  <div *ngIf="!isConnected" class="right-header">
+    <button class="btn btn-primary margin-right" (click)="navigate('/login')"> Connexion </button>
+    <button class="btn btn-success" (click)="navigate('/register')"> Inscription </button>
+  </div>
+</nav>
+<div class="separator"></div>

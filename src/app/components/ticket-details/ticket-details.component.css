@@ -1,0 +1,61 @@
+.loader{
+  margin-right: auto;
+  margin-left: auto;
+  width: 1px;
+  height: 60px;
+  margin-top: 50px;
+}
+.info-row{
+  margin-top:10px;
+  display: flex;
+  flex-direction: row;
+  justify-content:space-between;
+}
+.comments{
+  margin-top: 10px;
+}
+.comment{
+  margin-top:10px;
+  width:100%;
+  display: flex;
+  flex-direction: row;
+  justify-content:space-between;
+}
+.send{
+  width: 20%;
+  margin-left:10px;
+}
+.chat {
+  margin-bottom: 10px;
+  width:100%;
+  display:inline-block;
+}
+.author-comment{
+  float:left;
+  padding:5px 15px 5px 15px;
+  border-radius: 30px;
+  background-color: #a9b9ff;
+}
+.not-author-comment{
+  float:right;
+  padding:5px 15px 5px 15px;
+  border-radius: 30px;
+  background-color: #ff8ca3;
+}
+
+.ticket-detail-container {
+  background-image: url("../../../assets/img/background-ticket-detail.jpg");
+  width:100%;
+  height:100%;
+  padding: 30px 20px 80px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  z-index:1;
+  color: white;
+}
+.scrollable-comments {
+  overflow-y:scroll;
+  height:400px;
+}
+

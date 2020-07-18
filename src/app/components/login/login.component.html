@@ -1,0 +1,35 @@
+<div class="login-container">
+  <div class="content">
+  <div class="row">
+    <div class="col-md-8 mx-auto">
+      <div class=" mx-4">
+        <div class=" p-4">
+          <form [formGroup]="UserForm" (ngSubmit)="onFormSubmit()">
+            <h1 class="centered-text">Se Connecter</h1>
+            <div class="separator"></div>
+            <br/>
+            <div class="mb-3">
+              <div class="input-group">
+                <input type="text" id="email" class="form-control" placeholder="Email" formControlName="email">
+              </div>
+              <div *ngIf="submitted && fields.email.errors" class="field-error">
+                Veuillez indiquer un email valide
+              </div>
+            </div>
+            <div class="mb-3">
+              <div class="input-group">
+                <input type="password" id="password" class="form-control" placeholder="Mot de Passe" formControlName="password">
+              </div>
+              <div *ngIf="submitted && fields.password.errors" class="field-error">
+                Veuillez indiquer un mot de passe
+              </div>
+            </div>
+            <button type="submit" id="login" class="btn btn-block btn-success">Se Connecter</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="error centered-text">{{message}}</div>
+  </div>
+</div>
