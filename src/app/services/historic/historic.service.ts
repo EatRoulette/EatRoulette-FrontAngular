@@ -16,7 +16,6 @@ export class HistoricService {
   }
 
   getHistoryUser(){
-    console.log(this.userService.getToken())
     return this.service.get('/frontTracking/restaurant/user/' + this.userService.getToken());
   }
 
