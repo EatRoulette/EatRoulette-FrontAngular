@@ -5,6 +5,7 @@ import {Restaurant} from '../../data/restaurant';
 import {ListsService} from '../../services/lists/lists.service';
 import {List} from '../../data/list';
 import {GeocoderStatus, GoogleMapsAPIWrapper, MapsAPILoader} from "@agm/core";
+import {UserService} from "../../services/user/user.service";
 
 declare var google: any;
 
@@ -25,11 +26,13 @@ export class RestaurantDetailComponent implements OnInit {
   list: List = undefined;
   restaurantService: RestaurantService;
   listService: ListsService;
+  userService: UserService;
   idRestaurant: string;
   restaurant: Restaurant;
   isLoading: boolean = false;
   isMapLoading: boolean = true;
   hasCoordinates: boolean = false;
+  isConnected: boolean = false;
   isRoll: boolean = false;
   message: string;
   friendList: string;
@@ -43,11 +46,13 @@ export class RestaurantDetailComponent implements OnInit {
     lng: 7.809007,
   };
 
-  constructor(public mapsApiLoader: MapsAPILoader, private wrapper: GoogleMapsAPIWrapper, private route: ActivatedRoute,  restaurantService: RestaurantService, listsService: ListsService) {
+  constructor(public mapsApiLoader: MapsAPILoader, private wrapper: GoogleMapsAPIWrapper, private route: ActivatedRoute,
+              restaurantService: RestaurantService, listsService: ListsService, userService: UserService) {
     this.restaurantService = restaurantService;
     this.listService = listsService;
     this.mapsApiLoader = mapsApiLoader;
     this.wrapper = wrapper;
+    this.userService = userService;
   }
 
   ngOnInit(): void {
@@ -58,6 +63,7 @@ export class RestaurantDetailComponent implements OnInit {
     if(from === "validation"){
       this.validationTitle = "Bon Appetit !";
     }
+    this.isConnected = this.userService.isLoggedIn;
 
     this.restaurantService.getRestaurantById(this.idRestaurant).subscribe(
       (data) => {
@@ -102,12 +108,12 @@ export class RestaurantDetailComponent implements OnInit {
           }
         } else {
           this.errorMapMessage = "Désolé, la carte ne peut pas être affichée.";
-          console.log("Sorry, this search produced no results.");
+          console.error("Sorry, this search produced no results.");
         }
       })
     } else {
       this.errorMapMessage = "Un erreur est survenue.";
-      console.log("no restaurant loaded yet")
+      console.error("no restaurant loaded yet")
     }
   }
 
@@ -137,7 +143,6 @@ export class RestaurantDetailComponent implements OnInit {
         console.error(error);
       }
     )
-    console.log('choose clicked');
   }
 
 }
