@@ -108,12 +108,12 @@ export class RestaurantDetailComponent implements OnInit {
           }
         } else {
           this.errorMapMessage = "Désolé, la carte ne peut pas être affichée.";
-          console.log("Sorry, this search produced no results.");
+          console.error("Sorry, this search produced no results.");
         }
       })
     } else {
       this.errorMapMessage = "Un erreur est survenue.";
-      console.log("no restaurant loaded yet")
+      console.error("no restaurant loaded yet")
     }
   }
 
@@ -143,7 +143,6 @@ export class RestaurantDetailComponent implements OnInit {
         console.error(error);
       }
     )
-    console.log('choose clicked');
   }
 
 }

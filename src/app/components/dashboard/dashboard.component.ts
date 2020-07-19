@@ -179,7 +179,6 @@ export class DashboardComponent implements OnInit {
         console.error(error);
       }
     )
-    console.log('choose clicked');
   }
 
   navigate(link: string){
