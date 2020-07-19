@@ -34,7 +34,7 @@
       </div>
       <div class="no-results" *ngIf="hasResults && (!restaurants || restaurants.length === 0)">
         Aucun résultat !
-        <button type="submit" class="btn btn-block btn-info small-button" (click)="gotToAdd()">L'ajouter</button>
+        <button *ngIf="isConnected" type="submit" class="btn btn-block btn-info small-button" (click)="gotToAdd()">L'ajouter</button>
       </div>
     </div>
   </div>

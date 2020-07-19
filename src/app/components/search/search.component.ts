@@ -4,6 +4,7 @@ import { Restaurant } from "../../data/restaurant";
 import { isPresent } from "../../utils/utils";
 import {SearchService} from "../../services/search/search.service";
 import {Router} from "@angular/router";
+import {UserService} from '../../services/user/user.service';
 
 @Component({
   selector: 'app-search',
@@ -16,11 +17,14 @@ export class SearchComponent implements OnInit {
   errorMessage: string;
   submitted: boolean = false;
   hasResults: boolean = false;
+  isConnected: boolean = false;
+  userService: UserService;
   searchService: SearchService;
   p: number = 1; // page for pagination
 
-  constructor(private router: Router, private formBuilder: FormBuilder, searchService: SearchService) {
+  constructor(private router: Router, private formBuilder: FormBuilder, searchService: SearchService, userService: UserService) {
     this.searchService = searchService;
+    this.userService = userService;
   }
 
   ngOnInit(): void {
@@ -29,6 +33,7 @@ export class SearchComponent implements OnInit {
       city: ['', []],
       postalCode: ['', []],
     });
+    this.isConnected = this.userService.isLoggedIn;
   }
 
   onFormSubmit(){
