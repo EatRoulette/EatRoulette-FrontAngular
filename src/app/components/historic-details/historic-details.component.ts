@@ -23,7 +23,6 @@ export class HistoricDetailsComponent implements OnInit {
     this.idRestaurant = this.router.snapshot.paramMap.get('idRestaurant');
     this.isLoading = true;
     this.historicService.getHistoryOneRestaurantWithUser(this.idRestaurant).subscribe((historicDetailsResponse: HistoricDetails) => {
-      console.log(historicDetailsResponse);
       this.historics = historicDetailsResponse;
       for (const historicsKey of this.historics.allStats) {
         historicsKey.date_historical = moment(historicsKey.date_historical).format('MM/DD/YYYY');

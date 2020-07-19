@@ -3,6 +3,7 @@ import {UserService} from "../../services/user/user.service";
 import {User} from "../../data/user";
 import {Router} from "@angular/router";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {EventService} from "../../services/event/event.service";
 
 
 @Component({
@@ -12,13 +13,15 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 })
 export class AccountComponent implements OnInit {
   userService: UserService;
+  eventService: EventService;
   UpdateUserForm: FormGroup;
   user: User;
   isModifying: boolean = false;
   isLoading: boolean = false;
   submitted: boolean = false;
 
-  constructor(private formBuilder: FormBuilder, private router: Router,userService: UserService) {
+  constructor(private formBuilder: FormBuilder, private router: Router,userService: UserService, eventService: EventService) {
+    this.eventService = eventService;
     this.userService = userService;
   }
 
@@ -59,6 +62,7 @@ export class AccountComponent implements OnInit {
         this.isLoading = false;
         this.user = userUpdated;
         this.isModifying = false;
+        this.eventService.userChange.emit(userUpdated.firstName);
       },
       (error: any) => {
         this.isLoading = false;

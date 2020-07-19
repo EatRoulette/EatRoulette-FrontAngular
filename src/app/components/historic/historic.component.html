@@ -9,7 +9,7 @@
     <div *ngIf="result && result.length > 0">
       <div class="item">
         <div class="col-sm-2">Nom</div>
-        <div class="col-sm-2">nb de visite</div>
+        <div class="col-sm-2">Visites</div>
         <div class="col-sm-2">Adresse</div>
         <div class="col-sm-2">Ville</div>
       </div>
@@ -17,14 +17,14 @@
         <div class="separator"></div>
         <div *ngIf="restaurant.restaurant" class="item">
           <div class="col-sm-2">{{restaurant.restaurant.name}}</div>
-          <div class="col-sm-2 text-center">{{restaurant.count}}</div>
+          <div class="col-sm-2">{{restaurant.count}}</div>
           <div class="col-sm-2">{{restaurant.restaurant.address}}</div>
           <div class="col-sm-2">{{restaurant.restaurant.city}}</div>
           <div class="col-sm-2" >
-            <button type="submit" class="button btn btn-block btn-info" (click)="see(restaurant.restaurant.id)">Voir le restaurant</button>
+            <button type="submit" class="button btn btn-block btn-info" (click)="see(restaurant.restaurant.id)">Restaurant</button>
           </div>
           <div class="col-sm-2" >
-            <button type="submit" class="button btn btn-block btn-primary" (click)="showDetails(restaurant.restaurant.id)">Voir l'historique</button>
+            <button type="submit" class="button btn btn-block btn-primary" (click)="showDetails(restaurant.restaurant.id)">Historique</button>
           </div>
         </div>
       </div>

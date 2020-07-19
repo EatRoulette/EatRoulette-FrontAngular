@@ -111,7 +111,7 @@ export class DashboardComponent implements OnInit {
     this.isLoading = true;
     this.userService.getUser().subscribe(
       (user: User) => {
-        this.userService.storeUser(user)
+        this.userService.storeUser(user);
         this.eventService.userChange.emit(user.firstName);
         if(user && !user.hasCompletedSituation){
           this.router.navigate(['situation']).then(() => this.isLoading = false)
@@ -179,7 +179,6 @@ export class DashboardComponent implements OnInit {
         console.error(error);
       }
     )
-    console.log('choose clicked');
   }
 
   navigate(link: string){

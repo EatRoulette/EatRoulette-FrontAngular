@@ -5,9 +5,11 @@
   margin-left: auto;
 }
 .loader{
-  position: absolute;
-  left: 62%;
-  top: 17%;
+  margin-right: auto;
+  margin-left: auto;
+  height:100px;
+  width: 1px;
+  margin-top: 50px;
 }
 h1 {
   margin-bottom: 50px;

@@ -7,7 +7,7 @@
       </div>
     </div>
     <div class="separator margin-bottom"></div>
-    <div *ngIf="!isRoll">
+    <div *ngIf="!isRoll && isConnected">
       <p>Ajouter à ma liste</p>
       <div  class="selection">
         <select (change)="selectValue($event)" class="form-control select">
