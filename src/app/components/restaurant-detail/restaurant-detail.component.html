@@ -74,7 +74,7 @@
     </div>
     <p *ngIf="errorMapMessage" class="error centered-text"> {{ errorMapMessage }} </p>
     <div *ngIf="isRoll && !validationTitle" class="margin-top  margin-auto" >
-      <button class="btn btn-success button full-width" (click)="choose()">Valider</button>
+      <button *ngIf="isConnected" class="btn btn-success button full-width" (click)="choose()">Valider</button>
     </div>
   </div>
 </div>
