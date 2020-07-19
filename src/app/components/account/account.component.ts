@@ -48,10 +48,6 @@ export class AccountComponent implements OnInit {
     this.submitted = true;
     if(this.UpdateUserForm.valid){
       const user = this.UpdateUserForm.value;
-      const storedUser: User = this.userService.getStoredUser();
-      if(storedUser.firstName !== user.firstName){
-        this.eventService.userChange.emit(user.firstName);
-      }
       this.updateData(user);
     }
   }
@@ -66,6 +62,7 @@ export class AccountComponent implements OnInit {
         this.isLoading = false;
         this.user = userUpdated;
         this.isModifying = false;
+        this.eventService.userChange.emit(userUpdated.firstName);
       },
       (error: any) => {
         this.isLoading = false;

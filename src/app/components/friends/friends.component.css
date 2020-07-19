@@ -36,6 +36,7 @@
 .loader{
   margin-right: auto;
   margin-left: auto;
+  height:100px;
   width: 1px;
   margin-top: 50px;
 }
