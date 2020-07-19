@@ -6,29 +6,34 @@
     <div *ngIf="isLoading" class="loader">
       <app-pizza-loader></app-pizza-loader>
     </div>
-    <div class="item">
-      <div class="col-sm-2">Nom</div>
-      <div class="col-sm-2">nb de visite</div>
-      <div class="col-sm-2">Adresse</div>
-      <div class="col-sm-2">Ville</div>
-    </div>
-    <div *ngFor="let restaurant of restaurants.allStats | paginate: { itemsPerPage: 6, currentPage: p }">
-      <div class="separator"></div>
-      <div *ngIf="restaurant.restaurant" class="item">
-        <div class="col-sm-2">{{restaurant.restaurant.name}}</div>
-        <div class="col-sm-2 text-center">{{restaurant.count}}</div>
-        <div class="col-sm-2">{{restaurant.restaurant.address}}</div>
-        <div class="col-sm-2">{{restaurant.restaurant.city}}</div>
-        <div class="col-sm-2" >
-          <button type="submit" class="button btn btn-block btn-info" (click)="see(restaurant.restaurant.id)">Voir le restaurant</button>
-        </div>
-        <div class="col-sm-2" >
-          <button type="submit" class="button btn btn-block btn-primary" (click)="showDetails(restaurant.restaurant.id)">Voir l'historique</button>
-        </div>
-
-
+    <div *ngIf="result && result.length > 0">
+      <div class="item">
+        <div class="col-sm-2">Nom</div>
+        <div class="col-sm-2">nb de visite</div>
+        <div class="col-sm-2">Adresse</div>
+        <div class="col-sm-2">Ville</div>
       </div>
+      <div *ngFor="let restaurant of result | paginate: { itemsPerPage: 6, currentPage: p }">
+        <div class="separator"></div>
+        <div *ngIf="restaurant.restaurant" class="item">
+          <div class="col-sm-2">{{restaurant.restaurant.name}}</div>
+          <div class="col-sm-2 text-center">{{restaurant.count}}</div>
+          <div class="col-sm-2">{{restaurant.restaurant.address}}</div>
+          <div class="col-sm-2">{{restaurant.restaurant.city}}</div>
+          <div class="col-sm-2" >
+            <button type="submit" class="button btn btn-block btn-info" (click)="see(restaurant.restaurant.id)">Voir le restaurant</button>
+          </div>
+          <div class="col-sm-2" >
+            <button type="submit" class="button btn btn-block btn-primary" (click)="showDetails(restaurant.restaurant.id)">Voir l'historique</button>
+          </div>
+        </div>
+      </div>
+      <pagination-controls (pageChange)="p = $event"  class="pagination"></pagination-controls>
     </div>
-    <pagination-controls (pageChange)="p = $event"  class="pagination" *ngIf="restaurants.allStats.length > 0"></pagination-controls>
+    <div class="no-results" *ngIf="hasResults && !errorMessage && (!result || result.length === 0)">
+      Aucun résultat !
+    </div>
+    <div *ngIf="errorMessage" class="error centered-text">{{errorMessage}}</div>
+
   </div>
 </div>
